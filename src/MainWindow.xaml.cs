@@ -988,8 +988,6 @@ namespace PasswordManager
                         keyDirectoryCache.Set(passwordRepository.Id, dlg.SelectedPath);                        
                     }
                 }
-                Properties.Settings.Default.ShowLoginColumn = !Properties.Settings.Default.ShowLoginColumn;
-                UpdateLoginColumn();
             }
             catch (Exception ex)
             {
