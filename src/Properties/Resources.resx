@@ -142,7 +142,10 @@
     <value>Close</value>
   </data>
   <data name="CMD_COPY_LOGIN" xml:space="preserve">
-    <value>Copy Login to clipboard</value>
+    <value>Copy login to clipboard</value>
+  </data>
+  <data name="CMD_COPY_PASSWORD" xml:space="preserve">
+    <value>Copy password to clipboard</value>
   </data>
   <data name="CMD_DELETE" xml:space="preserve">
     <value>Remove</value>
@@ -175,7 +178,7 @@
     <value>Save As...</value>
   </data>
   <data name="CMD_SHOW_LOGIN_COLUMN" xml:space="preserve">
-    <value>Show Login column</value>
+    <value>Show login column</value>
   </data>
   <data name="CMD_SHOW_PASSWORD" xml:space="preserve">
     <value>Show password</value>
