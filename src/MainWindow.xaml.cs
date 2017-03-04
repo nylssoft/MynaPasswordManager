@@ -4,15 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Security;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Markup;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -20,21 +16,21 @@ namespace PasswordManager
 {
     public partial class MainWindow : Window
     {
-        private int timeSecAutoHidePassword = 30; // hide all passwords after 30 seconds, 0 to disable
-        private int timeSecReenterPassword = 300; // reenter password after 5 minutes being idle, 0 to disable
+        private int autoHidePasswordAfterSec = 30; // hide all passwords after 30 seconds, 0 to disable
+        private int reenterPasswordAfterSec = 300; // reenter password after 5 minutes being idle, 0 to disable
 
         private PasswordRepository passwordRepository;
         private string passwordFilename;
-        private SecureString securePassword;
+        private SecureString passwordSecureString;
+
         private ThumbnailCache thumbnailCache;
         private KeyDirectoryCache keyDirectoryCache;
 
         private DispatcherTimer timer;
-        private DateTime dateTimeShowPassword;
+        private DateTime showPasswordSince;
+        private DateTime idleSince = DateTime.Now;
         private bool autoHidePassword = false;
-        private DateTime dateTimeIdle = DateTime.Now;
         private bool reenterPassword = false;
-
 
         private static BitmapImage imageShow32x32 = new BitmapImage(new Uri("pack://application:,,,/Images/32x32/document-decrypt-3.png"));
         private static BitmapImage imageHide32x32 = new BitmapImage(new Uri("pack://application:,,,/Images/32x32/document-encrypt-3.png"));
@@ -61,10 +57,10 @@ namespace PasswordManager
             try
             {
                 UpdateStatus();
-                if (autoHidePassword && timeSecAutoHidePassword > 0)
+                if (autoHidePassword && autoHidePasswordAfterSec > 0)
                 {
-                    var ts = DateTime.Now - dateTimeShowPassword;
-                    if (ts.TotalSeconds > timeSecAutoHidePassword)
+                    var ts = DateTime.Now - showPasswordSince;
+                    if (ts.TotalSeconds > autoHidePasswordAfterSec)
                     {
                         autoHidePassword = false;
                         foreach (PasswordViewItem item in listView.Items)
@@ -75,10 +71,10 @@ namespace PasswordManager
                         UpdateControls();
                     }
                 }
-                if (!reenterPassword && timeSecReenterPassword > 0)
+                if (!reenterPassword && reenterPasswordAfterSec > 0)
                 {
-                    var tsidle = DateTime.Now - dateTimeIdle;
-                    if (tsidle.TotalSeconds > timeSecReenterPassword)
+                    var tsidle = DateTime.Now - idleSince;
+                    if (tsidle.TotalSeconds > reenterPasswordAfterSec)
                     {
                         reenterPassword = true;
                     }
@@ -98,7 +94,7 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                HandleError(ex);
                 Close();
             }
         }
@@ -124,7 +120,7 @@ namespace PasswordManager
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        HandleError(ex);
                     }
                     return;
                 }
@@ -134,15 +130,14 @@ namespace PasswordManager
 
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
-            dateTimeIdle = DateTime.Now;
+            idleSince = DateTime.Now;
         }
 
         private void ListView_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             listViewToggleShowPassword.Header = Properties.Resources.CMD_SHOW_PASSWORD;
             listViewToggleShowPassword.Icon = contextMenuItemImageShow;
-            var item = listView.SelectedItem as PasswordViewItem;
-            if (item != null && !item.HidePassword)
+            if (listView.SelectedItem is PasswordViewItem item && !item.HidePassword)
             {
                 listViewToggleShowPassword.Header = Properties.Resources.CMD_HIDE_PASSWORD;
                 listViewToggleShowPassword.Icon = contextMenuItemImageHide;
@@ -169,19 +164,18 @@ namespace PasswordManager
             RoutedUICommand r = e.Command as RoutedUICommand;
             if (r == null) return;
             int selected = 0;
-            string url = null;
-            if (listView != null && listView.SelectedItems != null)
+            bool hasUrl = false;
+            bool hasRepository = passwordRepository != null;
+            if (hasRepository && listView.SelectedItems != null)
             {
                 selected = listView.SelectedItems.Count;
-            }
-            bool passwordHidden = true;
-            if (selected == 1)
-            {
-                var item = listView.SelectedItem as PasswordViewItem;
-                if (item.Password != null)
+                if (selected == 1)
                 {
-                    url = item.Password.Url;
-                    passwordHidden = item.HidePassword;
+                    var item = listView.SelectedItem as PasswordViewItem;
+                    if (item.Password != null)
+                    {
+                        hasUrl = !string.IsNullOrEmpty(item.Password.Url);
+                    }
                 }
             }
             switch (r.Name)
@@ -194,14 +188,14 @@ namespace PasswordManager
                     e.CanExecute = true;
                     break;
                 case "Save":
-                    e.CanExecute = passwordRepository != null && passwordRepository.Changed;
+                    e.CanExecute = hasRepository && passwordRepository.Changed;
                     break;
                 case "SaveAs":
                 case "Close":
                 case "Properties":
                 case "Add":
                 case "ChangeKeyDirectory":
-                    e.CanExecute = passwordRepository != null;
+                    e.CanExecute = hasRepository;
                     break;
                 case "Edit":
                 case "CopyLogin":
@@ -212,13 +206,12 @@ namespace PasswordManager
                     e.CanExecute = selected >= 1;
                     break;
                 case "OpenURL":
-                    e.CanExecute = selected == 1 && !string.IsNullOrEmpty(url);
+                    e.CanExecute = selected == 1 && hasUrl;
                     break;
                 default:
                     break;
             }
         }
-
 
         private void Command_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -237,16 +230,16 @@ namespace PasswordManager
                     Close();
                     break;
                 case "Open":
-                    OpenRepository(null, false);
+                    OpenRepository();
                     break;
                 case "SaveAs":
-                    SaveRepository(null);
+                    SaveAs();
                     break;
                 case "Close":
                     CloseRepository();
                     break;
                 case "Save":
-                    SaveRepository(passwordFilename);
+                    Save();
                     break;
                 case "ChangeKeyDirectory":
                     ChangeKeyDirectory();
@@ -255,7 +248,7 @@ namespace PasswordManager
                     ShowProperties();
                     break;
                 case "Add":
-                    AddItem();
+                    AddItemAsync();
                     break;
                 case "Edit":
                     EditItem();
@@ -276,7 +269,7 @@ namespace PasswordManager
                     About();
                     break;
                 case "ShowLoginColumn":
-                    ShowLoginColumn(menuItemShowLoginColumn);
+                    ShowLoginColumn();
                     break;
                 default:
                     break;
@@ -287,8 +280,8 @@ namespace PasswordManager
 
         private void Init()
         {
-            timeSecAutoHidePassword = Properties.Settings.Default.AutoHidePassword;
-            timeSecReenterPassword = Properties.Settings.Default.ReenterPassword;
+            autoHidePasswordAfterSec = Properties.Settings.Default.AutoHidePassword;
+            reenterPasswordAfterSec = Properties.Settings.Default.ReenterPassword;
             menuItemImageShow = new Image{ Source = imageShow16x16, Height=16, Width=16 };
             menuItemImageHide = new Image{ Source = imageHide16x16, Height = 16, Width = 16 };
             menuItemImageShowDisabled = new Image { Source = imageShow16x16, Opacity = 0.5, Height = 16, Width = 16 };
@@ -316,8 +309,7 @@ namespace PasswordManager
 
         private void UpdateLoginColumn()
         {
-            GridView gv = listView.View as GridView;
-            if (gv != null)
+            if (listView.View is GridView gv)
             {
                 if (!Properties.Settings.Default.ShowLoginColumn)
                 {
@@ -414,7 +406,7 @@ namespace PasswordManager
             }
             if (autoHidePassword)
             {
-                TimeSpan ts = DateTime.Now - dateTimeShowPassword;
+                TimeSpan ts = DateTime.Now - showPasswordSince;
                 int sec = Math.Max(0, 30 - (int)ts.TotalSeconds);
                 if (sec > 0)
                 {
@@ -440,18 +432,25 @@ namespace PasswordManager
  
         private void Open(PasswordViewItem item)
         {
-            if (item != null && !string.IsNullOrEmpty(item.Password.Url))
+            try
             {
-                string url = item.Password.Url.ToLowerInvariant();
-                if (!url.StartsWith("http://") && !url.StartsWith("https://"))
+                if (item != null && !string.IsNullOrEmpty(item.Password.Url))
                 {
-                    url = $"https://{url}";
+                    var url = item.Password.Url.ToLowerInvariant();
+                    if (!url.StartsWith("http://") && !url.StartsWith("https://"))
+                    {
+                        url = $"https://{url}";
+                    }
+                    Process.Start(url);
                 }
-                Process.Start(url);
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
             }
         }
 
-        private async void AddItem()
+        private async void AddItemAsync()
         {
             try
             {
@@ -479,7 +478,7 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
         }
 
@@ -519,7 +518,7 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
         }
 
@@ -554,7 +553,7 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
         }
 
@@ -578,7 +577,7 @@ namespace PasswordManager
                         item.HidePassword = false;
                     }
                     listView.Items.Refresh();
-                    dateTimeShowPassword = DateTime.Now;
+                    showPasswordSince = DateTime.Now;
                     autoHidePassword = true;
                 }
                 else if (hideEnabled)
@@ -606,27 +605,36 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
         }
 
         private bool ReenterPassword()
         {
-            if (reenterPassword)
+            try
             {
-                foreach (PasswordViewItem item in listView.Items)
+                if (reenterPassword)
                 {
-                    item.HidePassword = true;
+                    foreach (PasswordViewItem item in listView.Items)
+                    {
+                        item.HidePassword = true;
+                    }
+                    listView.Items.Refresh();
+                    var dlg = new LoginWindow(Properties.Resources.VERIFY_PASSWORD, keyDirectoryCache, passwordFilename)
+                    {
+                        SecurePassword = passwordSecureString
+                    };
+                    if (dlg.ShowDialog() != true)
+                    {
+                        return false;
+                    }
+                    reenterPassword = false;
+                    idleSince = DateTime.Now;
                 }
-                listView.Items.Refresh();
-                var dlg = new LoginWindow(Properties.Resources.VERIFY_PASSWORD, keyDirectoryCache, passwordFilename);
-                dlg.SecurePassword = securePassword;
-                if (dlg.ShowDialog() != true)
-                {
-                    return false;
-                }
-                reenterPassword = false;
-                dateTimeIdle = DateTime.Now;
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
             }
             return true;
         }
@@ -635,15 +643,15 @@ namespace PasswordManager
         {
             try
             {
-                var item = listView.SelectedItem as PasswordViewItem;
-                if (item != null && !string.IsNullOrEmpty(item.Login))
+                if (listView.SelectedItem is PasswordViewItem item &&
+                    !string.IsNullOrEmpty(item.Login))
                 {
                     Clipboard.SetText(item.Login);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
         }
 
@@ -656,7 +664,7 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
         }
 
@@ -680,7 +688,7 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
         }
 
@@ -693,17 +701,21 @@ namespace PasswordManager
         private bool PromptSaveChanges(ref bool canceled)
         {
             canceled = false;
-            if (passwordRepository == null)
-            {
-                return true;
-            }
             bool ret = false;
             try
             {
+                if (passwordRepository == null)
+                {
+                    return true;
+                }
                 if (passwordRepository.Changed)
                 {
-                    MessageBoxResult r = MessageBox.Show(this, Properties.Resources.QUESTION_SAVE_CHANGES,
-                        this.Title, MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+                    var r = MessageBox.Show(
+                        this,
+                        Properties.Resources.QUESTION_SAVE_CHANGES,
+                        Title,
+                        MessageBoxButton.YesNoCancel, 
+                        MessageBoxImage.Question);
                     if (r == MessageBoxResult.Cancel)
                     {
                         canceled = true;
@@ -725,7 +737,7 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
             UpdateControls();
             return ret;
@@ -733,24 +745,24 @@ namespace PasswordManager
 
         private bool CloseRepository()
         {
-            if (passwordRepository == null)
-            {
-                return true;
-            }
             bool ret = false;
             try
             {
+                if (passwordRepository == null)
+                {
+                    return true;
+                }
                 if (PromptSaveChanges())
                 {
                     passwordRepository = null;
-                    securePassword.Clear();
+                    passwordSecureString.Clear();
                     listView.Items.Clear();
                     ret = true;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
             UpdateControls();
             return ret;
@@ -760,10 +772,12 @@ namespace PasswordManager
         {
             SaveRepository(null);
         }
+
         private void Save()
         {
             SaveRepository(passwordFilename);
         }
+
         private bool SaveRepository(string filename)
         {
             bool ret = false;
@@ -793,7 +807,7 @@ namespace PasswordManager
                     Properties.Settings.Default.InitialDirectory = new FileInfo(filename).Directory.FullName;
                 }
                 var keyDirectory = keyDirectoryCache.Get(passwordRepository.Id);
-                passwordRepository.Save(filename, keyDirectory, securePassword);
+                passwordRepository.Save(filename, keyDirectory, passwordSecureString);
                 passwordFilename = filename;
                 Properties.Settings.Default.LastUsedRepositoryFile = filename;
                 SortListView();
@@ -801,7 +815,7 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
             UpdateControls();
             return ret;
@@ -825,14 +839,14 @@ namespace PasswordManager
                 {
                     return false;
                 }
-                securePassword = dlg.SecurePassword;
+                passwordSecureString = dlg.SecurePassword;
                 passwordRepository = dlg.PasswordRepository;
                 passwordFilename = null;
                 ret = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
             UpdateControls();
             var cacheDirectory = Properties.Settings.Default.CacheDirectory.ReplaceSpecialFolder();
@@ -885,7 +899,7 @@ namespace PasswordManager
                     }
                     passwordFilename = filename;
                     passwordRepository = dlg.PasswordRepository;
-                    securePassword = dlg.SecurePassword;
+                    passwordSecureString = dlg.SecurePassword;
                     Properties.Settings.Default.LastUsedRepositoryFile = passwordFilename;
                     foreach (var password in passwordRepository.Passwords)
                     {
@@ -899,7 +913,7 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
                 ret = false;
             }
             UpdateControls();
@@ -930,7 +944,7 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
         }
 
@@ -950,25 +964,31 @@ namespace PasswordManager
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
         }
 
-        private void ShowLoginColumn(object sender)
+        private void ShowLoginColumn()
         {
             try
             {
-                MenuItem mi = sender as MenuItem;
-                if (mi != null)
-                {
-                    Properties.Settings.Default.ShowLoginColumn = mi.IsChecked;
-                    UpdateLoginColumn();
-                }
+                Properties.Settings.Default.ShowLoginColumn = menuItemShowLoginColumn.IsChecked;
+                UpdateLoginColumn();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                HandleError(ex);
             }
+        }
+
+        private void HandleError(Exception ex)
+        {
+            MessageBox.Show(
+                this,
+                string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message),
+                Title,
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
         }
     }
 }
