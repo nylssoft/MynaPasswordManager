@@ -18,3 +18,7 @@ TODOs:
 - Add license information for the images that are taken from the Open Icon Library (might be necessary to mention several licenses as each image might have a different license)
 - Add licene information for the PasswordManager, will likely by the MIT license if this is in accordance with the image licenses of Open Icon Library
 - A new project name...
+- Provide a WiX installer for windows using the WiX Toolset, not yet available for VS 2017.
+
+Installation:
+Use the ZIP file in the install directory by now. Requires at least Windows 7.
