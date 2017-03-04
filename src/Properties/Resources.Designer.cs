@@ -133,11 +133,20 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Copy Login to clipboard ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy login to clipboard ähnelt.
         /// </summary>
         public static string CMD_COPY_LOGIN {
             get {
                 return ResourceManager.GetString("CMD_COPY_LOGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy password to clipboard ähnelt.
+        /// </summary>
+        public static string CMD_COPY_PASSWORD {
+            get {
+                return ResourceManager.GetString("CMD_COPY_PASSWORD", resourceCulture);
             }
         }
         
@@ -232,7 +241,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Show Login column ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show login column ähnelt.
         /// </summary>
         public static string CMD_SHOW_LOGIN_COLUMN {
             get {

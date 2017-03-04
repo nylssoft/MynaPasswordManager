@@ -28,9 +28,12 @@ namespace PasswordManager
 
         private DispatcherTimer timer;
         private DateTime showPasswordSince;
+        private DateTime copiedToClipboardSince;
         private DateTime idleSince = DateTime.Now;
+
         private bool autoHidePassword = false;
         private bool reenterPassword = false;
+        private bool copiedToClipboard = false;
 
         private static BitmapImage imageShow32x32 = new BitmapImage(new Uri("pack://application:,,,/Images/32x32/document-decrypt-3.png"));
         private static BitmapImage imageHide32x32 = new BitmapImage(new Uri("pack://application:,,,/Images/32x32/document-encrypt-3.png"));
@@ -71,6 +74,15 @@ namespace PasswordManager
                         UpdateControls();
                     }
                 }
+                if (copiedToClipboard && autoHidePasswordAfterSec > 0)
+                {
+                    var tscopied = DateTime.Now - copiedToClipboardSince;
+                    if (tscopied.TotalSeconds > autoHidePasswordAfterSec)
+                    {
+                        copiedToClipboard = false;
+                        Clipboard.Clear();
+                    }
+                }
                 if (!reenterPassword && reenterPasswordAfterSec > 0)
                 {
                     var tsidle = DateTime.Now - idleSince;
@@ -108,6 +120,11 @@ namespace PasswordManager
                 {
                     try
                     {
+                        if (copiedToClipboard)
+                        {
+                            copiedToClipboard = false;
+                            Clipboard.Clear();
+                        }
                         Properties.Settings.Default.Save();
                         if (thumbnailCache != null)
                         {
@@ -165,6 +182,8 @@ namespace PasswordManager
             if (r == null) return;
             int selected = 0;
             bool hasUrl = false;
+            bool hasLogin = false;
+            bool hasPassword = false;
             bool hasRepository = passwordRepository != null;
             if (hasRepository && listView.SelectedItems != null)
             {
@@ -175,6 +194,8 @@ namespace PasswordManager
                     if (item.Password != null)
                     {
                         hasUrl = !string.IsNullOrEmpty(item.Password.Url);
+                        hasLogin = !string.IsNullOrEmpty(item.Login);
+                        hasPassword = item.Password.SecurePassword.Length > 0;
                     }
                 }
             }
@@ -198,8 +219,13 @@ namespace PasswordManager
                     e.CanExecute = hasRepository;
                     break;
                 case "Edit":
-                case "CopyLogin":
                     e.CanExecute = selected == 1;
+                    break;
+                case "CopyLogin":
+                    e.CanExecute = selected == 1 && hasLogin;
+                    break;
+                case "CopyPassword":
+                    e.CanExecute = selected == 1 && hasPassword;
                     break;
                 case "Remove":
                 case "TogglePassword":
@@ -264,6 +290,9 @@ namespace PasswordManager
                     break;
                 case "CopyLogin":
                     CopyLogin();
+                    break;
+                case "CopyPassword":
+                    CopyPassword();
                     break;
                 case "About":
                     About();
@@ -647,6 +676,26 @@ namespace PasswordManager
                     !string.IsNullOrEmpty(item.Login))
                 {
                     Clipboard.SetText(item.Login);
+                    copiedToClipboardSince = DateTime.Now;
+                    copiedToClipboard = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+        }
+
+        private void CopyPassword()
+        {
+            try
+            {
+                if (listView.SelectedItem is PasswordViewItem item &&
+                    item.Password != null && item.Password.SecurePassword.Length > 0)
+                {
+                    Clipboard.SetText(item.Password.SecurePassword.GetAsString());
+                    copiedToClipboardSince = DateTime.Now;
+                    copiedToClipboard = true;
                 }
             }
             catch (Exception ex)

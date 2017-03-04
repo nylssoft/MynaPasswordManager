@@ -34,6 +34,7 @@
         <CommandBinding Command="self:CustomCommands.OpenURL" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.TogglePassword" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.CopyLogin" CanExecute="Command_CanExecute" Executed="Command_Executed" />
+        <CommandBinding Command="self:CustomCommands.CopyPassword" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.About" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ShowLoginColumn" CanExecute="Command_CanExecute" Executed="Command_Executed" />
     </Window.CommandBindings>
@@ -100,6 +101,8 @@
                     </MenuItem>
                     <Separator />
                     <MenuItem Command="self:CustomCommands.CopyLogin" />
+                    <Separator />
+                    <MenuItem Command="self:CustomCommands.CopyPassword" />
                 </MenuItem>
                 <MenuItem Header="{x:Static props:Resources.MENUITEM_VIEW}" >
                     <MenuItem Command="self:CustomCommands.OpenURL">
@@ -202,6 +205,8 @@
                         </MenuItem>
                         <Separator />
                         <MenuItem Command="self:CustomCommands.CopyLogin" />
+                        <Separator />
+                        <MenuItem Command="self:CustomCommands.CopyPassword" />
                     </ContextMenu>
                 </ListView.ContextMenu>
             </ListView>

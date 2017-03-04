@@ -98,6 +98,12 @@ namespace PasswordManager
             "CopyLogin",
             typeof(CustomCommands));
 
+        public static readonly RoutedUICommand CopyPassword =
+            new RoutedUICommand(
+            Properties.Resources.CMD_COPY_PASSWORD,
+            "CopyPassword",
+            typeof(CustomCommands));
+
         public static readonly RoutedUICommand About =
             new RoutedUICommand(
             Properties.Resources.CMD_ABOUT,

@@ -144,6 +144,9 @@
   <data name="CMD_COPY_LOGIN" xml:space="preserve">
     <value>Login in die Zwischenablage kopieren</value>
   </data>
+  <data name="CMD_COPY_PASSWORD" xml:space="preserve">
+    <value>Passwort in die Zwischenablage kopieren</value>
+  </data>
   <data name="CMD_DELETE" xml:space="preserve">
     <value>Entfernen...</value>
   </data>
