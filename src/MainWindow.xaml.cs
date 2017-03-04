@@ -120,8 +120,11 @@ namespace PasswordManager
                 {
                     try
                     {
-                        copiedToClipboard = false;
-                        Clipboard.Clear();
+                        if (copiedToClipboard)
+                        {
+                            copiedToClipboard = false;
+                            Clipboard.Clear();
+                        }
                         Properties.Settings.Default.Save();
                         if (thumbnailCache != null)
                         {
