@@ -17,3 +17,4 @@ TODOs:
 - Learn how to provide "skins" using XAML styles.
 - Add license information for the images that are taken from the Open Icon Library (might be necessary to mention several licenses as each image might have a different license)
 - Add licene information for the PasswordManager, will likely by the MIT license if this is in accordance with the image licenses of Open Icon Library
+- A new project name...
