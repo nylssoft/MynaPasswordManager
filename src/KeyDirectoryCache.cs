@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PasswordManager
+﻿namespace PasswordManager
 {
-    public sealed class KeyDirectoryCache
+    public sealed class KeyDirectoryCache : StringCache
     {
-        private Dictionary<string, string> mappings;
-        private readonly string cacheDirectory;
+        private string mappingFile;
 
         public KeyDirectoryCache(string cacheDirectory)
         {
-            mappings = new Dictionary<string, string>();
-            this.cacheDirectory = cacheDirectory;
+            mappingFile = $"{cacheDirectory}\\keydirectory.bin";
         }
+
+        protected override string MappingFile => mappingFile;
 
         public string GetLastUsed()
         {
@@ -40,55 +31,5 @@ namespace PasswordManager
             mappings[key] = val;
             Properties.Settings.Default.KeyDirectory = val;
         }
-
-        public void Load()
-        {
-            var mappingFile = CacheKeyDirectoryFile;
-            if (File.Exists(mappingFile))
-            {
-                IFormatter formatter = new BinaryFormatter();
-                List<Tuple<string, string>> list;
-                using (var fs = new FileStream(mappingFile, FileMode.Open))
-                {
-                    list = (List<Tuple<string, string>>)formatter.Deserialize(fs);
-                }
-                lock (mappings)
-                {
-                    foreach (var item in list)
-                    {
-                        mappings.Add(item.Item1, item.Item2);
-                    }
-                }
-            }
-        }
-
-        public void Save()
-        {
-            IFormatter formatter = new BinaryFormatter();
-            using (var fs = new FileStream(CacheKeyDirectoryFile, FileMode.Create))
-            {
-                var list = new List<Tuple<string, string>>();
-                lock (mappings)
-                {
-                    foreach (var entry in mappings)
-                    {
-                        if (!string.IsNullOrEmpty(entry.Value))
-                        {
-                            list.Add(Tuple.Create(entry.Key, entry.Value));
-                        }
-                    }
-                }
-                formatter.Serialize(fs, list);
-            }
-        }
-
-        private string CacheKeyDirectoryFile
-        {
-            get
-            {
-                return $"{cacheDirectory}\\keydirectory.bin";
-            }
-        }
-
     }
 }
