@@ -1,0 +1,40 @@
+﻿<Window x:Class="PasswordManager.EditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:props="clr-namespace:PasswordManager.Properties"
+        mc:Ignorable="d"
+        Height="290" Width="400" MinHeight="290" MinWidth="300" Icon="Images/logo.png">
+    <Grid Margin="5,5,5,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static props:Resources.LABEL_NAME}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="textBoxName" Height="23" Margin="0,0,5,0" MaxLength="100"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.LABEL_LOGIN}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="textBoxLogin" Height="23" Margin="0,0,5,0" MaxLength="100"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static props:Resources.LABEL_PASSWORD}"/>
+        <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="passwordBox" Height="23" Margin="0,0,5,0" MaxLength="100" PasswordChanged="PasswordBox_PasswordChanged"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="{x:Static props:Resources.LABEL_CONFIRM_PASSWORD}"/>
+        <PasswordBox Grid.Row="3" Grid.Column="1" x:Name="passwordBoxConfirmed" Height="23" Margin="0,0,5,0" MaxLength="100"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="{x:Static props:Resources.LABEL_URL}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" x:Name="textBoxUrl" Height="23" Margin="0,0,5,0" MaxLength="100"/>
+        <Label Grid.Row="5" Grid.Column="0" Content="{x:Static props:Resources.LABEL_DESCRIPTION}"/>
+        <TextBox Grid.Row="5" Grid.Column="1" x:Name="textBoxDescription" Margin="0,4,5,3" MaxLength="1024" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
+        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="buttonOK" IsDefault="True" Content="{x:Static props:Resources.BUTTON_OK}" Height="23" Width="80" Margin="5,0,5,0" Click="ButtonOK_Click"/>
+            <Button x:Name="buttonCancel" IsCancel="True" Content="{x:Static props:Resources.BUTTON_CANCEL}" Height="23" Width="80" Margin="5,0,5,0" />
+        </StackPanel>
+    </Grid>
+</Window>
