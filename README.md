@@ -13,5 +13,5 @@ A simple password manager to learn how to use GitHub and a learning project how 
 TODOs:
 
 - Dynamic localization using a MarkupExtension
-- A settings dialog, e.g. for the time the password in shown in plain text (30 seconds) or the passwword has to be reentered (5 minutes)
+- A settings dialog, e.g. for the time the password in shown in plain text (30 seconds) or the master password has to be reentered (5 minutes)
 - Learn how to provide "skins" using XAML styles.
