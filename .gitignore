@@ -14,11 +14,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-# Windows generated files and binary files
-src\obj\
-*.sln
-*.suo
-
 # Windows shortcuts
 *.lnk
 
