@@ -335,6 +335,7 @@ namespace PasswordManager.Repository
 
         private static void HandleBackup(bool ok, string originalFile, string backupFile)
         {
+            if (!string.IsNullOrEmpty(backupFile) && File.Exists(backupFile))
             {
                 if (ok)
                 {
