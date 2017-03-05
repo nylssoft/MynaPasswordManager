@@ -25,7 +25,14 @@
         <Label Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.LABEL_LOGIN}"/>
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="textBoxLogin" Height="23" Margin="0,0,5,0" MaxLength="100"/>
         <Label Grid.Row="2" Grid.Column="0" Content="{x:Static props:Resources.LABEL_PASSWORD}"/>
-        <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="passwordBox" Height="23" Margin="0,0,5,0" MaxLength="100" PasswordChanged="PasswordBox_PasswordChanged"/>
+        <Grid Grid.Row="2" Grid.Column="1" Margin="0,0,5,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="30" />
+            </Grid.ColumnDefinitions>
+            <PasswordBox Grid.Column="0" x:Name="passwordBox" Height="23" MaxLength="100" PasswordChanged="PasswordBox_PasswordChanged"/>
+            <Button Grid.Column="1" Content="..." Height="23" Width="25" HorizontalAlignment="Right" Click="ButtonGenerate_Click"/>
+        </Grid>
         <Label Grid.Row="3" Grid.Column="0" Content="{x:Static props:Resources.LABEL_CONFIRM_PASSWORD}"/>
         <PasswordBox Grid.Row="3" Grid.Column="1" x:Name="passwordBoxConfirmed" Height="23" Margin="0,0,5,0" MaxLength="100"/>
         <Label Grid.Row="4" Grid.Column="0" Content="{x:Static props:Resources.LABEL_URL}"/>

@@ -106,6 +106,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New password ähnelt.
+        /// </summary>
+        public static string BUTTON_NEW_PASSWORD {
+            get {
+                return ResourceManager.GetString("BUTTON_NEW_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die OK ähnelt.
         /// </summary>
         public static string BUTTON_OK {
@@ -201,6 +210,15 @@ namespace PasswordManager.Properties {
         public static string CMD_EXIT {
             get {
                 return ResourceManager.GetString("CMD_EXIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Generate random password ähnelt.
+        /// </summary>
+        public static string CMD_GENERATE_PASSWORD {
+            get {
+                return ResourceManager.GetString("CMD_GENERATE_PASSWORD", resourceCulture);
             }
         }
         

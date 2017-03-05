@@ -1,4 +1,5 @@
 ﻿using PasswordManager.Repository;
+using System;
 using System.Windows;
 using System.Windows.Media;
 
@@ -53,6 +54,24 @@ namespace PasswordManager
         {
             pwdChanged = true;
             passwordBoxConfirmed.Password = string.Empty;
+        }
+
+        private void ButtonGenerate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var dlg = new GeneratePasswordWindow();
+                if (dlg.ShowDialog() == true)
+                {
+                    passwordBox.Password = dlg.Password.GetAsString();
+                    passwordBoxConfirmed.Password = passwordBox.Password;
+                    pwdChanged = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
