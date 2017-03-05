@@ -61,6 +61,24 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Clear clipboard in {0} seconds. ähnelt.
+        /// </summary>
+        public static string AUTO_CLEAR_CLIPBOARD_IN_0 {
+            get {
+                return ResourceManager.GetString("AUTO_CLEAR_CLIPBOARD_IN_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Clear clipboard in 1 second. ähnelt.
+        /// </summary>
+        public static string AUTO_CLEAR_CLIPBOARD_IN_ONE {
+            get {
+                return ResourceManager.GetString("AUTO_CLEAR_CLIPBOARD_IN_ONE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Hide password in {0} seconds. ähnelt.
         /// </summary>
         public static string AUTO_HIDE_IN_0 {

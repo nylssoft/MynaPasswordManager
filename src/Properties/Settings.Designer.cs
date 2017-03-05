@@ -118,5 +118,17 @@ namespace PasswordManager.Properties {
                 this["ShowLoginColumn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int AutoClearClipboard {
+            get {
+                return ((int)(this["AutoClearClipboard"]));
+            }
+            set {
+                this["AutoClearClipboard"] = value;
+            }
+        }
     }
 }
