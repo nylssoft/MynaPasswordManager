@@ -23,7 +23,7 @@
         <TextBox x:Name="textBoxName" Grid.Row="0" Grid.Column="1" Height="23" TextChanged="TextBox_Changed"/>
         <Label Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.LABEL_MASTER_PASSWORD}" Target="{Binding ElementName=passwordBox}" />
         <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="passwordBox" MaxLength="32" Height="23" PasswordChanged="PasswordBox_PasswordChanged"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static props:Resources.LABEL_CONFIRM_MASTER_PASSWORD}" Target="{Binding ElementName=passwordBox}" />
+        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static props:Resources.LABEL_CONFIRM_MASTER_PASSWORD}" Target="{Binding ElementName=passwordBoxConfirm}" />
         <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="passwordBoxConfirm" MaxLength="32" Height="23" PasswordChanged="PasswordBoxConfirm_PasswordChanged"/>
         <Label Grid.Row="3" Grid.Column="0" Content="{x:Static props:Resources.LABEL_KEY_DIRECTORY}" Target="{Binding textBoxKeyDirectory}"/>
         <Grid Grid.Row="3" Grid.Column="1">

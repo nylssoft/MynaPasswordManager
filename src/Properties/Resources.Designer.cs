@@ -124,6 +124,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Change master password... ähnelt.
+        /// </summary>
+        public static string CMD_CHANGE_MASTER_PASSWORD {
+            get {
+                return ResourceManager.GetString("CMD_CHANGE_MASTER_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
         /// </summary>
         public static string CMD_CLOSE {
@@ -358,6 +367,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Confirm new master password: ähnelt.
+        /// </summary>
+        public static string LABEL_CONFIRM_NEW_MASTER_PASSWORD {
+            get {
+                return ResourceManager.GetString("LABEL_CONFIRM_NEW_MASTER_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Confirm password: ähnelt.
         /// </summary>
         public static string LABEL_CONFIRM_PASSWORD {
@@ -426,6 +444,24 @@ namespace PasswordManager.Properties {
         public static string LABEL_NAME {
             get {
                 return ResourceManager.GetString("LABEL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New master password: ähnelt.
+        /// </summary>
+        public static string LABEL_NEW_MASTER_PASSWORD {
+            get {
+                return ResourceManager.GetString("LABEL_NEW_MASTER_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Current master password: ähnelt.
+        /// </summary>
+        public static string LABEL_OLD_MASTER_PASSWORD {
+            get {
+                return ResourceManager.GetString("LABEL_OLD_MASTER_PASSWORD", resourceCulture);
             }
         }
         
@@ -556,11 +592,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Password Manager
-        ///
-        ///Version 0.5.1
-        ///
-        ///Copyright 2017 Niels Stockfleth
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copyright 2017 Niels Stockfleth
         ///
         ///Published under the MIT license.
         ///

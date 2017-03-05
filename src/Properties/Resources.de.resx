@@ -138,6 +138,9 @@
   <data name="CMD_CHANGE_KEY_DIRECTORY" xml:space="preserve">
     <value>Ändere Schlüsselverzeichnis...</value>
   </data>
+  <data name="CMD_CHANGE_MASTER_PASSWORD" xml:space="preserve">
+    <value>Ändere Hauptpasswort...</value>
+  </data>
   <data name="CMD_CLOSE" xml:space="preserve">
     <value>Schließen</value>
   </data>
@@ -216,6 +219,9 @@
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Bestätigtes Hauptpasswort:</value>
   </data>
+  <data name="LABEL_CONFIRM_NEW_MASTER_PASSWORD" xml:space="preserve">
+    <value>Bestätigtes neues Hauptpasswort:</value>
+  </data>
   <data name="LABEL_CONFIRM_PASSWORD" xml:space="preserve">
     <value>Bestätigtes Passwort:</value>
   </data>
@@ -239,6 +245,12 @@
   </data>
   <data name="LABEL_NAME" xml:space="preserve">
     <value>Name:</value>
+  </data>
+  <data name="LABEL_NEW_MASTER_PASSWORD" xml:space="preserve">
+    <value>Neues Hauptpasswort:</value>
+  </data>
+  <data name="LABEL_OLD_MASTER_PASSWORD" xml:space="preserve">
+    <value>Aktuelles Hauptpasswort:</value>
   </data>
   <data name="LABEL_PASSWORD" xml:space="preserve">
     <value>Passwort:</value>
@@ -283,11 +295,7 @@
     <value>1 Element ausgewählt.</value>
   </data>
   <data name="TEXT_COPYRIGHT" xml:space="preserve">
-    <value>Password Manager
-
-Version 0.5.1
-
-Copyright 2017 Niels Stockfleth
+    <value>Copyright 2017 Niels Stockfleth
 
 Veröffentlicht unter der MIT Lizenz.
 

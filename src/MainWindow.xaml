@@ -28,6 +28,7 @@
         <CommandBinding Command="self:CustomCommands.Props" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.Exit" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ChangeKeyDirectory" CanExecute="Command_CanExecute" Executed="Command_Executed" />
+        <CommandBinding Command="self:CustomCommands.ChangeMasterPassword" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.Add" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.Edit" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.Remove" CanExecute="Command_CanExecute" Executed="Command_Executed" />
@@ -66,16 +67,9 @@
                     <Separator />
                     <MenuItem Command="self:CustomCommands.Close" />
                     <Separator />
-                    <MenuItem Command="self:CustomCommands.ChangeKeyDirectory">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/kgpg_info.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Command="self:CustomCommands.Props">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/document-properties.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
+                    <MenuItem Command="self:CustomCommands.ChangeMasterPassword" />
+                    <MenuItem Command="self:CustomCommands.ChangeKeyDirectory" />
+                    <MenuItem Command="self:CustomCommands.Props" />
                     <Separator />
                     <MenuItem Command="self:CustomCommands.Exit">
                         <MenuItem.Icon>

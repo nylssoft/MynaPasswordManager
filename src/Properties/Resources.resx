@@ -138,6 +138,9 @@
   <data name="CMD_CHANGE_KEY_DIRECTORY" xml:space="preserve">
     <value>Change key directory...</value>
   </data>
+  <data name="CMD_CHANGE_MASTER_PASSWORD" xml:space="preserve">
+    <value>Change master password...</value>
+  </data>
   <data name="CMD_CLOSE" xml:space="preserve">
     <value>Close</value>
   </data>
@@ -216,6 +219,9 @@
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Confirm master password:</value>
   </data>
+  <data name="LABEL_CONFIRM_NEW_MASTER_PASSWORD" xml:space="preserve">
+    <value>Confirm new master password:</value>
+  </data>
   <data name="LABEL_CONFIRM_PASSWORD" xml:space="preserve">
     <value>Confirm password:</value>
   </data>
@@ -239,6 +245,12 @@
   </data>
   <data name="LABEL_NAME" xml:space="preserve">
     <value>Name:</value>
+  </data>
+  <data name="LABEL_NEW_MASTER_PASSWORD" xml:space="preserve">
+    <value>New master password:</value>
+  </data>
+  <data name="LABEL_OLD_MASTER_PASSWORD" xml:space="preserve">
+    <value>Current master password:</value>
   </data>
   <data name="LABEL_PASSWORD" xml:space="preserve">
     <value>Password:</value>
@@ -283,11 +295,7 @@
     <value>1 item selected.</value>
   </data>
   <data name="TEXT_COPYRIGHT" xml:space="preserve">
-    <value>Password Manager
-
-Version 0.5.1
-
-Copyright 2017 Niels Stockfleth
+    <value>Copyright 2017 Niels Stockfleth
 
 Published under the MIT license.
 

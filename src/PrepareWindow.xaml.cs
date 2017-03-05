@@ -2,7 +2,6 @@
 using System;
 using System.IO;
 using System.Security;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 

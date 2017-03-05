@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace PasswordManager
 {
@@ -60,6 +55,12 @@ namespace PasswordManager
             new RoutedUICommand(
             Properties.Resources.CMD_CHANGE_KEY_DIRECTORY,
             "ChangeKeyDirectory",
+            typeof(CustomCommands));
+
+        public static readonly RoutedUICommand ChangeMasterPassword =
+            new RoutedUICommand(
+            Properties.Resources.CMD_CHANGE_MASTER_PASSWORD,
+            "ChangeMasterPassword",
             typeof(CustomCommands));
 
         public static readonly RoutedUICommand Add =

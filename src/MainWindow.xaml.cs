@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using PasswordManager.Repository;
+﻿using PasswordManager.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -216,6 +215,7 @@ namespace PasswordManager
                 case "Properties":
                 case "Add":
                 case "ChangeKeyDirectory":
+                case "ChangeMasterPassword":
                     e.CanExecute = hasRepository;
                     break;
                 case "Edit":
@@ -269,6 +269,9 @@ namespace PasswordManager
                     break;
                 case "ChangeKeyDirectory":
                     ChangeKeyDirectory();
+                    break;
+                case "ChangeMasterPassword":
+                    ChangeMasterPassword();
                     break;
                 case "Properties":
                     ShowProperties();
@@ -708,7 +711,7 @@ namespace PasswordManager
         {
             try
             {
-                var dlg = new AboutWindow(Properties.Resources.CMD_ABOUT);
+                var dlg = new AboutWindow();
                 dlg.ShowDialog();
             }
             catch (Exception ex)
@@ -838,7 +841,7 @@ namespace PasswordManager
                 }
                 if (string.IsNullOrEmpty(filename))
                 {
-                    SaveFileDialog dlg = new SaveFileDialog()
+                    var dlg = new Microsoft.Win32.SaveFileDialog()
                     {
                         InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                         Filter = Properties.Resources.FILE_DIALOG_FILTER
@@ -919,7 +922,7 @@ namespace PasswordManager
                 }
                 if (string.IsNullOrEmpty(filename))
                 {
-                    OpenFileDialog opendlg = new OpenFileDialog()
+                    var opendlg = new Microsoft.Win32.OpenFileDialog()
                     {
                         InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                         Filter = Properties.Resources.FILE_DIALOG_FILTER
@@ -987,6 +990,31 @@ namespace PasswordManager
                         passwordRepository.MoveKey(keyDir, dlg.SelectedPath);
                         keyDirectoryCache.Set(passwordRepository.Id, dlg.SelectedPath);                        
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+        }
+
+        private void ChangeMasterPassword()
+        {
+            try
+            {
+                if (passwordRepository == null) return;
+                var dlg = new ChangeMasterPasswordWindow(
+                    Properties.Resources.CMD_CHANGE_MASTER_PASSWORD,
+                    passwordSecureString);
+                if (dlg.ShowDialog() == true)
+                {
+                    if (!string.IsNullOrEmpty(passwordFilename))
+                    {
+                        var keyDirectory = keyDirectoryCache.Get(passwordRepository.Id);
+                        passwordRepository.ChangeMasterPassword(passwordFilename, keyDirectory, dlg.SecurePassword);                        
+                    }
+                    passwordSecureString = dlg.SecurePassword;
+                    UpdateControls();
                 }
             }
             catch (Exception ex)
