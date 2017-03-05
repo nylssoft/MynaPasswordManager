@@ -15,6 +15,7 @@ namespace PasswordManager
 {
     public partial class MainWindow : Window
     {
+        private int autoClearClipboardAfterSec = 30; // clear clipboard after 30 seconds, 0 to disable
         private int autoHidePasswordAfterSec = 30; // hide all passwords after 30 seconds, 0 to disable
         private int reenterPasswordAfterSec = 300; // reenter password after 5 minutes being idle, 0 to disable
 
@@ -73,10 +74,10 @@ namespace PasswordManager
                         UpdateControls();
                     }
                 }
-                if (copiedToClipboard && autoHidePasswordAfterSec > 0)
+                if (copiedToClipboard && autoClearClipboardAfterSec > 0)
                 {
                     var tscopied = DateTime.Now - copiedToClipboardSince;
-                    if (tscopied.TotalSeconds > autoHidePasswordAfterSec)
+                    if (tscopied.TotalSeconds > autoClearClipboardAfterSec)
                     {
                         copiedToClipboard = false;
                         Clipboard.Clear();
@@ -312,6 +313,7 @@ namespace PasswordManager
 
         private void Init()
         {
+            autoClearClipboardAfterSec = Properties.Settings.Default.AutoClearClipboard;
             autoHidePasswordAfterSec = Properties.Settings.Default.AutoHidePassword;
             reenterPasswordAfterSec = Properties.Settings.Default.ReenterPassword;
             menuItemImageShow = new Image{ Source = imageShow16x16, Height=16, Width=16 };
@@ -439,7 +441,7 @@ namespace PasswordManager
             if (autoHidePassword)
             {
                 TimeSpan ts = DateTime.Now - showPasswordSince;
-                int sec = Math.Max(0, 30 - (int)ts.TotalSeconds);
+                int sec = Math.Max(0, autoHidePasswordAfterSec - (int)ts.TotalSeconds);
                 if (sec > 0)
                 {
                     string hidestr;
@@ -450,6 +452,24 @@ namespace PasswordManager
                     else
                     {
                         hidestr = string.Format(Properties.Resources.AUTO_HIDE_IN_0, sec);
+                    }
+                    status += " " + hidestr;
+                }
+            }
+            if (copiedToClipboard)
+            {
+                TimeSpan ts = DateTime.Now - copiedToClipboardSince;
+                int sec = Math.Max(0, autoClearClipboardAfterSec - (int)ts.TotalSeconds);
+                if (sec > 0)
+                {
+                    string hidestr;
+                    if (sec == 1)
+                    {
+                        hidestr = Properties.Resources.AUTO_CLEAR_CLIPBOARD_IN_ONE;
+                    }
+                    else
+                    {
+                        hidestr = string.Format(Properties.Resources.AUTO_CLEAR_CLIPBOARD_IN_0, sec);
                     }
                     status += " " + hidestr;
                 }

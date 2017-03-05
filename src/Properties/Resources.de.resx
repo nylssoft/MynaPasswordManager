@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AUTO_CLEAR_CLIPBOARD_IN_0" xml:space="preserve">
+    <value>Lösche Zwischenablage in {0} Sekunden.</value>
+  </data>
+  <data name="AUTO_CLEAR_CLIPBOARD_IN_ONE" xml:space="preserve">
+    <value>Lösche Zwischenablage in einer Sekunde.</value>
+  </data>
   <data name="AUTO_HIDE_IN_0" xml:space="preserve">
     <value>Verstecke Passwort in {0} Sekunden.</value>
   </data>
