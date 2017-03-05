@@ -49,9 +49,11 @@ namespace PasswordManager
                     return;
                 }
                 SecurePassword = passwordBox.SecurePassword;
-                PasswordRepository = new PasswordRepository();
-                PasswordRepository.Name = textBoxName.Text;
-                PasswordRepository.Description = textBoxDescription.Text;
+                PasswordRepository = new PasswordRepository()
+                {
+                    Name = textBoxName.Text,
+                    Description = textBoxDescription.Text
+                };
                 keyDirCache.Set(PasswordRepository.Id, textBoxKeyDirectory.Text);
                 DialogResult = true;
                 Close();

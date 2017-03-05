@@ -50,3 +50,5 @@ src\obj\
 Network Trash Folder
 Temporary Items
 .apdisk
+/src/bin/Debug
+/src/obj/Debug

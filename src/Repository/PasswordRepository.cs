@@ -109,67 +109,97 @@ namespace PasswordManager.Repository
             Changed = true;
         }
 
+        public void ChangeMasterPassword(string repositoryFile, string keyDirectory, SecureString securePassword)
+        {
+            var keyFile = $"{keyDirectory}\\{Id}.kv2";
+            var ivFile = $"{keyDirectory}\\{Id}.iv";
+            var backupKeyFile = Backup(keyFile);
+            var backupIvFile = Backup(ivFile);
+            var ok = false;
+            try
+            {
+                Save(repositoryFile, keyDirectory, securePassword, true);
+                ok = true;
+            }
+            finally
+            {
+                HandleBackup(ok, keyFile, backupKeyFile);
+                HandleBackup(ok, ivFile, backupIvFile);
+            }
+        }
+
         public void Save(
             string          repositoryFile,
             string          keyDirectory,
-            SecureString    securePassword)
+            SecureString    securePassword,
+            bool            overwriteKey = false)
         {
-            using (var rijAlg = new RijndaelManaged())
+            var ok = false;
+            var backupFile = Backup(repositoryFile);
+            try
             {
-                // create new key if it does not exist
-                if (!ExistKey(keyDirectory, Id))
+                using (var rijAlg = new RijndaelManaged())
                 {
-                    WriteNewKey(keyDirectory, Id, securePassword);
-                }
-                // read initialization vector and encrypted key
-                var iv = ReadSecret(keyDirectory, Id, SecretType.IV);
-                var encryptedKey = ReadSecret(keyDirectory, Id, SecretType.Key);
-                // decrypt key file with password hash
-                rijAlg.Key = TransformKey(encryptedKey, iv, securePassword, TransformType.Decrypt);
-                rijAlg.IV = iv;
-                var cryptoTransform = rijAlg.CreateEncryptor();
-                // create XML document
-                var doc = new XmlDocument();
-                var rootElem = doc.CreateElement("PasswordRepository");
-                doc.AppendChild(rootElem);
-                AddElement(doc, rootElem, "Version", FILE_FORMAT.ToString());
-                AddElement(doc, rootElem, "Name", Name);
-                AddElement(doc, rootElem, "Description", Description);
-                var passwordsElem = doc.CreateElement("Passwords");
-                foreach (var pwd in passwordDict.Values)
-                {
-                    var passwordElem = doc.CreateElement("Password");
-                    AddElement(doc, passwordElem, "Id", pwd.Id);
-                    AddElement(doc, passwordElem, "Name", pwd.Name);
-                    AddElement(doc, passwordElem, "Description", pwd.Description);
-                    AddElement(doc, passwordElem, "Url", pwd.Url);
-                    var cipherLogin = Encrypt(cryptoTransform, pwd.Login);
-                    AddElement(doc, passwordElem, "CipherLogin", Convert.ToBase64String(cipherLogin));
-                    var pwd_str = pwd.SecurePassword.GetAsString();
-                    var cipherPassword = Encrypt(cryptoTransform, pwd_str);
-                    pwd_str = string.Empty;
-                    AddElement(doc, passwordElem, "CipherPassword", Convert.ToBase64String(cipherPassword));
-                    passwordsElem.AppendChild(passwordElem);
-                }
-                rootElem.AppendChild(passwordsElem);
-                using (var ms = new MemoryStream())
-                {
-                    // write XML to memory
-                    doc.Save(ms);
-                    ms.Seek(0, SeekOrigin.Begin);
-                    using (var fs = new FileStream(repositoryFile, FileMode.Create))
+                    // create new key if it does not exist
+                    if (overwriteKey || !ExistKey(keyDirectory, Id))
                     {
-                        // write header and ID
-                        var header = new byte[6] { 23, 9, 78, 121, 108, 115 };
-                        fs.Write(header, 0, 6);
-                        var guid = new Guid(Id);
-                        fs.Write(guid.ToByteArray(), 0, 16);
-                        Encrypt(cryptoTransform, ms, fs);
+                        WriteNewKey(keyDirectory, Id, securePassword);
+                    }
+                    // read initialization vector and encrypted key
+                    var iv = ReadSecret(keyDirectory, Id, SecretType.IV);
+                    var encryptedKey = ReadSecret(keyDirectory, Id, SecretType.Key);
+                    // decrypt key file with password hash
+                    rijAlg.Key = TransformKey(encryptedKey, iv, securePassword, TransformType.Decrypt);
+                    rijAlg.IV = iv;
+                    var cryptoTransform = rijAlg.CreateEncryptor();
+                    // create XML document
+                    var doc = new XmlDocument();
+                    var rootElem = doc.CreateElement("PasswordRepository");
+                    doc.AppendChild(rootElem);
+                    AddElement(doc, rootElem, "Version", FILE_FORMAT.ToString());
+                    AddElement(doc, rootElem, "Name", Name);
+                    AddElement(doc, rootElem, "Description", Description);
+                    var passwordsElem = doc.CreateElement("Passwords");
+                    foreach (var pwd in passwordDict.Values)
+                    {
+                        var passwordElem = doc.CreateElement("Password");
+                        AddElement(doc, passwordElem, "Id", pwd.Id);
+                        AddElement(doc, passwordElem, "Name", pwd.Name);
+                        AddElement(doc, passwordElem, "Description", pwd.Description);
+                        AddElement(doc, passwordElem, "Url", pwd.Url);
+                        var cipherLogin = Encrypt(cryptoTransform, pwd.Login);
+                        AddElement(doc, passwordElem, "CipherLogin", Convert.ToBase64String(cipherLogin));
+                        var pwd_str = pwd.SecurePassword.GetAsString();
+                        var cipherPassword = Encrypt(cryptoTransform, pwd_str);
+                        pwd_str = string.Empty;
+                        AddElement(doc, passwordElem, "CipherPassword", Convert.ToBase64String(cipherPassword));
+                        passwordsElem.AppendChild(passwordElem);
+                    }
+                    rootElem.AppendChild(passwordsElem);
+                    using (var ms = new MemoryStream())
+                    {
+                        // write XML to memory
+                        doc.Save(ms);
+                        ms.Seek(0, SeekOrigin.Begin);
+                        using (var fs = new FileStream(repositoryFile, FileMode.Create))
+                        {
+                            // write header and ID
+                            var header = new byte[6] { 23, 9, 78, 121, 108, 115 };
+                            fs.Write(header, 0, 6);
+                            var guid = new Guid(Id);
+                            fs.Write(guid.ToByteArray(), 0, 16);
+                            Encrypt(cryptoTransform, ms, fs);
+                        }
                     }
                 }
+                Version = FILE_FORMAT;
+                Changed = false;
+                ok = true;
             }
-            Version = FILE_FORMAT;
-            Changed = false;
+            finally
+            {
+                HandleBackup(ok, repositoryFile, backupFile);
+            }
         }
 
         public static PasswordRepository Read(
@@ -291,6 +321,35 @@ namespace PasswordManager.Repository
         }
 
         #region static helper methods
+
+        private static string Backup(string originalFile)
+        {
+            if (File.Exists(originalFile))
+            {
+                var backupFile = $"{originalFile}.bak";
+                File.Copy(originalFile, backupFile, true);
+                return backupFile;
+            }
+            return string.Empty;
+        }
+
+        private static void HandleBackup(bool ok, string originalFile, string backupFile)
+        {
+            {
+                if (ok)
+                {
+                    File.Delete(backupFile);
+                }
+                else
+                {
+                    if (File.Exists(originalFile))
+                    {
+                        File.Delete(originalFile);
+                    }
+                    File.Move(backupFile, originalFile);
+                }
+            }
+        }
 
         private static void AddElement(XmlDocument xmldoc, XmlElement parentelem, string elemname, string elemvalue)
         {
@@ -432,7 +491,7 @@ namespace PasswordManager.Repository
                 rijAlg.KeySize = 256; // same size as SHA-256 hash
                 // create and write initialization vector file
                 rijAlg.GenerateIV();
-                using (var fsiv = new FileStream($"{keyDirectory}\\{id}.iv", FileMode.CreateNew))
+                using (var fsiv = new FileStream($"{keyDirectory}\\{id}.iv", FileMode.Create))
                 {
                     fsiv.Write(rijAlg.IV, 0, rijAlg.IV.Length);
                 }
@@ -440,7 +499,7 @@ namespace PasswordManager.Repository
                 rijAlg.GenerateKey();
                 var encryptedKey = TransformKey(rijAlg.Key, rijAlg.IV, securePassword, TransformType.Encrypt);
                 // write key file
-                using (var fskv = new FileStream($"{keyDirectory}\\{id}.kv2", FileMode.CreateNew))
+                using (var fskv = new FileStream($"{keyDirectory}\\{id}.kv2", FileMode.Create))
                 {
                     fskv.Write(encryptedKey, 0, encryptedKey.Length);
                 }
