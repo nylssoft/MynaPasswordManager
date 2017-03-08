@@ -491,7 +491,7 @@ namespace PasswordManager.Repository
                                     Encrypt(rijAlg.CreateEncryptor(), sourceStream, destStream);
                                     break;
                                 case TransformType.Decrypt:
-                                    Encrypt(rijAlg.CreateDecryptor(), sourceStream, destStream);
+                                    Decrypt(rijAlg.CreateDecryptor(), sourceStream, destStream);
                                     break;
                                 default:
                                     break;

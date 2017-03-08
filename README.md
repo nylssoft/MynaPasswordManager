@@ -1,5 +1,7 @@
 # PasswordManager
 
+Work In Progress...
+
 A simple password manager for Windows using WPF.
 
 The passwords for each item are encrypted with the Rijndael algorithm using an encrypted key file (also with Rijndael).

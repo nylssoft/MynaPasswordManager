@@ -7,7 +7,7 @@
         xmlns:props="clr-namespace:PasswordManager.Properties"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Height="250" Width="400" MinHeight="250" MinWidth="400" Icon="Images/logo.png">
+        Height="320" Width="400" MinHeight="320" MinWidth="400" Icon="Images/logo.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="128" />
