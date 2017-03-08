@@ -19,7 +19,6 @@ Features:
 
 TODOs:
 
-- Add LICENSE.TXT file (may be GPLv3, do not know by now)
 - A new project name
 - A filter for the items in the list view
 - A mechansim to add arbitary encrypted files to an entry (e.g. scanned invoices or bank account sheets etc.)
