@@ -9,8 +9,8 @@ The process itself tries to keep the plain text passwords in memory as short as 
 
 Features:
 
-- Copy login and password to clibboard and clear clibboard after 30 seconds
-- Simple password generator
+- Copy login and password to clipboard and clear clipboard after 30 seconds
+- Simple random password generator
 - Open website for login
 - Thumbnails for login websites if available
 - Secure password storage in memory and in encrypted files
@@ -22,7 +22,7 @@ TODOs:
 - Add LICENSE.TXT file (may be GPLv3, do not know by now)
 - A new project name
 - A filter for the items in the list view
-- A mechansim to add arbitary encrypted files to an entry (e.g. scanned invoices or bank account information)
+- A mechansim to add arbitary encrypted files to an entry (e.g. scanned invoices or bank account sheets etc.)
 
 Icons used from the Open Icon Library (https://sourceforge.net/projects/openiconlibrary):
 
