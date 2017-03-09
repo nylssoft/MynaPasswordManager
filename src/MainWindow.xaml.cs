@@ -543,6 +543,7 @@ namespace PasswordManager
                     }
                     SortListView();
                     listView.ScrollIntoView(item);
+                    listView.Focus();
                 }
             }
             catch (Exception ex)
@@ -583,6 +584,7 @@ namespace PasswordManager
                     }
                     SortListView();
                     listView.ScrollIntoView(item);
+                    listView.Focus();
                 }
             }
             catch (Exception ex)
@@ -599,7 +601,8 @@ namespace PasswordManager
                         Properties.Resources.QUESTION_DELETE_ITEMS,
                         Title,
                         MessageBoxButton.YesNo,
-                        MessageBoxImage.Question) == MessageBoxResult.Yes)
+                        MessageBoxImage.Question,
+                        MessageBoxResult.No) == MessageBoxResult.Yes)
                 {
                     var del = new List<PasswordViewItem>();
                     foreach (PasswordViewItem item in listView.SelectedItems)
@@ -804,7 +807,8 @@ namespace PasswordManager
                         Properties.Resources.QUESTION_SAVE_CHANGES,
                         Title,
                         MessageBoxButton.YesNoCancel, 
-                        MessageBoxImage.Question);
+                        MessageBoxImage.Question,
+                        MessageBoxResult.Cancel);
                     if (r == MessageBoxResult.Cancel)
                     {
                         canceled = true;

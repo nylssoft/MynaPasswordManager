@@ -84,25 +84,29 @@ namespace PasswordManager
             new RoutedUICommand(
             Properties.Resources.CMD_ADD,
             "Add",
-            typeof(CustomCommands));
+            typeof(CustomCommands),
+            new InputGestureCollection() { new KeyGesture(Key.A, ModifierKeys.Control) });
 
         public static readonly RoutedUICommand Remove =
             new RoutedUICommand(
             Properties.Resources.CMD_DELETE,
             "Remove",
-            typeof(CustomCommands));
+            typeof(CustomCommands),
+            new InputGestureCollection() { new KeyGesture(Key.Delete)});
 
         public static readonly RoutedUICommand Edit =
             new RoutedUICommand(
             Properties.Resources.CMD_EDIT,
             "Edit",
-            typeof(CustomCommands));
+            typeof(CustomCommands),
+            new InputGestureCollection() { new KeyGesture(Key.Enter)});
 
         public static readonly RoutedUICommand OpenURL =
             new RoutedUICommand(
             Properties.Resources.CMD_OPEN_URL,
             "OpenURL",
-            typeof(CustomCommands));
+            typeof(CustomCommands),
+            new InputGestureCollection() { new KeyGesture(Key.G, ModifierKeys.Control) });
 
         public static readonly RoutedUICommand TogglePassword =
             new RoutedUICommand(
@@ -114,13 +118,15 @@ namespace PasswordManager
             new RoutedUICommand(
             Properties.Resources.CMD_COPY_LOGIN,
             "CopyLogin",
-            typeof(CustomCommands));
+            typeof(CustomCommands),
+            new InputGestureCollection() { new KeyGesture(Key.L, ModifierKeys.Control) });
 
         public static readonly RoutedUICommand CopyPassword =
             new RoutedUICommand(
             Properties.Resources.CMD_COPY_PASSWORD,
             "CopyPassword",
-            typeof(CustomCommands));
+            typeof(CustomCommands),
+            new InputGestureCollection() { new KeyGesture(Key.P, ModifierKeys.Control) });
 
         public static readonly RoutedUICommand About =
             new RoutedUICommand(
