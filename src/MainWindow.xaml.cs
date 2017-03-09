@@ -378,6 +378,7 @@ namespace PasswordManager
             listView.Items.SortDescriptions.Clear();
             listView.Items.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             listView.Items.Refresh();
+            listView.Focus();
         }
   
         private static void PrepareDirectory(string path)
@@ -543,7 +544,6 @@ namespace PasswordManager
                     }
                     SortListView();
                     listView.ScrollIntoView(item);
-                    listView.Focus();
                 }
             }
             catch (Exception ex)
@@ -584,7 +584,6 @@ namespace PasswordManager
                     }
                     SortListView();
                     listView.ScrollIntoView(item);
-                    listView.Focus();
                 }
             }
             catch (Exception ex)

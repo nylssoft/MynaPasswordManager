@@ -50,3 +50,4 @@ Temporary Items
 /src/obj/Debug
 /src/obj/Release
 /src/.vs
+*.sln

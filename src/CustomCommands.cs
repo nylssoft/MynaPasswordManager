@@ -85,7 +85,7 @@ namespace PasswordManager
             Properties.Resources.CMD_ADD,
             "Add",
             typeof(CustomCommands),
-            new InputGestureCollection() { new KeyGesture(Key.A, ModifierKeys.Control) });
+            new InputGestureCollection() { new KeyGesture(Key.I, ModifierKeys.Control) });
 
         public static readonly RoutedUICommand Remove =
             new RoutedUICommand(

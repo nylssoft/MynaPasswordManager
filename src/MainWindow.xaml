@@ -156,7 +156,7 @@
                     <TextBlock x:Name="textBlockStatus" />
                 </StatusBarItem>
             </StatusBar>
-            <ListView x:Name="listView" MouseDoubleClick="ListView_MouseDoubleClick" ContextMenuOpening="ListView_ContextMenuOpening" SelectionChanged="ListView_SelectionChanged" KeyboardNavigation.TabIndex="2">
+            <ListView x:Name="listView" TextSearch.TextPath="Name" MouseDoubleClick="ListView_MouseDoubleClick" ContextMenuOpening="ListView_ContextMenuOpening" SelectionChanged="ListView_SelectionChanged" KeyboardNavigation.TabIndex="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{x:Static props:Resources.COLUMN_NAME}" Width="200">
