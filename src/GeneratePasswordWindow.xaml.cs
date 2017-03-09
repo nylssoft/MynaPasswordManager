@@ -29,7 +29,7 @@ namespace PasswordManager
 
         public GeneratePasswordWindow()
         {
-            Title = Properties.Resources.CMD_GENERATE_PASSWORD;
+            Title = Properties.Resources.TITLE_GENERATE_PASSWORD;
             InitializeComponent();
             ButtonGenerate_Click(null, null);
         }

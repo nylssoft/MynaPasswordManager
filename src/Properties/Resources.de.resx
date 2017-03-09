@@ -130,73 +130,70 @@
     <value>Verstecke Passwort in 1 Sekunde.</value>
   </data>
   <data name="BUTTON_CANCEL" xml:space="preserve">
-    <value>Abbrechen</value>
+    <value>_Abbrechen</value>
   </data>
   <data name="BUTTON_NEW_PASSWORD" xml:space="preserve">
-    <value>Neues Passwort</value>
+    <value>_Neues Passwort</value>
   </data>
   <data name="BUTTON_OK" xml:space="preserve">
-    <value>OK</value>
+    <value>_OK</value>
   </data>
   <data name="CMD_ABOUT" xml:space="preserve">
-    <value>Über...</value>
+    <value>Ü_ber...</value>
   </data>
   <data name="CMD_ADD" xml:space="preserve">
-    <value>Hinzufügen...</value>
+    <value>_Hinzufügen...</value>
   </data>
   <data name="CMD_CHANGE_KEY_DIRECTORY" xml:space="preserve">
-    <value>Ändere Schlüsselverzeichnis...</value>
+    <value>Ändere Schlüssel_verzeichnis...</value>
   </data>
   <data name="CMD_CHANGE_MASTER_PASSWORD" xml:space="preserve">
-    <value>Ändere Hauptpasswort...</value>
+    <value>Ändere _Hauptpasswort...</value>
   </data>
   <data name="CMD_CLOSE" xml:space="preserve">
-    <value>Schließen</value>
+    <value>S_chließen</value>
   </data>
   <data name="CMD_COPY_LOGIN" xml:space="preserve">
-    <value>Login in die Zwischenablage kopieren</value>
+    <value>_Login in die Zwischenablage kopieren</value>
   </data>
   <data name="CMD_COPY_PASSWORD" xml:space="preserve">
-    <value>Passwort in die Zwischenablage kopieren</value>
+    <value>_Passwort in die Zwischenablage kopieren</value>
   </data>
   <data name="CMD_DELETE" xml:space="preserve">
-    <value>Entfernen...</value>
+    <value>_Entfernen...</value>
   </data>
   <data name="CMD_EDIT" xml:space="preserve">
-    <value>Bearbeiten...</value>
+    <value>_Bearbeiten...</value>
   </data>
   <data name="CMD_EXIT" xml:space="preserve">
-    <value>Beenden</value>
-  </data>
-  <data name="CMD_GENERATE_PASSWORD" xml:space="preserve">
-    <value>Generiere zufälliges Passwort</value>
+    <value>B_eenden</value>
   </data>
   <data name="CMD_HIDE_PASSWORD" xml:space="preserve">
-    <value>Verstecke Passwort</value>
+    <value>_Verstecke Passwort</value>
   </data>
   <data name="CMD_NEW" xml:space="preserve">
-    <value>Neu...</value>
+    <value>_Neu...</value>
   </data>
   <data name="CMD_OPEN" xml:space="preserve">
-    <value>Öffnen...</value>
+    <value>Ö_ffnen...</value>
   </data>
   <data name="CMD_OPEN_URL" xml:space="preserve">
-    <value>URL im Browser öffnen</value>
+    <value>_URL im Browser öffnen</value>
   </data>
   <data name="CMD_PROPERTIES" xml:space="preserve">
-    <value>Eigenschaften...</value>
+    <value>Ei_genschaften...</value>
   </data>
   <data name="CMD_SAVE" xml:space="preserve">
-    <value>Speichern</value>
+    <value>_Speichern</value>
   </data>
   <data name="CMD_SAVE_AS" xml:space="preserve">
-    <value>Speichern unter...</value>
+    <value>Speichern _unter...</value>
   </data>
   <data name="CMD_SHOW_LOGIN_COLUMN" xml:space="preserve">
-    <value>Spalte für Login anzeigen</value>
+    <value>_Spalte für Login anzeigen</value>
   </data>
   <data name="CMD_SHOW_PASSWORD" xml:space="preserve">
-    <value>Zeige Passwort</value>
+    <value>_Zeige Passwort</value>
   </data>
   <data name="COLUMN_LOGIN" xml:space="preserve">
     <value>Login</value>
@@ -229,16 +226,16 @@
     <value>Passwort Dateien (*.pwd)|*.pwd|Alle Dateien (*.*)|*.*</value>
   </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
-    <value>Bestätigtes Hauptpasswort:</value>
+    <value>Bestätigtes Ha_uptpasswort:</value>
   </data>
   <data name="LABEL_CONFIRM_NEW_MASTER_PASSWORD" xml:space="preserve">
-    <value>Bestätigtes neues Hauptpasswort:</value>
+    <value>Bestätigtes _neues Hauptpasswort:</value>
   </data>
   <data name="LABEL_CONFIRM_PASSWORD" xml:space="preserve">
-    <value>Bestätigtes Passwort:</value>
+    <value>Bestätigtes Pass_wort:</value>
   </data>
   <data name="LABEL_DESCRIPTION" xml:space="preserve">
-    <value>Beschreibung:</value>
+    <value>_Beschreibung:</value>
   </data>
   <data name="LABEL_ENTER_MASTER_PASSWORD_FOR_0" xml:space="preserve">
     <value>Geben Sie das Hauptpasswort für '{0}' ein.</value>
@@ -247,25 +244,25 @@
     <value>Schlüssel:</value>
   </data>
   <data name="LABEL_KEY_DIRECTORY" xml:space="preserve">
-    <value>Schlüsselverzeichnis:</value>
+    <value>Schlüssel_verzeichnis:</value>
   </data>
   <data name="LABEL_LOGIN" xml:space="preserve">
-    <value>Login:</value>
+    <value>_Login:</value>
   </data>
   <data name="LABEL_MASTER_PASSWORD" xml:space="preserve">
-    <value>Hauptpasswort:</value>
+    <value>_Hauptpasswort:</value>
   </data>
   <data name="LABEL_NAME" xml:space="preserve">
-    <value>Name:</value>
+    <value>_Name:</value>
   </data>
   <data name="LABEL_NEW_MASTER_PASSWORD" xml:space="preserve">
-    <value>Neues Hauptpasswort:</value>
+    <value>N_eues Hauptpasswort:</value>
   </data>
   <data name="LABEL_OLD_MASTER_PASSWORD" xml:space="preserve">
-    <value>Aktuelles Hauptpasswort:</value>
+    <value>A_ktuelles Hauptpasswort:</value>
   </data>
   <data name="LABEL_PASSWORD" xml:space="preserve">
-    <value>Passwort:</value>
+    <value>_Passwort:</value>
   </data>
   <data name="LABEL_PASSWORD_FILE" xml:space="preserve">
     <value>Passwortdatei:</value>
@@ -274,7 +271,7 @@
     <value>Wähle Schlüsselverzeichnis.</value>
   </data>
   <data name="LABEL_URL" xml:space="preserve">
-    <value>URL:</value>
+    <value>_URL:</value>
   </data>
   <data name="MENUITEM_EDIT" xml:space="preserve">
     <value>_Bearbeiten</value>
@@ -286,13 +283,7 @@
     <value>_Hilfe</value>
   </data>
   <data name="MENUITEM_VIEW" xml:space="preserve">
-    <value>Ansicht</value>
-  </data>
-  <data name="NEW" xml:space="preserve">
-    <value>Neue Passwortdatei</value>
-  </data>
-  <data name="PASSWORD_MANAGER" xml:space="preserve">
-    <value>Passwortverwaltung</value>
+    <value>_Ansicht</value>
   </data>
   <data name="QUESTION_DELETE_ITEMS" xml:space="preserve">
     <value>Wollen Sie die ausgewählten Elemente löschen?</value>
@@ -312,6 +303,27 @@
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</value>
+  </data>
+  <data name="TITLE_ADD" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="TITLE_CHANGE_MASTER_PASSWORD" xml:space="preserve">
+    <value>Hauptpasswort ändern</value>
+  </data>
+  <data name="TITLE_EDIT" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="TITLE_GENERATE_PASSWORD" xml:space="preserve">
+    <value>Generiere zufälliges Passwort</value>
+  </data>
+  <data name="TITLE_NEW" xml:space="preserve">
+    <value>Neue Passwortdatei</value>
+  </data>
+  <data name="TITLE_PASSWORD_MANAGER" xml:space="preserve">
+    <value>Passwortverwaltung</value>
+  </data>
+  <data name="TITLE_PROPERTIES" xml:space="preserve">
+    <value>Eigenschaften</value>
   </data>
   <data name="TOTAL_0" xml:space="preserve">
     <value>{0} Elemente.</value>

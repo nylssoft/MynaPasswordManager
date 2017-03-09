@@ -97,7 +97,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Cancel ähnelt.
         /// </summary>
         public static string BUTTON_CANCEL {
             get {
@@ -106,7 +106,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die New password ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _New password ähnelt.
         /// </summary>
         public static string BUTTON_NEW_PASSWORD {
             get {
@@ -115,7 +115,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die OK ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _OK ähnelt.
         /// </summary>
         public static string BUTTON_OK {
             get {
@@ -124,7 +124,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die About... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _About... ähnelt.
         /// </summary>
         public static string CMD_ABOUT {
             get {
@@ -133,7 +133,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Add... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Add... ähnelt.
         /// </summary>
         public static string CMD_ADD {
             get {
@@ -142,7 +142,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Change key directory... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Change _key directory... ähnelt.
         /// </summary>
         public static string CMD_CHANGE_KEY_DIRECTORY {
             get {
@@ -151,7 +151,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Change master password... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Change _master password... ähnelt.
         /// </summary>
         public static string CMD_CHANGE_MASTER_PASSWORD {
             get {
@@ -160,7 +160,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Close ähnelt.
         /// </summary>
         public static string CMD_CLOSE {
             get {
@@ -169,7 +169,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Copy login to clipboard ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy _login to clipboard ähnelt.
         /// </summary>
         public static string CMD_COPY_LOGIN {
             get {
@@ -178,7 +178,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Copy password to clipboard ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy _password to clipboard ähnelt.
         /// </summary>
         public static string CMD_COPY_PASSWORD {
             get {
@@ -187,7 +187,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Remove ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Remove ähnelt.
         /// </summary>
         public static string CMD_DELETE {
             get {
@@ -196,7 +196,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Edit... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Edit... ähnelt.
         /// </summary>
         public static string CMD_EDIT {
             get {
@@ -205,7 +205,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Exit ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die E_xit ähnelt.
         /// </summary>
         public static string CMD_EXIT {
             get {
@@ -214,16 +214,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Generate random password ähnelt.
-        /// </summary>
-        public static string CMD_GENERATE_PASSWORD {
-            get {
-                return ResourceManager.GetString("CMD_GENERATE_PASSWORD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Hide password ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die H_ide password ähnelt.
         /// </summary>
         public static string CMD_HIDE_PASSWORD {
             get {
@@ -232,7 +223,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die New... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _New... ähnelt.
         /// </summary>
         public static string CMD_NEW {
             get {
@@ -241,7 +232,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Open... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Open... ähnelt.
         /// </summary>
         public static string CMD_OPEN {
             get {
@@ -250,7 +241,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Open URL in browser ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Open URL in browser ähnelt.
         /// </summary>
         public static string CMD_OPEN_URL {
             get {
@@ -259,7 +250,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Properties... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Properties... ähnelt.
         /// </summary>
         public static string CMD_PROPERTIES {
             get {
@@ -268,7 +259,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Save ähnelt.
         /// </summary>
         public static string CMD_SAVE {
             get {
@@ -277,7 +268,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Save As... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save _As... ähnelt.
         /// </summary>
         public static string CMD_SAVE_AS {
             get {
@@ -286,7 +277,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Show login column ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show _login column ähnelt.
         /// </summary>
         public static string CMD_SHOW_LOGIN_COLUMN {
             get {
@@ -295,7 +286,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Show password ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Show password ähnelt.
         /// </summary>
         public static string CMD_SHOW_PASSWORD {
             get {
@@ -394,7 +385,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Confirm master password: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Confirm m_aster password: ähnelt.
         /// </summary>
         public static string LABEL_CONFIRM_MASTER_PASSWORD {
             get {
@@ -403,7 +394,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Confirm new master password: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die C_onfirm new master password: ähnelt.
         /// </summary>
         public static string LABEL_CONFIRM_NEW_MASTER_PASSWORD {
             get {
@@ -412,7 +403,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Confirm password: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Confirm passw_ord: ähnelt.
         /// </summary>
         public static string LABEL_CONFIRM_PASSWORD {
             get {
@@ -421,7 +412,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Description: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Description: ähnelt.
         /// </summary>
         public static string LABEL_DESCRIPTION {
             get {
@@ -448,7 +439,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Key directory: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Key d_irectory: ähnelt.
         /// </summary>
         public static string LABEL_KEY_DIRECTORY {
             get {
@@ -457,7 +448,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Login: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Login: ähnelt.
         /// </summary>
         public static string LABEL_LOGIN {
             get {
@@ -466,7 +457,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Master password: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Master password: ähnelt.
         /// </summary>
         public static string LABEL_MASTER_PASSWORD {
             get {
@@ -475,7 +466,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Name: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Name: ähnelt.
         /// </summary>
         public static string LABEL_NAME {
             get {
@@ -484,7 +475,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die New master password: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _New master password: ähnelt.
         /// </summary>
         public static string LABEL_NEW_MASTER_PASSWORD {
             get {
@@ -493,7 +484,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Current master password: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die C_urrent master password: ähnelt.
         /// </summary>
         public static string LABEL_OLD_MASTER_PASSWORD {
             get {
@@ -502,7 +493,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Password: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Password: ähnelt.
         /// </summary>
         public static string LABEL_PASSWORD {
             get {
@@ -511,7 +502,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Password file: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Password _file: ähnelt.
         /// </summary>
         public static string LABEL_PASSWORD_FILE {
             get {
@@ -529,7 +520,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die URL: ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _URL: ähnelt.
         /// </summary>
         public static string LABEL_URL {
             get {
@@ -565,29 +556,11 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die View ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _View ähnelt.
         /// </summary>
         public static string MENUITEM_VIEW {
             get {
                 return ResourceManager.GetString("MENUITEM_VIEW", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die New password file ähnelt.
-        /// </summary>
-        public static string NEW {
-            get {
-                return ResourceManager.GetString("NEW", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Password Manager ähnelt.
-        /// </summary>
-        public static string PASSWORD_MANAGER {
-            get {
-                return ResourceManager.GetString("PASSWORD_MANAGER", resourceCulture);
             }
         }
         
@@ -637,6 +610,69 @@ namespace PasswordManager.Properties {
         public static string TEXT_COPYRIGHT {
             get {
                 return ResourceManager.GetString("TEXT_COPYRIGHT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add ähnelt.
+        /// </summary>
+        public static string TITLE_ADD {
+            get {
+                return ResourceManager.GetString("TITLE_ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Change master password ähnelt.
+        /// </summary>
+        public static string TITLE_CHANGE_MASTER_PASSWORD {
+            get {
+                return ResourceManager.GetString("TITLE_CHANGE_MASTER_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit ähnelt.
+        /// </summary>
+        public static string TITLE_EDIT {
+            get {
+                return ResourceManager.GetString("TITLE_EDIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Generate random password ähnelt.
+        /// </summary>
+        public static string TITLE_GENERATE_PASSWORD {
+            get {
+                return ResourceManager.GetString("TITLE_GENERATE_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New password file ähnelt.
+        /// </summary>
+        public static string TITLE_NEW {
+            get {
+                return ResourceManager.GetString("TITLE_NEW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Password Manager ähnelt.
+        /// </summary>
+        public static string TITLE_PASSWORD_MANAGER {
+            get {
+                return ResourceManager.GetString("TITLE_PASSWORD_MANAGER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Properties ähnelt.
+        /// </summary>
+        public static string TITLE_PROPERTIES {
+            get {
+                return ResourceManager.GetString("TITLE_PROPERTIES", resourceCulture);
             }
         }
         

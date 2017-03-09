@@ -416,7 +416,7 @@ namespace PasswordManager
                 menuItemTogglePassword.Header = Properties.Resources.CMD_SHOW_PASSWORD;
                 menuItemTogglePassword.Icon = showEnabled ? menuItemImageShow : menuItemImageShowDisabled;
             }
-            Title = Properties.Resources.PASSWORD_MANAGER;
+            Title = Properties.Resources.TITLE_PASSWORD_MANAGER;
             if (passwordRepository != null)
             {
                 Title += $" - {passwordRepository.Name}";
@@ -523,7 +523,7 @@ namespace PasswordManager
         {
             try
             {
-                EditWindow w = new EditWindow(Properties.Resources.CMD_ADD, imageKey16x16);
+                EditWindow w = new EditWindow(Properties.Resources.TITLE_ADD, imageKey16x16);
                 if (w.ShowDialog() == true)
                 {
                     passwordRepository.Add(w.Password);
@@ -562,7 +562,7 @@ namespace PasswordManager
             {
                 if (item == null) return;
                 var oldurl = item.Password.Url;
-                var w = new EditWindow(Properties.Resources.CMD_EDIT, item.Image, item.Password);
+                var w = new EditWindow(Properties.Resources.TITLE_EDIT, item.Image, item.Password);
                 if (w.ShowDialog() == true)
                 {
                     passwordRepository.Update(w.Password);
@@ -919,7 +919,7 @@ namespace PasswordManager
                 {
                     return false;
                 }
-                PrepareWindow dlg = new PrepareWindow(Properties.Resources.NEW, keyDirectoryCache);
+                PrepareWindow dlg = new PrepareWindow(Properties.Resources.TITLE_NEW, keyDirectoryCache);
                 if (dlg.ShowDialog() != true)
                 {
                     return false;
@@ -1041,7 +1041,7 @@ namespace PasswordManager
             {
                 if (passwordRepository == null) return;
                 var dlg = new ChangeMasterPasswordWindow(
-                    Properties.Resources.CMD_CHANGE_MASTER_PASSWORD,
+                    Properties.Resources.TITLE_CHANGE_MASTER_PASSWORD,
                     passwordSecureString);
                 if (dlg.ShowDialog() == true)
                 {
@@ -1065,7 +1065,7 @@ namespace PasswordManager
             try
             {
                 var dlg = new PropertiesWindow(
-                    Properties.Resources.CMD_PROPERTIES,
+                    Properties.Resources.TITLE_PROPERTIES,
                     keyDirectoryCache,
                     passwordRepository,
                     passwordFilename);

@@ -49,3 +49,4 @@ Temporary Items
 /src/bin/Release
 /src/obj/Debug
 /src/obj/Release
+/src/.vs

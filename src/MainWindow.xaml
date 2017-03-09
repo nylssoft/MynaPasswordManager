@@ -41,7 +41,7 @@
     </Window.CommandBindings>
     <Grid Margin="0,0,0,0">
         <DockPanel LastChildFill="True">
-            <Menu DockPanel.Dock="Top">
+            <Menu DockPanel.Dock="Top" KeyboardNavigation.TabIndex="0">
                 <MenuItem Header="{x:Static props:Resources.MENUITEM_FILE}">
                     <MenuItem Command="self:CustomCommands.New">
                         <MenuItem.Icon>
@@ -121,8 +121,8 @@
                     </MenuItem>
                 </MenuItem>
             </Menu>
-            <ToolBarTray DockPanel.Dock="Top" Height="40">
-                <ToolBar DockPanel.Dock="Top">
+            <ToolBarTray DockPanel.Dock="Top" Height="40" KeyboardNavigation.TabIndex="1">
+                <ToolBar DockPanel.Dock="Top" KeyboardNavigation.TabNavigation="Continue">
                     <Button Command="self:CustomCommands.New" ToolTip="{x:Static props:Resources.CMD_NEW}">
                         <Image Source="Images/32x32/document-new-6.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
@@ -133,7 +133,7 @@
                         <Image Source="Images/32x32/document-save-7.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
                 </ToolBar>
-                <ToolBar DockPanel.Dock="Top">
+                <ToolBar DockPanel.Dock="Top" KeyboardNavigation.TabNavigation="Continue">
                     <Button Command="self:CustomCommands.Add" ToolTip="{x:Static props:Resources.CMD_ADD}">
                         <Image x:Name="imageAdd" Source="Images/32x32/list-add-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
@@ -156,7 +156,7 @@
                     <TextBlock x:Name="textBlockStatus" />
                 </StatusBarItem>
             </StatusBar>
-            <ListView x:Name="listView" MouseDoubleClick="ListView_MouseDoubleClick" ContextMenuOpening="ListView_ContextMenuOpening" SelectionChanged="ListView_SelectionChanged">
+            <ListView x:Name="listView" MouseDoubleClick="ListView_MouseDoubleClick" ContextMenuOpening="ListView_ContextMenuOpening" SelectionChanged="ListView_SelectionChanged" KeyboardNavigation.TabIndex="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{x:Static props:Resources.COLUMN_NAME}" Width="200">
