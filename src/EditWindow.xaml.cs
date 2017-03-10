@@ -98,6 +98,7 @@ namespace PasswordManager
                     passwordBoxConfirmed.Password = passwordBox.Password;
                     pwdChanged = true;
                     changed = true;
+                    UpdateControls();
                 }
             }
             catch (Exception ex)
@@ -110,5 +111,6 @@ namespace PasswordManager
         {
             changed = true;
             UpdateControls();
+        }
     }
 }
