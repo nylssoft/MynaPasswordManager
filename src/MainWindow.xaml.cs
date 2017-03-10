@@ -267,17 +267,20 @@ namespace PasswordManager
         {
             RoutedUICommand r = e.Command as RoutedUICommand;
             if (r == null) return;
+            if (string.Equals(r.Name, "Exit"))
+            {
+                Close();
+                return;
+            }
             if (!ReenterPassword())
             {
+                UpdateControls();
                 return;
             }
             switch (r.Name)
             {
                 case "New":
                     CreateRepository();
-                    break;
-                case "Exit":
-                    Close();
                     break;
                 case "Open":
                     OpenRepository();
@@ -355,8 +358,6 @@ namespace PasswordManager
             UpdateLoginColumn();
             UpdatePasswordColumn();
             SortListView();
-            menuItemShowLoginColumn.IsChecked = Properties.Settings.Default.ShowLoginColumn;
-            menuItemShowPasswordColumn.IsChecked = Properties.Settings.Default.ShowPasswordColumn;
             UpdateControls();
             var filename = Properties.Settings.Default.LastUsedRepositoryFile;
             if (!string.IsNullOrEmpty(filename))
@@ -452,6 +453,8 @@ namespace PasswordManager
                     Title += " *";
                 }
             }
+            menuItemShowLoginColumn.IsChecked = Properties.Settings.Default.ShowLoginColumn;
+            menuItemShowPasswordColumn.IsChecked = Properties.Settings.Default.ShowPasswordColumn;
             UpdateStatus();
         }
 
