@@ -123,30 +123,30 @@
             </Menu>
             <ToolBarTray DockPanel.Dock="Top" Height="40" KeyboardNavigation.TabIndex="1">
                 <ToolBar DockPanel.Dock="Top" KeyboardNavigation.TabNavigation="Continue">
-                    <Button Command="self:CustomCommands.New" ToolTip="{x:Static props:Resources.CMD_NEW}">
+                    <Button Command="self:CustomCommands.New" ToolTip="{x:Static props:Resources.TOOLTIP_NEW}">
                         <Image Source="Images/32x32/document-new-6.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
-                    <Button Command="self:CustomCommands.Open" ToolTip="{x:Static props:Resources.CMD_OPEN}">
+                    <Button Command="self:CustomCommands.Open" ToolTip="{x:Static props:Resources.TOOLTIP_OPEN}">
                         <Image Source="Images/32x32/document-open-2.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
-                    <Button Command="self:CustomCommands.Save" ToolTip="{x:Static props:Resources.CMD_SAVE}">
+                    <Button Command="self:CustomCommands.Save" ToolTip="{x:Static props:Resources.TOOLTIP_SAVE}">
                         <Image Source="Images/32x32/document-save-7.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
                 </ToolBar>
                 <ToolBar DockPanel.Dock="Top" KeyboardNavigation.TabNavigation="Continue">
-                    <Button Command="self:CustomCommands.Add" ToolTip="{x:Static props:Resources.CMD_ADD}">
+                    <Button Command="self:CustomCommands.Add" ToolTip="{x:Static props:Resources.TOOLTIP_ADD}">
                         <Image x:Name="imageAdd" Source="Images/32x32/list-add-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
-                    <Button Command="self:CustomCommands.Remove" ToolTip="{x:Static props:Resources.CMD_DELETE}">
+                    <Button Command="self:CustomCommands.Remove" ToolTip="{x:Static props:Resources.TOOLTIP_DELETE}">
                         <Image x:Name="imageDelete" Source="Images/32x32/list-remove-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
-                    <Button Command="self:CustomCommands.Edit" ToolTip="{x:Static props:Resources.CMD_EDIT}">
+                    <Button Command="self:CustomCommands.Edit" ToolTip="{x:Static props:Resources.TOOLTIP_EDIT}">
                         <Image x:Name="imageEdit" Source="Images/32x32/edit.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
-                    <Button Command="self:CustomCommands.OpenURL" ToolTip="{x:Static props:Resources.CMD_OPEN_URL}">
+                    <Button Command="self:CustomCommands.OpenURL" ToolTip="{x:Static props:Resources.TOOLTIP_OPEN_URL}">
                         <Image x:Name="imageOpen" Source="Images/32x32/homepage.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
-                    <Button Command="self:CustomCommands.TogglePassword" x:Name="buttonToggleShow" ToolTip="{x:Static props:Resources.CMD_SHOW_PASSWORD}">
+                    <Button Command="self:CustomCommands.TogglePassword" x:Name="buttonToggleShow" ToolTip="{x:Static props:Resources.TOOLTIP_SHOW_PASSWORD}">
                         <Image x:Name="imageToggleShow" Source="Images/32x32/document-decrypt-3.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                     </Button>
                 </ToolBar>

@@ -184,7 +184,10 @@ namespace PasswordManager
             var lvitem = listView.GetItemAt(mousePosition);
             if (lvitem != null)
             {
-                EditItemAsync(lvitem.Content as PasswordViewItem);
+                if (ReenterPassword())
+                {
+                    EditItemAsync(lvitem.Content as PasswordViewItem);
+                }
             }
         }
 
@@ -406,13 +409,13 @@ namespace PasswordManager
             if (hideEnabled)
             {
                 imageToggleShow.Source = imageHide32x32;
-                imageToggleShow.ToolTip = Properties.Resources.CMD_HIDE_PASSWORD;
+                imageToggleShow.ToolTip = Properties.Resources.TOOLTIP_HIDE_PASSWORD;
                 menuItemTogglePassword.Icon = menuItemImageHide;
                 menuItemTogglePassword.Header = Properties.Resources.CMD_HIDE_PASSWORD;
             }
             else
             {
-                imageToggleShow.ToolTip = Properties.Resources.CMD_SHOW_PASSWORD;
+                imageToggleShow.ToolTip = Properties.Resources.TOOLTIP_SHOW_PASSWORD;
                 imageToggleShow.Source = imageShow32x32;
                 menuItemTogglePassword.Header = Properties.Resources.CMD_SHOW_PASSWORD;
                 menuItemTogglePassword.Icon = showEnabled ? menuItemImageShow : menuItemImageShowDisabled;
@@ -524,7 +527,7 @@ namespace PasswordManager
         {
             try
             {
-                EditWindow w = new EditWindow(Properties.Resources.TITLE_ADD, imageKey16x16);
+                EditWindow w = new EditWindow(this, Properties.Resources.TITLE_ADD, imageKey16x16);
                 if (w.ShowDialog() == true)
                 {
                     passwordRepository.Add(w.Password);
@@ -563,7 +566,7 @@ namespace PasswordManager
             {
                 if (item == null) return;
                 var oldurl = item.Password.Url;
-                var w = new EditWindow(Properties.Resources.TITLE_EDIT, item.Image, item.Password);
+                var w = new EditWindow(this, Properties.Resources.TITLE_EDIT, item.Image, item.Password);
                 if (w.ShowDialog() == true)
                 {
                     passwordRepository.Update(w.Password);
@@ -691,7 +694,7 @@ namespace PasswordManager
                         item.HidePassword = true;
                     }
                     listView.Items.Refresh();
-                    var dlg = new LoginWindow(Properties.Resources.VERIFY_PASSWORD, keyDirectoryCache, passwordFilename)
+                    var dlg = new LoginWindow(this, Properties.Resources.VERIFY_PASSWORD, keyDirectoryCache, passwordFilename)
                     {
                         SecurePassword = passwordSecureString
                     };
@@ -750,7 +753,7 @@ namespace PasswordManager
         {
             try
             {
-                var dlg = new AboutWindow();
+                var dlg = new AboutWindow(this);
                 dlg.ShowDialog();
             }
             catch (Exception ex)
@@ -835,7 +838,7 @@ namespace PasswordManager
             return ret;
         }
 
-        private bool CloseRepository()
+        private bool CloseRepository(bool force = false)
         {
             bool ret = false;
             try
@@ -844,7 +847,7 @@ namespace PasswordManager
                 {
                     return true;
                 }
-                if (PromptSaveChanges())
+                if (force || PromptSaveChanges())
                 {
                     passwordRepository = null;
                     passwordSecureString.Clear();
@@ -922,12 +925,12 @@ namespace PasswordManager
                 {
                     return false;
                 }
-                PrepareWindow dlg = new PrepareWindow(Properties.Resources.TITLE_NEW, keyDirectoryCache);
+                PrepareWindow dlg = new PrepareWindow(this, Properties.Resources.TITLE_NEW, keyDirectoryCache);
                 if (dlg.ShowDialog() != true)
                 {
                     return false;
                 }
-                if (!CloseRepository())
+                if (!CloseRepository(true/*force*/))
                 {
                     return false;
                 }
@@ -980,12 +983,13 @@ namespace PasswordManager
                     Properties.Settings.Default.InitialDirectory = new FileInfo(filename).Directory.FullName;
                 }
                 LoginWindow dlg = new LoginWindow(
+                    this,
                     Properties.Resources.VERIFY_PASSWORD,
                     keyDirectoryCache,
                     filename);
                 if (dlg.ShowDialog() == true)
                 {
-                    if (!CloseRepository())
+                    if (!CloseRepository(true/*force*/))
                     {
                         return false;
                     }
@@ -1044,6 +1048,7 @@ namespace PasswordManager
             {
                 if (passwordRepository == null) return;
                 var dlg = new ChangeMasterPasswordWindow(
+                    this,
                     Properties.Resources.TITLE_CHANGE_MASTER_PASSWORD,
                     passwordSecureString);
                 if (dlg.ShowDialog() == true)
@@ -1068,6 +1073,7 @@ namespace PasswordManager
             try
             {
                 var dlg = new PropertiesWindow(
+                    this,
                     Properties.Resources.TITLE_PROPERTIES,
                     keyDirectoryCache,
                     passwordRepository,

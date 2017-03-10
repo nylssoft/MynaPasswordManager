@@ -32,8 +32,9 @@ namespace PasswordManager
 
         public PasswordRepository PasswordRepository { get; private set; }
         
-        public PrepareWindow(string title, KeyDirectoryCache keyDirCache)
+        public PrepareWindow(Window owner, string title, KeyDirectoryCache keyDirCache)
         {
+            Owner = owner;
             Title = title;
             this.keyDirCache = keyDirCache;
             InitializeComponent();

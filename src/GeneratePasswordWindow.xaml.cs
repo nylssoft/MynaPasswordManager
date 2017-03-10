@@ -27,8 +27,9 @@ namespace PasswordManager
 
         public SecureString Password { get; private set; }
 
-        public GeneratePasswordWindow()
+        public GeneratePasswordWindow(Window owner)
         {
+            Owner = owner;
             Title = Properties.Resources.TITLE_GENERATE_PASSWORD;
             InitializeComponent();
             ButtonGenerate_Click(null, null);

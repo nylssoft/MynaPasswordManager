@@ -325,6 +325,33 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   <data name="TITLE_PROPERTIES" xml:space="preserve">
     <value>Properties</value>
   </data>
+  <data name="TOOLTIP_ADD" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="TOOLTIP_DELETE" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="TOOLTIP_EDIT" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="TOOLTIP_HIDE_PASSWORD" xml:space="preserve">
+    <value>Hide password</value>
+  </data>
+  <data name="TOOLTIP_NEW" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="TOOLTIP_OPEN" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="TOOLTIP_OPEN_URL" xml:space="preserve">
+    <value>Open URL in browser</value>
+  </data>
+  <data name="TOOLTIP_SAVE" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="TOOLTIP_SHOW_PASSWORD" xml:space="preserve">
+    <value>Show password</value>
+  </data>
   <data name="TOTAL_0" xml:space="preserve">
     <value>{0} items.</value>
   </data>

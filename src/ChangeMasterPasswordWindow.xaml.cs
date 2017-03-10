@@ -26,8 +26,9 @@ namespace PasswordManager
     {
         public SecureString SecurePassword { get; private set; }
 
-        public ChangeMasterPasswordWindow(string title, SecureString securePassword)
+        public ChangeMasterPasswordWindow(Window owner, string title, SecureString securePassword)
         {
+            Owner = owner;
             Title = title;
             SecurePassword = securePassword;
             InitializeComponent();

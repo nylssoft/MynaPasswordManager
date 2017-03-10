@@ -28,8 +28,9 @@ namespace PasswordManager
 
         private bool pwdChanged;
 
-        public EditWindow(string title, ImageSource icon, Password password = null)
+        public EditWindow(Window owner, string title, ImageSource icon, Password password = null)
         {
+            Owner = owner;
             InitializeComponent();
             Title = title;
             Icon = icon;
@@ -77,7 +78,7 @@ namespace PasswordManager
         {
             try
             {
-                var dlg = new GeneratePasswordWindow();
+                var dlg = new GeneratePasswordWindow(this);
                 if (dlg.ShowDialog() == true)
                 {
                     passwordBox.Password = dlg.Password.GetAsString();

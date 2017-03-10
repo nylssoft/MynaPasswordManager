@@ -40,8 +40,9 @@ namespace PasswordManager
         private KeyDirectoryCache keyDirCache;
         private PasswordRepository repository;
 
-        public PropertiesWindow(string title, KeyDirectoryCache keyDirCache, PasswordRepository repository, string filename)
+        public PropertiesWindow(Window owner, string title, KeyDirectoryCache keyDirCache, PasswordRepository repository, string filename)
         {
+            Owner = owner;
             Title = title;
             this.keyDirCache = keyDirCache;
             this.repository = repository;

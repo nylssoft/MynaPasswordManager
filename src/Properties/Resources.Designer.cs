@@ -677,6 +677,87 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add ähnelt.
+        /// </summary>
+        public static string TOOLTIP_ADD {
+            get {
+                return ResourceManager.GetString("TOOLTIP_ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Remove ähnelt.
+        /// </summary>
+        public static string TOOLTIP_DELETE {
+            get {
+                return ResourceManager.GetString("TOOLTIP_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit ähnelt.
+        /// </summary>
+        public static string TOOLTIP_EDIT {
+            get {
+                return ResourceManager.GetString("TOOLTIP_EDIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hide password ähnelt.
+        /// </summary>
+        public static string TOOLTIP_HIDE_PASSWORD {
+            get {
+                return ResourceManager.GetString("TOOLTIP_HIDE_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New ähnelt.
+        /// </summary>
+        public static string TOOLTIP_NEW {
+            get {
+                return ResourceManager.GetString("TOOLTIP_NEW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open ähnelt.
+        /// </summary>
+        public static string TOOLTIP_OPEN {
+            get {
+                return ResourceManager.GetString("TOOLTIP_OPEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Open URL in browser ähnelt.
+        /// </summary>
+        public static string TOOLTIP_OPEN_URL {
+            get {
+                return ResourceManager.GetString("TOOLTIP_OPEN_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
+        /// </summary>
+        public static string TOOLTIP_SAVE {
+            get {
+                return ResourceManager.GetString("TOOLTIP_SAVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show password ähnelt.
+        /// </summary>
+        public static string TOOLTIP_SHOW_PASSWORD {
+            get {
+                return ResourceManager.GetString("TOOLTIP_SHOW_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die {0} items. ähnelt.
         /// </summary>
         public static string TOTAL_0 {

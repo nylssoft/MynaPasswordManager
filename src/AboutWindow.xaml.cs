@@ -22,8 +22,9 @@ namespace PasswordManager
 {
     public partial class AboutWindow : Window
     {
-        public AboutWindow()
+        public AboutWindow(Window owner)
         {
+            Owner = owner;
             var assembly = Assembly.GetExecutingAssembly();
             var productAttribute = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), true);
             var versionAttribute = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyFileVersionAttribute), true);
