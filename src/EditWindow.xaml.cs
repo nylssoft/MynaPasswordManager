@@ -27,6 +27,7 @@ namespace PasswordManager
         public Password Password { get; private set; }
 
         private bool pwdChanged;
+        private bool changed;
 
         public EditWindow(Window owner, string title, ImageSource icon, Password password = null)
         {
@@ -40,13 +41,23 @@ namespace PasswordManager
                 Password = password;
                 textBoxName.Text = password.Name;
                 textBoxLogin.Text = password.Login;
-                passwordBox.Password = "********";
-                passwordBoxConfirmed.Password = "********";
+                if (password.SecurePassword.Length > 0)
+                {
+                    passwordBox.Password = "********";
+                    passwordBoxConfirmed.Password = "********";
+                }
                 textBoxUrl.Text = password.Url;
                 textBoxDescription.Text = password.Description;
             }
+            changed = false;
             pwdChanged = false;
+            UpdateControls();
             textBoxName.Focus();
+        }
+
+        private void UpdateControls()
+        {
+            buttonOK.IsEnabled = changed;
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
@@ -71,7 +82,9 @@ namespace PasswordManager
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             pwdChanged = true;
+            changed = true;
             passwordBoxConfirmed.Password = string.Empty;
+            UpdateControls();
         }
 
         private void ButtonGenerate_Click(object sender, RoutedEventArgs e)
@@ -84,6 +97,7 @@ namespace PasswordManager
                     passwordBox.Password = dlg.Password.GetAsString();
                     passwordBoxConfirmed.Password = passwordBox.Password;
                     pwdChanged = true;
+                    changed = true;
                 }
             }
             catch (Exception ex)
@@ -91,5 +105,10 @@ namespace PasswordManager
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            changed = true;
+            UpdateControls();
     }
 }

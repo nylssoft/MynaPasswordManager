@@ -8,7 +8,7 @@
         Icon="Images/logo.png"
         xmlns:self="clr-namespace:PasswordManager"        
         xmlns:props="clr-namespace:PasswordManager.Properties"
-        Height="400" Width="600" MinWidth="400" MinHeight="200" 
+        Height="400" Width="600" MinWidth="300" MinHeight="300" 
         MouseMove="Window_MouseMove">
     <Window.Resources>
         <Style x:Key="ImageEnabled" TargetType="Image">
@@ -38,6 +38,7 @@
         <CommandBinding Command="self:CustomCommands.CopyPassword" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.About" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ShowLoginColumn" CanExecute="Command_CanExecute" Executed="Command_Executed" />
+        <CommandBinding Command="self:CustomCommands.ShowPasswordColumn" CanExecute="Command_CanExecute" Executed="Command_Executed" />
     </Window.CommandBindings>
     <Grid Margin="0,0,0,0">
         <DockPanel LastChildFill="True">
@@ -112,6 +113,7 @@
                     </MenuItem>
                     <Separator/>
                     <MenuItem x:Name="menuItemShowLoginColumn" IsCheckable="True" Command="self:CustomCommands.ShowLoginColumn"/>
+                    <MenuItem x:Name="menuItemShowPasswordColumn" IsCheckable="True" Command="self:CustomCommands.ShowPasswordColumn"/>
                 </MenuItem>
                 <MenuItem Header="{x:Static props:Resources.MENUITEM_HELP}">
                     <MenuItem Command="self:CustomCommands.About">
@@ -170,7 +172,7 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn x:Name="gridViewColumnLogin" Header="{x:Static props:Resources.COLUMN_LOGIN}" Width="200" DisplayMemberBinding="{Binding Login}"/>
-                        <GridViewColumn Header="{x:Static props:Resources.COLUMN_PASSWORD}" Width="150" DisplayMemberBinding="{Binding PasswordString}" />
+                        <GridViewColumn x:Name="gridViewColumnPassword" Header="{x:Static props:Resources.COLUMN_PASSWORD}" Width="150" DisplayMemberBinding="{Binding PasswordString}" />
                     </GridView>
                 </ListView.View>
                 <ListView.ContextMenu>

@@ -226,6 +226,7 @@ namespace PasswordManager
                 case "Open":
                 case "About":
                 case "ShowLoginColumn":
+                case "ShowPasswordColumn":
                     e.CanExecute = true;
                     break;
                 case "Save":
@@ -249,8 +250,10 @@ namespace PasswordManager
                     e.CanExecute = selected == 1 && hasPassword;
                     break;
                 case "Remove":
-                case "TogglePassword":
                     e.CanExecute = selected >= 1;
+                    break;
+                case "TogglePassword":
+                    e.CanExecute = selected >= 1 && Properties.Settings.Default.ShowPasswordColumn;
                     break;
                 case "OpenURL":
                     e.CanExecute = selected == 1 && hasUrl;
@@ -324,6 +327,9 @@ namespace PasswordManager
                 case "ShowLoginColumn":
                     ShowLoginColumn();
                     break;
+                case "ShowPasswordColumn":
+                    ShowPasswordColumn();
+                    break;
                 default:
                     break;
             }
@@ -347,8 +353,10 @@ namespace PasswordManager
             keyDirectoryCache.Load();
             PrepareDirectory(keyDirectoryCache.GetLastUsed());
             UpdateLoginColumn();
+            UpdatePasswordColumn();
             SortListView();
             menuItemShowLoginColumn.IsChecked = Properties.Settings.Default.ShowLoginColumn;
+            menuItemShowPasswordColumn.IsChecked = Properties.Settings.Default.ShowPasswordColumn;
             UpdateControls();
             var filename = Properties.Settings.Default.LastUsedRepositoryFile;
             if (!string.IsNullOrEmpty(filename))
@@ -369,9 +377,24 @@ namespace PasswordManager
                 {
                     gv.Columns.Remove(gridViewColumnLogin);
                 }
-                else if (gv.Columns.Count == 2)
+                else if (!gv.Columns.Contains(gridViewColumnLogin))
                 {
                     gv.Columns.Insert(1, gridViewColumnLogin);
+                }
+            }
+        }
+
+        private void UpdatePasswordColumn()
+        {
+            if (listView.View is GridView gv)
+            {
+                if (!Properties.Settings.Default.ShowPasswordColumn)
+                {
+                    gv.Columns.Remove(gridViewColumnPassword);
+                }
+                else if (!gv.Columns.Contains(gridViewColumnPassword))
+                {
+                    gv.Columns.Add(gridViewColumnPassword);
                 }
             }
         }
@@ -1095,6 +1118,19 @@ namespace PasswordManager
             {
                 Properties.Settings.Default.ShowLoginColumn = menuItemShowLoginColumn.IsChecked;
                 UpdateLoginColumn();
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+        }
+
+        private void ShowPasswordColumn()
+        {
+            try
+            {
+                Properties.Settings.Default.ShowPasswordColumn = menuItemShowPasswordColumn.IsChecked;
+                UpdatePasswordColumn();
             }
             catch (Exception ex)
             {

@@ -132,6 +132,9 @@
   <data name="BUTTON_CANCEL" xml:space="preserve">
     <value>_Cancel</value>
   </data>
+  <data name="BUTTON_GENERATE_PASSWORD" xml:space="preserve">
+    <value>Generate password...</value>
+  </data>
   <data name="BUTTON_NEW_PASSWORD" xml:space="preserve">
     <value>_New password</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="CMD_SHOW_PASSWORD" xml:space="preserve">
     <value>_Show password</value>
+  </data>
+  <data name="CMD_SHOW_PASSWORD_COLUMN" xml:space="preserve">
+    <value>Show pass_word column</value>
   </data>
   <data name="COLUMN_LOGIN" xml:space="preserve">
     <value>Login</value>

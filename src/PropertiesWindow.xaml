@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PasswordManager"
         xmlns:props="clr-namespace:PasswordManager.Properties"
         mc:Ignorable="d"
+        Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
         Height="290" Width="500" MinHeight="290" MinWidth="300" Icon="Images/logo.png">
     <Grid Margin="5,5,5,5">
         <Grid.RowDefinitions>

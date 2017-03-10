@@ -106,6 +106,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Generate password... ähnelt.
+        /// </summary>
+        public static string BUTTON_GENERATE_PASSWORD {
+            get {
+                return ResourceManager.GetString("BUTTON_GENERATE_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die _New password ähnelt.
         /// </summary>
         public static string BUTTON_NEW_PASSWORD {
@@ -291,6 +300,15 @@ namespace PasswordManager.Properties {
         public static string CMD_SHOW_PASSWORD {
             get {
                 return ResourceManager.GetString("CMD_SHOW_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show pass_word column ähnelt.
+        /// </summary>
+        public static string CMD_SHOW_PASSWORD_COLUMN {
+            get {
+                return ResourceManager.GetString("CMD_SHOW_PASSWORD_COLUMN", resourceCulture);
             }
         }
         

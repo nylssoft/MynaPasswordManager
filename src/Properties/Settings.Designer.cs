@@ -130,5 +130,17 @@ namespace PasswordManager.Properties {
                 this["AutoClearClipboard"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowPasswordColumn {
+            get {
+                return ((bool)(this["ShowPasswordColumn"]));
+            }
+            set {
+                this["ShowPasswordColumn"] = value;
+            }
+        }
     }
 }

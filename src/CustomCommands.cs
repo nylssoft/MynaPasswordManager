@@ -139,5 +139,11 @@ namespace PasswordManager
             Properties.Resources.CMD_SHOW_LOGIN_COLUMN,
             "ShowLoginColumn",
             typeof(CustomCommands));
+
+        public static readonly RoutedUICommand ShowPasswordColumn =
+            new RoutedUICommand(
+            Properties.Resources.CMD_SHOW_PASSWORD_COLUMN,
+            "ShowPasswordColumn",
+            typeof(CustomCommands));
     }
 }
