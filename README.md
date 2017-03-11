@@ -1,31 +1,31 @@
-# PasswordManager
+# MynaPasswordManager
 
-Work In Progress...
+A password manager for Windows using WPF.
 
-A simple password manager for Windows using WPF.
-
-The passwords for each item are encrypted with the Rijndael algorithm using an encrypted key file (also with Rijndael).
-Preferable the key file should be stored on a different device than the password file (e.g. a USB stick).
+The passwords for each item are encrypted with the Rijndael algorithm using an encrypted key file.
+Preferable the key file should be stored on a different device than the password file.
 The key file is encrypted using the SHA-256 hash of the master password.
 The process itself tries to keep the plain text passwords in memory as short as possible. The SecureString class is used to store passwords in memory for the life time of the process.
 
 Features:
 
+- Random password generator
 - Copy login and password to clipboard and clear clipboard after 30 seconds
-- Simple random password generator
 - Open website for login
-- Thumbnails for login websites if available
+- Shortcuts for most commands
+- Thumbnails for login websites
 - Secure password storage in memory and in encrypted files
 - Change of master password and key file
 - Available for German and English
 
-TODOs:
+Build:
 
-- A new project name
-- A filter for the items in the list view
-- A mechansim to add arbitary encrypted files to an entry (e.g. scanned invoices or bank account sheets etc.)
+- Build with VS 2017
+- WiX ToolSet is required to build a MSI, see https://http://wixtoolset.org/
 
-Icons used from the Open Icon Library (https://sourceforge.net/projects/openiconlibrary):
+Licenses:
+
+The following icons are used from the Open Icon Library (https://sourceforge.net/projects/openiconlibrary):
 
 application-exit-5.png / nuovext2 / LGPL-2.1<br>
 document-decrypt-3.png / oxygen / CC-BY-SA 3.0 or LGPL<br>
