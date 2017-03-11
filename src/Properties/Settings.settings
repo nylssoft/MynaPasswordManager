@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="CacheDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%MyDocuments%\NylsSoft\PasswordManager\.cache</Value>
+      <Value Profile="(Default)">%MyDocuments%\MynaPasswordManager\Cache</Value>
     </Setting>
     <Setting Name="KeyDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%MyDocuments%\NylsSoft\PasswordManager\.key</Value>
+      <Value Profile="(Default)">%MyDocuments%\MynaPasswordManager\Keys</Value>
     </Setting>
     <Setting Name="LastUsedRepositoryFile" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -15,7 +15,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="InitialDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">%MyDocuments%</Value>
+      <Value Profile="(Default)">%MyDocuments%\MynaPasswordManager</Value>
     </Setting>
     <Setting Name="AutoHidePassword" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">30</Value>

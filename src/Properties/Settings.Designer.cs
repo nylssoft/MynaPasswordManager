@@ -25,7 +25,7 @@ namespace PasswordManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%MyDocuments%\\NylsSoft\\PasswordManager\\.cache")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%MyDocuments%\\MynaPasswordManager\\Cache")]
         public string CacheDirectory {
             get {
                 return ((string)(this["CacheDirectory"]));
@@ -37,7 +37,7 @@ namespace PasswordManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%MyDocuments%\\NylsSoft\\PasswordManager\\.key")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%MyDocuments%\\MynaPasswordManager\\Keys")]
         public string KeyDirectory {
             get {
                 return ((string)(this["KeyDirectory"]));
@@ -73,7 +73,7 @@ namespace PasswordManager.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("%MyDocuments%")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%MyDocuments%\\MynaPasswordManager")]
         public string InitialDirectory {
             get {
                 return ((string)(this["InitialDirectory"]));
