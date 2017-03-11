@@ -1,4 +1,4 @@
-# MynaPasswordManager
+# Myna Password Manager
 
 A password manager for Windows using WPF.
 
