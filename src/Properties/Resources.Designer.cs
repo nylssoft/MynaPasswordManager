@@ -677,7 +677,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Myna Password Manager ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Password Manager ähnelt.
         /// </summary>
         public static string TITLE_PASSWORD_MANAGER {
             get {
