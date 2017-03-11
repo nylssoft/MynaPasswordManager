@@ -326,7 +326,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
     <value>New password file</value>
   </data>
   <data name="TITLE_PASSWORD_MANAGER" xml:space="preserve">
-    <value>Password Manager</value>
+    <value>Myna Password Manager</value>
   </data>
   <data name="TITLE_PROPERTIES" xml:space="preserve">
     <value>Properties</value>
