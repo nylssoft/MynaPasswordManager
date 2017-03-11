@@ -106,7 +106,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Generate password... ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Generate password... ähnelt.
         /// </summary>
         public static string BUTTON_GENERATE_PASSWORD {
             get {

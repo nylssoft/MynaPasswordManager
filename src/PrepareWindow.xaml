@@ -33,7 +33,7 @@
                 <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" x:Name="textBoxKeyDirectory" Height="23" TextChanged="TextBoxKeyDirectory_TextChanged"/>
-            <Button Grid.Column="1" Content="..." Height="23" Width="30" Click="ButtonSelectKeyDirectory_Click"/>
+            <Button Grid.Column="1" Content="..." Height="23" Width="30" HorizontalAlignment="Right" Click="ButtonSelectKeyDirectory_Click"/>
         </Grid>
         <Label Grid.Row="4" Grid.Column="0" Content="{x:Static props:Resources.LABEL_DESCRIPTION}" Target="{Binding ElementName=textBoxDescription}"/>
         <TextBox x:Name="textBoxDescription" Grid.Row="4" Grid.Column="1" Margin="0,3,0,3" MaxLength="1024" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" TextChanged="TextBox_Changed"/>

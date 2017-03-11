@@ -7,12 +7,12 @@ using System.Windows;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("PasswordManager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("MynaPasswordManager")]
+[assembly: AssemblyDescription("A simple and secure password manager")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NylsSoft")]
-[assembly: AssemblyProduct("PasswordManager")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyProduct("Myna Password Manager")]
+[assembly: AssemblyCopyright("Copyright © 2017 Niels Stockfleth. All Rights Reserved")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,8 +51,8 @@ using System.Windows;
 // Sie können alle Werte angeben oder Standardwerte für die Build- und Revisionsnummern verwenden.
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.1.0")]
-[assembly: AssemblyFileVersion("0.9.1.0")]
+[assembly: AssemblyVersion("0.9.2.0")]
+[assembly: AssemblyFileVersion("0.9.2.1")]
+[assembly: AssemblyInformationalVersion("0.9.2")]
 [assembly: NeutralResourcesLanguage("")]
 [assembly: Guid("5AE9DDDC-2AC3-4D50-9949-851AC350A823")]
-

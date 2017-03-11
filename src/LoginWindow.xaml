@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="40" />
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" x:Name="textBoxKeyDirectory" Height="23" TextChanged="TextBoxKeyDirectory_TextChanged"/>
-            <Button Grid.Column="1" Content="..." Height="23" Width="30" Click="ButtonSelectKeyDirectory_Click"/>
+            <Button Grid.Column="1" Content="..." Height="23" Width="30" HorizontalAlignment="Right" Click="ButtonSelectKeyDirectory_Click"/>
         </Grid>
         <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="buttonOK" IsDefault="True" Content="{x:Static props:Resources.BUTTON_OK}" Height="23" Width="80" Margin="5,0,5,0" Click="ButtonOK_Click"/>

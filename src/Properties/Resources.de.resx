@@ -133,7 +133,7 @@
     <value>_Abbrechen</value>
   </data>
   <data name="BUTTON_GENERATE_PASSWORD" xml:space="preserve">
-    <value>Generiere Passwort...</value>
+    <value>_Generiere Passwort...</value>
   </data>
   <data name="BUTTON_NEW_PASSWORD" xml:space="preserve">
     <value>_Neues Passwort</value>
