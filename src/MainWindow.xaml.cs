@@ -360,7 +360,7 @@ namespace PasswordManager
             SortListView();
             UpdateControls();
             var filename = Properties.Settings.Default.LastUsedRepositoryFile;
-            if (!string.IsNullOrEmpty(filename))
+            if (!string.IsNullOrEmpty(filename) && File.Exists(filename))
             {
                 OpenRepository(filename, true);
             }
