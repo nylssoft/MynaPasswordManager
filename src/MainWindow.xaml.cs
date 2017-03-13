@@ -200,7 +200,7 @@ namespace PasswordManager
         {
             try
             {
-                if (listView == null) return;
+                if (listView == null || passwordRepository == null) return;
                 listView.Items.Clear();
                 foreach (var password in passwordRepository.Passwords)
                 {
