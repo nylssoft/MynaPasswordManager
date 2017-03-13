@@ -42,123 +42,131 @@
     </Window.CommandBindings>
     <Grid Margin="0,0,0,0">
         <DockPanel LastChildFill="True">
-            <Menu DockPanel.Dock="Top" KeyboardNavigation.TabIndex="0">
-                <MenuItem Header="{x:Static props:Resources.MENUITEM_FILE}">
-                    <MenuItem Command="self:CustomCommands.New">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/document-new-6.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
+            <Grid DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+                <Menu Grid.Row="0" KeyboardNavigation.TabIndex="0">
+                    <MenuItem Header="{x:Static props:Resources.MENUITEM_FILE}">
+                        <MenuItem Command="self:CustomCommands.New">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/document-new-6.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Command="self:CustomCommands.Open">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/document-open-2.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Command="self:CustomCommands.Save">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/document-save-7.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Command="self:CustomCommands.SaveAs">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/document-save-as-6.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Command="self:CustomCommands.Close" />
+                        <Separator />
+                        <MenuItem Command="self:CustomCommands.ChangeMasterPassword" />
+                        <MenuItem Command="self:CustomCommands.ChangeKeyDirectory" />
+                        <MenuItem Command="self:CustomCommands.Props" />
+                        <Separator />
+                        <MenuItem Command="self:CustomCommands.Exit">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/application-exit-5.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </MenuItem>
-                    <MenuItem Command="self:CustomCommands.Open">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/document-open-2.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
+                    <MenuItem Header="{x:Static props:Resources.MENUITEM_EDIT}">
+                        <MenuItem Command="self:CustomCommands.Add">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/list-add-4.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Command="self:CustomCommands.Edit">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/edit.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Command="self:CustomCommands.Remove">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/list-remove-4.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Command="self:CustomCommands.CopyLogin" />
+                        <Separator />
+                        <MenuItem Command="self:CustomCommands.CopyPassword" />
                     </MenuItem>
-                    <Separator />
-                    <MenuItem Command="self:CustomCommands.Save">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/document-save-7.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
+                    <MenuItem Header="{x:Static props:Resources.MENUITEM_VIEW}" >
+                        <MenuItem Command="self:CustomCommands.OpenURL">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/homepage.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem x:Name="menuItemTogglePassword" Command="self:CustomCommands.TogglePassword">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/document-decrypt-3.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator/>
+                        <MenuItem x:Name="menuItemShowLoginColumn" IsCheckable="True" Command="self:CustomCommands.ShowLoginColumn"/>
+                        <MenuItem x:Name="menuItemShowPasswordColumn" IsCheckable="True" Command="self:CustomCommands.ShowPasswordColumn"/>
                     </MenuItem>
-                    <MenuItem Command="self:CustomCommands.SaveAs">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/document-save-as-6.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
+                    <MenuItem Header="{x:Static props:Resources.MENUITEM_HELP}">
+                        <MenuItem Command="self:CustomCommands.About">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/document-properties.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </MenuItem>
-                    <Separator />
-                    <MenuItem Command="self:CustomCommands.Close" />
-                    <Separator />
-                    <MenuItem Command="self:CustomCommands.ChangeMasterPassword" />
-                    <MenuItem Command="self:CustomCommands.ChangeKeyDirectory" />
-                    <MenuItem Command="self:CustomCommands.Props" />
-                    <Separator />
-                    <MenuItem Command="self:CustomCommands.Exit">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/application-exit-5.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </MenuItem>
-                <MenuItem Header="{x:Static props:Resources.MENUITEM_EDIT}">
-                    <MenuItem Command="self:CustomCommands.Add">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/list-add-4.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Command="self:CustomCommands.Edit">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/edit.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Command="self:CustomCommands.Remove">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/list-remove-4.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <Separator />
-                    <MenuItem Command="self:CustomCommands.CopyLogin" />
-                    <Separator />
-                    <MenuItem Command="self:CustomCommands.CopyPassword" />
-                </MenuItem>
-                <MenuItem Header="{x:Static props:Resources.MENUITEM_VIEW}" >
-                    <MenuItem Command="self:CustomCommands.OpenURL">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/homepage.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <Separator />
-                    <MenuItem x:Name="menuItemTogglePassword" Command="self:CustomCommands.TogglePassword">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/document-decrypt-3.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <Separator/>
-                    <MenuItem x:Name="menuItemShowLoginColumn" IsCheckable="True" Command="self:CustomCommands.ShowLoginColumn"/>
-                    <MenuItem x:Name="menuItemShowPasswordColumn" IsCheckable="True" Command="self:CustomCommands.ShowPasswordColumn"/>
-                </MenuItem>
-                <MenuItem Header="{x:Static props:Resources.MENUITEM_HELP}">
-                    <MenuItem Command="self:CustomCommands.About">
-                        <MenuItem.Icon>
-                            <Image Source="Images/16x16/document-properties.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </MenuItem>
-            </Menu>
-            <ToolBarTray DockPanel.Dock="Top" Height="40" KeyboardNavigation.TabIndex="1">
-                <ToolBar DockPanel.Dock="Top" KeyboardNavigation.TabNavigation="Continue">
-                    <Button Command="self:CustomCommands.New" ToolTip="{x:Static props:Resources.TOOLTIP_NEW}">
-                        <Image Source="Images/32x32/document-new-6.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
-                    </Button>
-                    <Button Command="self:CustomCommands.Open" ToolTip="{x:Static props:Resources.TOOLTIP_OPEN}">
-                        <Image Source="Images/32x32/document-open-2.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
-                    </Button>
-                    <Button Command="self:CustomCommands.Save" ToolTip="{x:Static props:Resources.TOOLTIP_SAVE}">
-                        <Image Source="Images/32x32/document-save-7.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
-                    </Button>
-                </ToolBar>
-                <ToolBar DockPanel.Dock="Top" KeyboardNavigation.TabNavigation="Continue">
-                    <Button Command="self:CustomCommands.Add" ToolTip="{x:Static props:Resources.TOOLTIP_ADD}">
-                        <Image x:Name="imageAdd" Source="Images/32x32/list-add-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
-                    </Button>
-                    <Button Command="self:CustomCommands.Remove" ToolTip="{x:Static props:Resources.TOOLTIP_DELETE}">
-                        <Image x:Name="imageDelete" Source="Images/32x32/list-remove-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
-                    </Button>
-                    <Button Command="self:CustomCommands.Edit" ToolTip="{x:Static props:Resources.TOOLTIP_EDIT}">
-                        <Image x:Name="imageEdit" Source="Images/32x32/edit.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
-                    </Button>
-                    <Button Command="self:CustomCommands.OpenURL" ToolTip="{x:Static props:Resources.TOOLTIP_OPEN_URL}">
-                        <Image x:Name="imageOpen" Source="Images/32x32/homepage.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
-                    </Button>
-                    <Button Command="self:CustomCommands.TogglePassword" x:Name="buttonToggleShow" ToolTip="{x:Static props:Resources.TOOLTIP_SHOW_PASSWORD}">
-                        <Image x:Name="imageToggleShow" Source="Images/32x32/document-decrypt-3.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
-                    </Button>
-                </ToolBar>
-            </ToolBarTray>
+                </Menu>
+                <ToolBarTray Grid.Row="1" KeyboardNavigation.TabIndex="1">
+                    <ToolBar KeyboardNavigation.TabNavigation="Continue">
+                        <Button Command="self:CustomCommands.New" ToolTip="{x:Static props:Resources.TOOLTIP_NEW}">
+                            <Image Source="Images/32x32/document-new-6.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                        </Button>
+                        <Button Command="self:CustomCommands.Open" ToolTip="{x:Static props:Resources.TOOLTIP_OPEN}">
+                            <Image Source="Images/32x32/document-open-2.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                        </Button>
+                        <Button Command="self:CustomCommands.Save" ToolTip="{x:Static props:Resources.TOOLTIP_SAVE}">
+                            <Image Source="Images/32x32/document-save-7.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                        </Button>
+                    </ToolBar>
+                    <ToolBar KeyboardNavigation.TabNavigation="Continue">
+                        <Button Command="self:CustomCommands.Add" ToolTip="{x:Static props:Resources.TOOLTIP_ADD}">
+                            <Image x:Name="imageAdd" Source="Images/32x32/list-add-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                        </Button>
+                        <Button Command="self:CustomCommands.Remove" ToolTip="{x:Static props:Resources.TOOLTIP_DELETE}">
+                            <Image x:Name="imageDelete" Source="Images/32x32/list-remove-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                        </Button>
+                        <Button Command="self:CustomCommands.Edit" ToolTip="{x:Static props:Resources.TOOLTIP_EDIT}">
+                            <Image x:Name="imageEdit" Source="Images/32x32/edit.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                        </Button>
+                        <Button Command="self:CustomCommands.OpenURL" ToolTip="{x:Static props:Resources.TOOLTIP_OPEN_URL}">
+                            <Image x:Name="imageOpen" Source="Images/32x32/homepage.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                        </Button>
+                        <Button Command="self:CustomCommands.TogglePassword" x:Name="buttonToggleShow" ToolTip="{x:Static props:Resources.TOOLTIP_SHOW_PASSWORD}">
+                            <Image x:Name="imageToggleShow" Source="Images/32x32/document-decrypt-3.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                        </Button>
+                    </ToolBar>
+                </ToolBarTray>
+                <TextBox KeyboardNavigation.TabIndex="2" Grid.Row="2" x:Name="textBoxGo" Margin="2,2,2,2" TextChanged="TextBoxFilter_Click"/>
+            </Grid>
             <StatusBar DockPanel.Dock="Bottom">
                 <StatusBarItem>
                     <TextBlock x:Name="textBlockStatus" />
                 </StatusBarItem>
             </StatusBar>
-            <ListView x:Name="listView" TextSearch.TextPath="Name" MouseDoubleClick="ListView_MouseDoubleClick" ContextMenuOpening="ListView_ContextMenuOpening" SelectionChanged="ListView_SelectionChanged" KeyboardNavigation.TabIndex="2">
+            <ListView VirtualizingStackPanel.IsVirtualizing="False" KeyboardNavigation.TabIndex="3" x:Name="listView" TextSearch.TextPath="Name" MouseDoubleClick="ListView_MouseDoubleClick" ContextMenuOpening="ListView_ContextMenuOpening" SelectionChanged="ListView_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{x:Static props:Resources.COLUMN_NAME}" Width="200">
