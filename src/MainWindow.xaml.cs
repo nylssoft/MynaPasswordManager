@@ -196,6 +196,33 @@ namespace PasswordManager
             UpdateControls();
         }
 
+        private void TextBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                if (listView == null) return;
+                listView.Items.Clear();
+                foreach (var password in passwordRepository.Passwords)
+                {
+                    if (password.Name.StartsWith(textBoxFilter.Text, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        listView.Items.Add(new PasswordViewItem(password, imageKey16x16));
+                    }
+                    if (listView.Items.Count > 0)
+                    {
+                        listView.SelectedIndex = 0;
+                    }
+                }
+                SortListView();
+                InitThumbnailCacheAsync();
+                UpdateControls();
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+        }
+
         private void Command_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             RoutedUICommand r = e.Command as RoutedUICommand;
@@ -787,12 +814,13 @@ namespace PasswordManager
             }
         }
 
-        private async void InitThumbnailCacheAsync(string cacheDirectory)
+        private async void InitThumbnailCacheAsync()
         {
             try
             {
                 if (thumbnailCache == null)
                 {
+                    var cacheDirectory = Properties.Settings.Default.CacheDirectory.ReplaceSpecialFolder();
                     thumbnailCache = new ThumbnailCache(cacheDirectory);
                     thumbnailCache.Load();
                 }
@@ -969,8 +997,7 @@ namespace PasswordManager
                 HandleError(ex);
             }
             UpdateControls();
-            var cacheDirectory = Properties.Settings.Default.CacheDirectory.ReplaceSpecialFolder();
-            InitThumbnailCacheAsync(cacheDirectory);
+            InitThumbnailCacheAsync();
             return ret;
         }
 
@@ -1027,9 +1054,8 @@ namespace PasswordManager
                         listView.Items.Add(new PasswordViewItem(password, imageKey16x16));
                     }
                     SortListView();
-                    var cacheDirectory = Properties.Settings.Default.CacheDirectory.ReplaceSpecialFolder();
-                    InitThumbnailCacheAsync(cacheDirectory);
-                    textBoxGo.Focus();
+                    InitThumbnailCacheAsync();
+                    textBoxFilter.Focus();
                     ret = true;
                 }
             }
@@ -1149,26 +1175,6 @@ namespace PasswordManager
                 Title,
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
-        }
-
-        private void TextBoxFilter_Click(object sender, TextChangedEventArgs e)
-        {
-            listView.Items.Clear();
-            foreach (var password in passwordRepository.Passwords)
-            {
-                if (password.Name.StartsWith(textBoxGo.Text, StringComparison.CurrentCultureIgnoreCase))
-                {
-                    listView.Items.Add(new PasswordViewItem(password, imageKey16x16));
-                }
-                if (listView.Items.Count>0)
-                {
-                    listView.SelectedIndex = 0;
-                }
-            }
-            SortListView();
-            var cacheDirectory = Properties.Settings.Default.CacheDirectory.ReplaceSpecialFolder();
-            InitThumbnailCacheAsync(cacheDirectory);
-            UpdateControls();
         }
     }
 }

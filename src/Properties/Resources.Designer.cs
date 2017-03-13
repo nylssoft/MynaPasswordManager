@@ -632,6 +632,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Search list ähnelt.
+        /// </summary>
+        public static string TEXT_SEARCH_LIST {
+            get {
+                return ResourceManager.GetString("TEXT_SEARCH_LIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Add ähnelt.
         /// </summary>
         public static string TITLE_ADD {

@@ -310,6 +310,9 @@ This program is free software: you can redistribute it and/or modify it under th
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</value>
   </data>
+  <data name="TEXT_SEARCH_LIST" xml:space="preserve">
+    <value>Search list</value>
+  </data>
   <data name="TITLE_ADD" xml:space="preserve">
     <value>Add</value>
   </data>
