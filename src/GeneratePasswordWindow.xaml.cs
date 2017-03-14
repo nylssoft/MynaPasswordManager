@@ -32,15 +32,60 @@ namespace PasswordManager
             Owner = owner;
             Title = Properties.Resources.TITLE_GENERATE_PASSWORD;
             InitializeComponent();
+            textBoxDigits.Text = Properties.Settings.Default.PasswordGeneratorDigits;
+            textBoxSymbols.Text = Properties.Settings.Default.PasswordGeneratorSymbols;
+            textBoxUpperChars.Text = Properties.Settings.Default.PasswordGeneratorUpperCharacters;
+            textBoxLowerChars.Text = Properties.Settings.Default.PasswordGeneratorLowerCharacters;
+            textBoxLength.Text = Convert.ToString(Properties.Settings.Default.PasswordGeneratorLength);
+            textBoxMinDigits.Text = Convert.ToString(Properties.Settings.Default.PasswordGeneratorMinDigits);
+            textBoxMinSymbols.Text = Convert.ToString(Properties.Settings.Default.PasswordGeneratorMinSymbols);
+            textBoxMinUpperChars.Text = Convert.ToString(Properties.Settings.Default.PasswordGeneratorMinUpperCharacters);
+            textBoxMinLowerChars.Text = Convert.ToString(Properties.Settings.Default.PasswordGeneratorMinLowerCharacters);
             ButtonGenerate_Click(null, null);
+        }
+
+        private bool Validate(PasswordGenerator gen)
+        {
+            if (gen.Length < 4 || gen.Length > 40 ||
+                gen.MinDigits + gen.MinSymbols + gen.MinLowerCharacters + gen.MinUpperCharacters > gen.Length ||
+                gen.MinDigits < 0 || gen.MinSymbols < 0 || gen.MinLowerCharacters < 0 || gen.MinUpperCharacters < 0 ||
+                gen.Symbols.Length == 0 && gen.Digits.Length == 0 && gen.UpperCharacters.Length == 0 && gen.LowerCharacters.Length == 0 ||
+                gen.MinDigits > 0 && gen.Digits.Length == 0 ||
+                gen.MinSymbols > 0 && gen.Symbols.Length == 0 ||
+                gen.MinUpperCharacters > 0 && gen.UpperCharacters.Length == 0 ||
+                gen.MinLowerCharacters > 0 && gen.LowerCharacters.Length == 0)
+            {
+                MessageBox.Show(Properties.Resources.ERROR_PWDGEN_INVALID_INPUT, Title, MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private int ToInt(string txt)
+        {
+            int val = -1;
+            Int32.TryParse(txt, out val);
+            return val;
         }
 
         private void ButtonGenerate_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Password = generator.Generate();
-                textBoxPassword.Text = Password.GetAsString();
+                generator.Digits = textBoxDigits.Text;
+                generator.Symbols = textBoxSymbols.Text;
+                generator.UpperCharacters = textBoxUpperChars.Text;
+                generator.LowerCharacters = textBoxLowerChars.Text;
+                generator.Length = ToInt(textBoxLength.Text);
+                generator.MinDigits = ToInt(textBoxMinDigits.Text);
+                generator.MinSymbols = ToInt(textBoxMinSymbols.Text);
+                generator.MinUpperCharacters = ToInt(textBoxMinUpperChars.Text);
+                generator.MinLowerCharacters = ToInt(textBoxMinLowerChars.Text);
+                if (Validate(generator))
+                {
+                    Password = generator.Generate();
+                    textBoxPassword.Text = Password.GetAsString();
+                }
             }
             catch (Exception ex)
             {

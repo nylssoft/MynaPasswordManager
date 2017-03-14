@@ -225,6 +225,9 @@
   <data name="ERROR_PASSWORD_MIN_CHARS" xml:space="preserve">
     <value>Das Passwort muss mindestens 4 Zeichen enthalten.</value>
   </data>
+  <data name="ERROR_PWDGEN_INVALID_INPUT" xml:space="preserve">
+    <value>Ungültige Eingabewerte für die Passwortgenerierung.</value>
+  </data>
   <data name="ERROR_WRONG_PASSWORD" xml:space="preserve">
     <value>Das Passwort ist nicht richtig.</value>
   </data>
@@ -243,6 +246,9 @@
   <data name="LABEL_DESCRIPTION" xml:space="preserve">
     <value>_Beschreibung:</value>
   </data>
+  <data name="LABEL_DIGITS" xml:space="preserve">
+    <value>_Ziffern:</value>
+  </data>
   <data name="LABEL_ENTER_MASTER_PASSWORD_FOR_0" xml:space="preserve">
     <value>Geben Sie das Hauptpasswort für '{0}' ein.</value>
   </data>
@@ -254,6 +260,9 @@
   </data>
   <data name="LABEL_LOGIN" xml:space="preserve">
     <value>_Login:</value>
+  </data>
+  <data name="LABEL_LOWER_CHARS" xml:space="preserve">
+    <value>_Kleinbuchstaben:</value>
   </data>
   <data name="LABEL_MASTER_PASSWORD" xml:space="preserve">
     <value>_Hauptpasswort:</value>
@@ -273,8 +282,17 @@
   <data name="LABEL_PASSWORD_FILE" xml:space="preserve">
     <value>Passwortdatei:</value>
   </data>
+  <data name="LABEL_PASSWORD_LENGTH" xml:space="preserve">
+    <value>Passwort_länge:</value>
+  </data>
   <data name="LABEL_SELECT_KEY_DIRECTORY" xml:space="preserve">
     <value>Wähle Schlüsselverzeichnis.</value>
+  </data>
+  <data name="LABEL_SYMBOLS" xml:space="preserve">
+    <value>_Symbolzeichen:</value>
+  </data>
+  <data name="LABEL_UPPER_CHARS" xml:space="preserve">
+    <value>_Grossbuchstaben:</value>
   </data>
   <data name="LABEL_URL" xml:space="preserve">
     <value>_URL:</value>

@@ -385,6 +385,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Invalid input values for the password generation. ähnelt.
+        /// </summary>
+        public static string ERROR_PWDGEN_INVALID_INPUT {
+            get {
+                return ResourceManager.GetString("ERROR_PWDGEN_INVALID_INPUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The password is wrong. ähnelt.
         /// </summary>
         public static string ERROR_WRONG_PASSWORD {
@@ -439,6 +448,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Digits ähnelt.
+        /// </summary>
+        public static string LABEL_DIGITS {
+            get {
+                return ResourceManager.GetString("LABEL_DIGITS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Enter the master password for &apos;{0}&apos;. ähnelt.
         /// </summary>
         public static string LABEL_ENTER_MASTER_PASSWORD_FOR_0 {
@@ -471,6 +489,15 @@ namespace PasswordManager.Properties {
         public static string LABEL_LOGIN {
             get {
                 return ResourceManager.GetString("LABEL_LOGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lo_wer characters: ähnelt.
+        /// </summary>
+        public static string LABEL_LOWER_CHARS {
+            get {
+                return ResourceManager.GetString("LABEL_LOWER_CHARS", resourceCulture);
             }
         }
         
@@ -529,11 +556,38 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Password _length: ähnelt.
+        /// </summary>
+        public static string LABEL_PASSWORD_LENGTH {
+            get {
+                return ResourceManager.GetString("LABEL_PASSWORD_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Select key directory. ähnelt.
         /// </summary>
         public static string LABEL_SELECT_KEY_DIRECTORY {
             get {
                 return ResourceManager.GetString("LABEL_SELECT_KEY_DIRECTORY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Symbols: ähnelt.
+        /// </summary>
+        public static string LABEL_SYMBOLS {
+            get {
+                return ResourceManager.GetString("LABEL_SYMBOLS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Upper characters: ähnelt.
+        /// </summary>
+        public static string LABEL_UPPER_CHARS {
+            get {
+                return ResourceManager.GetString("LABEL_UPPER_CHARS", resourceCulture);
             }
         }
         

@@ -35,8 +35,7 @@ namespace PasswordManager
         public string UpperCharacters { get; set; } = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         public string Symbols { get; set; } = "!@$()=+-,:.";
         public string Digits { get; set; } = "0123456789";        
-        public int MinLength { get; set; } = 8;
-        public int MaxLength { get; set; } = 16;
+        public int Length { get; set; } = 16;
         public int MinSymbols { get; set; } = 1;
         public int MinLowerCharacters { get; set; } = 1;
         public int MinUpperCharacters { get; set; } = 1;
@@ -47,54 +46,62 @@ namespace PasswordManager
             string all = LowerCharacters + UpperCharacters + Symbols + Digits;
             using (var rng = new RNGCryptoServiceProvider())
             {
-                int pwdlen = Next(rng, (MaxLength - MinLength) + 1) + MinLength;
                 List<int> numbers = new List<int>();
-                for (int idx = 0; idx < pwdlen; idx++)
+                for (int idx = 0; idx < Length; idx++)
                 {
                     numbers.Add(idx); // 0 => 0, 1 => 1, etc
                 }
                 List<int> positions = new List<int>();
                 while (numbers.Count > 0)
                 {
-                    var nidx = Next(rng, numbers.Count);
+                    var nidx = numbers.Count == 1 ? 0 : Next(rng, numbers.Count);
                     positions.Add(numbers[nidx]);
                     numbers.RemoveAt(nidx);
                 }
-                char[] pwd = new char[pwdlen];
+                char[] pwd = new char[Length];
                 int drawidx = 0;
-                for (int cnt = 0; cnt < MinLowerCharacters && drawidx < pwdlen; cnt++)
-                {
-                    pwd[positions[drawidx++]] = LowerCharacters[Next(rng, LowerCharacters.Length)];
-                }
-                for (int cnt = 0; cnt < MinUpperCharacters && drawidx < pwdlen; cnt++)
-                {
-                    pwd[positions[drawidx++]] = UpperCharacters[Next(rng, UpperCharacters.Length)];
-                }
-                for (int cnt = 0; cnt < MinSymbols && drawidx < pwdlen; cnt++)
-                {
-                    pwd[positions[drawidx++]] = Symbols[Next(rng, Symbols.Length)];
-                }
-                for (int cnt = 0; cnt < MinDigits && drawidx < pwdlen; cnt++)
-                {
-                    pwd[positions[drawidx++]] = Digits[Next(rng, Digits.Length)];
-                }
-                var count = pwdlen - drawidx;
-                for (int idx = 0; idx < count; idx++)
-                {
-                    pwd[positions[drawidx++]] = all[Next(rng, all.Length)];
-                }
+                Draw(rng, pwd, ref drawidx, MinLowerCharacters, LowerCharacters, Length, positions);
+                Draw(rng, pwd, ref drawidx, MinUpperCharacters, UpperCharacters, Length, positions);
+                Draw(rng, pwd, ref drawidx, MinSymbols, Symbols, Length, positions);
+                Draw(rng, pwd, ref drawidx, MinDigits, Digits, Length, positions);
+                Draw(rng, pwd, ref drawidx, Length - drawidx, all, Length, positions);
                 var ret = new SecureString();
                 foreach (char c in pwd)
                 {
                     ret.AppendChar(c);
                 }
-                Array.Clear(pwd, 0, pwdlen);
+                Array.Clear(pwd, 0, Length);
                 return ret;
+            }
+        }
+
+        private void Draw(  RNGCryptoServiceProvider    rng,
+                            char []                     pwd,
+                            ref int                     drawidx,
+                            int                         drawcnt,
+                            string                      symbols,
+                            int                         pwdlen,
+                            List<int>                   positions)
+        {
+            if (symbols.Length > 0 && drawcnt > 0)
+            {
+                for (int cnt = 0; cnt < drawcnt && drawidx < pwdlen; cnt++)
+                {
+                    pwd[positions[drawidx++]] = symbols[Next(rng, symbols.Length)];
+                }
             }
         }
 
         private int Next(RNGCryptoServiceProvider rng, int upper_limit)
         {
+            if (upper_limit <= 0)
+            {
+                throw new ArgumentException($"Invalid upper limit {upper_limit}.");
+            }
+            if (upper_limit == 1)
+            {
+                return 0;
+            }
             return (int)(Next(rng) % (uint)upper_limit);
         }
 
