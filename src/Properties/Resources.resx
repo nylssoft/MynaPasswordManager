@@ -255,6 +255,9 @@
   <data name="LABEL_ENTER_MASTER_PASSWORD_FOR_0" xml:space="preserve">
     <value>Enter the master password for '{0}'.</value>
   </data>
+  <data name="LABEL_GENERATED_PASSWORD" xml:space="preserve">
+    <value>Password:</value>
+  </data>
   <data name="LABEL_KEY" xml:space="preserve">
     <value>Key:</value>
   </data>

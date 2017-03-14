@@ -475,6 +475,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Password: ähnelt.
+        /// </summary>
+        public static string LABEL_GENERATED_PASSWORD {
+            get {
+                return ResourceManager.GetString("LABEL_GENERATED_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Key: ähnelt.
         /// </summary>
         public static string LABEL_KEY {

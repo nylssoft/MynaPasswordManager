@@ -255,6 +255,9 @@
   <data name="LABEL_ENTER_MASTER_PASSWORD_FOR_0" xml:space="preserve">
     <value>Geben Sie das Hauptpasswort für '{0}' ein.</value>
   </data>
+  <data name="LABEL_GENERATED_PASSWORD" xml:space="preserve">
+    <value>Passwort:</value>
+  </data>
   <data name="LABEL_KEY" xml:space="preserve">
     <value>Schlüssel:</value>
   </data>
