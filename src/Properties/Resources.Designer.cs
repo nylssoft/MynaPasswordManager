@@ -106,6 +106,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Cop_y password ähnelt.
+        /// </summary>
+        public static string BUTTON_COPY_PASSWORD {
+            get {
+                return ResourceManager.GetString("BUTTON_COPY_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die _New password ähnelt.
         /// </summary>
         public static string BUTTON_NEW_PASSWORD {

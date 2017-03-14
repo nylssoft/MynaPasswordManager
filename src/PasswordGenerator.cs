@@ -43,7 +43,24 @@ namespace PasswordManager
 
         public SecureString Generate()
         {
-            string all = LowerCharacters + UpperCharacters + Symbols + Digits;
+            StringBuilder sb = new StringBuilder();
+            if (MinLowerCharacters > 0)
+            {
+                sb.Append(LowerCharacters);
+            }
+            if (MinUpperCharacters > 0)
+            {
+                sb.Append(UpperCharacters);
+            }
+            if (MinSymbols > 0)
+            {
+                sb.Append(Symbols);
+            }
+            if (MinDigits > 0)
+            {
+                sb.Append(Digits);
+            }
+            string all = sb.ToString();
             using (var rng = new RNGCryptoServiceProvider())
             {
                 List<int> numbers = new List<int>();

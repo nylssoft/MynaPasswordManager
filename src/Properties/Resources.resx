@@ -132,6 +132,9 @@
   <data name="BUTTON_CANCEL" xml:space="preserve">
     <value>_Cancel</value>
   </data>
+  <data name="BUTTON_COPY_PASSWORD" xml:space="preserve">
+    <value>Cop_y password</value>
+  </data>
   <data name="BUTTON_NEW_PASSWORD" xml:space="preserve">
     <value>_New password</value>
   </data>

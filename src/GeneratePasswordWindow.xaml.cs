@@ -25,7 +25,7 @@ namespace PasswordManager
     {
         private PasswordGenerator generator = new PasswordGenerator();
 
-        public GeneratePasswordWindow(Window owner)
+        public GeneratePasswordWindow(MainWindow owner)
         {
             Owner = owner;
             Title = Properties.Resources.TITLE_GENERATE_PASSWORD;
@@ -48,6 +48,7 @@ namespace PasswordManager
                 gen.MinDigits + gen.MinSymbols + gen.MinLowerCharacters + gen.MinUpperCharacters > gen.Length ||
                 gen.MinDigits < 0 || gen.MinSymbols < 0 || gen.MinLowerCharacters < 0 || gen.MinUpperCharacters < 0 ||
                 gen.Symbols.Length == 0 && gen.Digits.Length == 0 && gen.UpperCharacters.Length == 0 && gen.LowerCharacters.Length == 0 ||
+                gen.MinDigits == 0 && gen.MinSymbols == 0 && gen.MinLowerCharacters == 0 && gen.MinUpperCharacters == 0 ||
                 gen.MinDigits > 0 && gen.Digits.Length == 0 ||
                 gen.MinSymbols > 0 && gen.Symbols.Length == 0 ||
                 gen.MinUpperCharacters > 0 && gen.UpperCharacters.Length == 0 ||
@@ -66,6 +67,18 @@ namespace PasswordManager
             return val;
         }
 
+        private void ButtonCopyToClipboard_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MainWindow w = Owner as MainWindow;
+                w.CopyToClipboard(textBlockPassword.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void ButtonGenerate_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -81,7 +94,7 @@ namespace PasswordManager
                 generator.MinLowerCharacters = ToInt(textBoxMinLowerChars.Text);
                 if (Validate(generator))
                 {
-                    textBoxPassword.Text = generator.Generate().GetAsString();
+                    textBlockPassword.Text = generator.Generate().GetAsString();
                 }
             }
             catch (Exception ex)

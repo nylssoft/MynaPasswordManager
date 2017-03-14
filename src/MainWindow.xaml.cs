@@ -771,6 +771,13 @@ namespace PasswordManager
             return true;
         }
 
+        public void CopyToClipboard(string text)
+        {
+            Clipboard.SetText(text);
+            copiedToClipboardSince = DateTime.Now;
+            copiedToClipboard = true;
+        }
+
         private void CopyLogin()
         {
             try
@@ -778,9 +785,7 @@ namespace PasswordManager
                 if (listView.SelectedItem is PasswordViewItem item &&
                     !string.IsNullOrEmpty(item.Login))
                 {
-                    Clipboard.SetText(item.Login);
-                    copiedToClipboardSince = DateTime.Now;
-                    copiedToClipboard = true;
+                    CopyToClipboard(item.Login);
                 }
             }
             catch (Exception ex)
@@ -796,9 +801,7 @@ namespace PasswordManager
                 if (listView.SelectedItem is PasswordViewItem item &&
                     item.Password != null && item.Password.SecurePassword.Length > 0)
                 {
-                    Clipboard.SetText(item.Password.SecurePassword.GetAsString());
-                    copiedToClipboardSince = DateTime.Now;
-                    copiedToClipboard = true;
+                    CopyToClipboard(item.Password.SecurePassword.GetAsString());
                 }
             }
             catch (Exception ex)
