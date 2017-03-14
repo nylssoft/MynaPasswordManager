@@ -132,9 +132,6 @@
   <data name="BUTTON_CANCEL" xml:space="preserve">
     <value>_Abbrechen</value>
   </data>
-  <data name="BUTTON_GENERATE_PASSWORD" xml:space="preserve">
-    <value>_Generiere Passwort...</value>
-  </data>
   <data name="BUTTON_NEW_PASSWORD" xml:space="preserve">
     <value>_Neues Passwort</value>
   </data>
@@ -170,6 +167,9 @@
   </data>
   <data name="CMD_EXIT" xml:space="preserve">
     <value>B_eenden</value>
+  </data>
+  <data name="CMD_GENERATE_PASSWORD" xml:space="preserve">
+    <value>Passwort_generator starten</value>
   </data>
   <data name="CMD_HIDE_PASSWORD" xml:space="preserve">
     <value>_Verstecke Passwort</value>

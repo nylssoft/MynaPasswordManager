@@ -254,6 +254,7 @@ namespace PasswordManager
                 case "About":
                 case "ShowLoginColumn":
                 case "ShowPasswordColumn":
+                case "GeneratePassword":
                     e.CanExecute = true;
                     break;
                 case "Save":
@@ -294,7 +295,10 @@ namespace PasswordManager
         {
             RoutedUICommand r = e.Command as RoutedUICommand;
             if (r == null) return;
-            if (r.Name != "Exit" && r.Name != "Close" && r.Name != "About" &&
+            if (r.Name != "Exit" &&
+                r.Name != "Close" &&
+                r.Name != "About" &&
+                r.Name != "GeneratePassword" &&
                 !ReenterPassword())
             {
                 UpdateControls();
@@ -358,6 +362,9 @@ namespace PasswordManager
                     break;
                 case "ShowPasswordColumn":
                     ShowPasswordColumn();
+                    break;
+                case "GeneratePassword":
+                    GeneratePassword();
                     break;
                 default:
                     break;
@@ -1160,6 +1167,19 @@ namespace PasswordManager
             {
                 Properties.Settings.Default.ShowPasswordColumn = menuItemShowPasswordColumn.IsChecked;
                 UpdatePasswordColumn();
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+        }
+
+        private void GeneratePassword()
+        {
+            try
+            {
+                GeneratePasswordWindow w = new GeneratePasswordWindow(this);
+                w.Show();
             }
             catch (Exception ex)
             {

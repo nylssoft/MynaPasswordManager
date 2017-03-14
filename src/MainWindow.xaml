@@ -40,6 +40,7 @@
         <CommandBinding Command="self:CustomCommands.About" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ShowLoginColumn" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ShowPasswordColumn" CanExecute="Command_CanExecute" Executed="Command_Executed" />
+        <CommandBinding Command="self:CustomCommands.GeneratePassword" CanExecute="Command_CanExecute" Executed="Command_Executed" />
     </Window.CommandBindings>
     <Grid Margin="0,0,0,0">
         <DockPanel LastChildFill="True">
@@ -121,6 +122,8 @@
                         <Separator/>
                         <MenuItem x:Name="menuItemShowLoginColumn" IsCheckable="True" Command="self:CustomCommands.ShowLoginColumn"/>
                         <MenuItem x:Name="menuItemShowPasswordColumn" IsCheckable="True" Command="self:CustomCommands.ShowPasswordColumn"/>
+                        <Separator/>
+                        <MenuItem Command="self:CustomCommands.GeneratePassword"/>
                     </MenuItem>
                     <MenuItem Header="{x:Static props:Resources.MENUITEM_HELP}">
                         <MenuItem Command="self:CustomCommands.About">

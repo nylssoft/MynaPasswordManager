@@ -87,26 +87,6 @@ namespace PasswordManager
             UpdateControls();
         }
 
-        private void ButtonGenerate_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var dlg = new GeneratePasswordWindow(this);
-                if (dlg.ShowDialog() == true)
-                {
-                    passwordBox.Password = dlg.Password.GetAsString();
-                    passwordBoxConfirmed.Password = passwordBox.Password;
-                    pwdChanged = true;
-                    changed = true;
-                    UpdateControls();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             changed = true;

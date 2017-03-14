@@ -34,7 +34,6 @@
         <TextBox Grid.Row="4" Grid.Column="1" x:Name="textBoxUrl" Height="23" Margin="0,0,5,0" MaxLength="100" TextChanged="TextBox_TextChanged"/>
         <Label Grid.Row="5" Grid.Column="0" Content="{x:Static props:Resources.LABEL_DESCRIPTION}" Target="{Binding ElementName=textBoxDescription}"/>
         <TextBox Grid.Row="5" Grid.Column="1" x:Name="textBoxDescription" Margin="0,4,5,3" MaxLength="1024" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged"/>
-        <Button Grid.Row="7" Grid.Column="0" Content="{x:Static props:Resources.BUTTON_GENERATE_PASSWORD}" Height="25" Width="Auto" Padding="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" Click="ButtonGenerate_Click"/>
         <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="buttonOK" IsDefault="True" Content="{x:Static props:Resources.BUTTON_OK}" Height="23" Width="80" Margin="5,0,5,0" Click="ButtonOK_Click"/>
             <Button x:Name="buttonCancel" IsCancel="True" Content="{x:Static props:Resources.BUTTON_CANCEL}" Height="23" Width="80" Margin="5,0,5,0" />

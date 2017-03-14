@@ -145,5 +145,13 @@ namespace PasswordManager
             Properties.Resources.CMD_SHOW_PASSWORD_COLUMN,
             "ShowPasswordColumn",
             typeof(CustomCommands));
+
+        public static readonly RoutedUICommand GeneratePassword =
+            new RoutedUICommand(
+            Properties.Resources.CMD_GENERATE_PASSWORD,
+            "GeneratePassword",
+            typeof(CustomCommands),
+            new InputGestureCollection() { new KeyGesture(Key.T, ModifierKeys.Control) });
+
     }
 }
