@@ -294,18 +294,17 @@ namespace PasswordManager
         {
             RoutedUICommand r = e.Command as RoutedUICommand;
             if (r == null) return;
-            if (string.Equals(r.Name, "Exit"))
-            {
-                Close();
-                return;
-            }
-            if (!ReenterPassword())
+            if (r.Name != "Exit" && r.Name != "Close" && r.Name != "About" &&
+                !ReenterPassword())
             {
                 UpdateControls();
                 return;
             }
             switch (r.Name)
             {
+                case "Exit":
+                    Close();
+                    break;
                 case "New":
                     CreateRepository();
                     break;
@@ -905,6 +904,7 @@ namespace PasswordManager
                     passwordRepository = null;
                     passwordSecureString.Clear();
                     listView.Items.Clear();
+                    reenterPassword = false;
                     ret = true;
                 }
             }
