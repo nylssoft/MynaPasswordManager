@@ -50,3 +50,7 @@ Temporary Items
 /src/obj/Debug
 /src/obj/Release
 /src/.vs
+/PasswordGenerator/.vs
+/PasswordGenerator/obj
+/bin/Debug
+/bin/Release
