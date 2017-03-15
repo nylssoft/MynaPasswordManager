@@ -1181,8 +1181,11 @@ namespace PasswordManager
         {
             try
             {
-                GeneratePasswordWindow w = new GeneratePasswordWindow(this);
-                w.Show();
+                string pwdgen = "%Module%\\MynaPasswordGenerator.exe".ReplaceSpecialFolder();
+                if (File.Exists(pwdgen))
+                {
+                    Process.Start(pwdgen);
+                }
             }
             catch (Exception ex)
             {
