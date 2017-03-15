@@ -45,12 +45,11 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-/src/bin/Debug
-/src/bin/Release
-/src/obj/Debug
-/src/obj/Release
-/src/.vs
+/.vs
 /PasswordGenerator/.vs
 /PasswordGenerator/obj
+/PasswordManager/.vs
+/PasswordManager/obj
+/PasswordManagerSetup/obj
 /bin/Debug
 /bin/Release
