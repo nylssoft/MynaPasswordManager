@@ -440,14 +440,21 @@ namespace PasswordManager
             listView.Items.Refresh();            
         }
   
-        private static void PrepareDirectory(string path)
+        private void PrepareDirectory(string path)
         {
-            if (!string.IsNullOrEmpty(path))
+            try
             {
-                if (!Directory.Exists(path))
+                if (!string.IsNullOrEmpty(path))
                 {
-                    Directory.CreateDirectory(path);
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
             }
         }
 
