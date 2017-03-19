@@ -695,6 +695,24 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy login to clipboard ähnelt.
+        /// </summary>
+        public static string TOOLTIP_COPY_LOGIN {
+            get {
+                return ResourceManager.GetString("TOOLTIP_COPY_LOGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Copy password to clipboard ähnelt.
+        /// </summary>
+        public static string TOOLTIP_COPY_PASSWORD {
+            get {
+                return ResourceManager.GetString("TOOLTIP_COPY_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Remove ähnelt.
         /// </summary>
         public static string TOOLTIP_DELETE {
@@ -709,6 +727,15 @@ namespace PasswordManager.Properties {
         public static string TOOLTIP_EDIT {
             get {
                 return ResourceManager.GetString("TOOLTIP_EDIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Start password generator ähnelt.
+        /// </summary>
+        public static string TOOLTIP_GENERATE_PASSWORD {
+            get {
+                return ResourceManager.GetString("TOOLTIP_GENERATE_PASSWORD", resourceCulture);
             }
         }
         

@@ -184,10 +184,7 @@ namespace PasswordManager
             var lvitem = listView.GetItemAt(mousePosition);
             if (lvitem != null)
             {
-                if (ReenterPassword())
-                {
-                    EditItemAsync(lvitem.Content as PasswordViewItem);
-                }
+                EditItemAsync(lvitem.Content as PasswordViewItem);
             }
         }
 
@@ -295,15 +292,6 @@ namespace PasswordManager
         {
             RoutedUICommand r = e.Command as RoutedUICommand;
             if (r == null) return;
-            if (r.Name != "Exit" &&
-                r.Name != "Close" &&
-                r.Name != "About" &&
-                r.Name != "GeneratePassword" &&
-                !ReenterPassword())
-            {
-                UpdateControls();
-                return;
-            }
             switch (r.Name)
             {
                 case "Exit":
@@ -343,7 +331,7 @@ namespace PasswordManager
                     RemoveItems();
                     break;
                 case "OpenURL":
-                    Open();
+                    OpenURL();
                     break;
                 case "TogglePassword":
                     ToggleShowPassword();
@@ -563,24 +551,25 @@ namespace PasswordManager
             textBlockStatus.Text = status;
         }
 
-        private void Open()
+        private void OpenURL()
         {
-            Open(listView.SelectedItem as PasswordViewItem);
+            var item = listView.SelectedItem as PasswordViewItem;
+            if (item != null && !string.IsNullOrEmpty(item.Password.Url))
+            {
+                OpenURL(item.Password.Url);
+            }
         }
- 
-        private void Open(PasswordViewItem item)
+
+        public void OpenURL(string itemurl)
         {
             try
             {
-                if (item != null && !string.IsNullOrEmpty(item.Password.Url))
+                var url = itemurl.ToLowerInvariant();
+                if (!url.StartsWith("http://") && !url.StartsWith("https://"))
                 {
-                    var url = item.Password.Url.ToLowerInvariant();
-                    if (!url.StartsWith("http://") && !url.StartsWith("https://"))
-                    {
-                        url = $"https://{url}";
-                    }
-                    Process.Start(url);
+                    url = $"https://{url}";
                 }
+                Process.Start(url);
             }
             catch (Exception ex)
             {
@@ -592,9 +581,17 @@ namespace PasswordManager
         {
             try
             {
+                if (!ReenterPassword())
+                {
+                    return;
+                }
                 EditWindow w = new EditWindow(this, Properties.Resources.TITLE_ADD, imageKey16x16);
                 if (w.ShowDialog() == true)
                 {
+                    if (!ReenterPassword())
+                    {
+                        return;
+                    }
                     passwordRepository.Add(w.Password);
                     var item = new PasswordViewItem(w.Password, imageKey16x16);
                     listView.Items.Add(item);
@@ -630,10 +627,18 @@ namespace PasswordManager
             try
             {
                 if (item == null) return;
+                if (!ReenterPassword())
+                {
+                    return;
+                }
                 var oldurl = item.Password.Url;
                 var w = new EditWindow(this, Properties.Resources.TITLE_EDIT, item.Image, item.Password);
                 if (w.ShowDialog() == true)
                 {
+                    if (!ReenterPassword())
+                    {
+                        return;
+                    }
                     passwordRepository.Update(w.Password);
                     item.Update(w.Password);
                     UpdateControls();
@@ -664,6 +669,10 @@ namespace PasswordManager
         {
             try
             {
+                if (!ReenterPassword())
+                {
+                    return;
+                }
                 if (MessageBox.Show(
                         Properties.Resources.QUESTION_DELETE_ITEMS,
                         Title,
@@ -671,6 +680,10 @@ namespace PasswordManager
                         MessageBoxImage.Question,
                         MessageBoxResult.No) == MessageBoxResult.Yes)
                 {
+                    if (!ReenterPassword())
+                    {
+                        return;
+                    }
                     var del = new List<PasswordViewItem>();
                     foreach (PasswordViewItem item in listView.SelectedItems)
                     {
@@ -700,6 +713,10 @@ namespace PasswordManager
         {
             try
             {
+                if (!ReenterPassword())
+                {
+                    return;
+                }
                 bool showEnabled = false;
                 bool hideEnabled = false;
                 int selected = listView.SelectedItems.Count;
@@ -778,42 +795,39 @@ namespace PasswordManager
             return true;
         }
 
-        public void CopyToClipboard(string text)
-        {
-            Clipboard.SetText(text);
-            copiedToClipboardSince = DateTime.Now;
-            copiedToClipboard = true;
-        }
-
-        private void CopyLogin()
+        public void CopyToClipboard(string text, bool pwdcheck = true)
         {
             try
             {
-                if (listView.SelectedItem is PasswordViewItem item &&
-                    !string.IsNullOrEmpty(item.Login))
+                if (pwdcheck && !ReenterPassword())
                 {
-                    CopyToClipboard(item.Login);
+                    return;
                 }
+                Clipboard.SetText(text);
+                copiedToClipboardSince = DateTime.Now;
+                copiedToClipboard = true;
             }
             catch (Exception ex)
             {
                 HandleError(ex);
+            }
+        }
+
+        private void CopyLogin()
+        {
+            if (listView.SelectedItem is PasswordViewItem item &&
+                !string.IsNullOrEmpty(item.Login))
+            {
+                CopyToClipboard(item.Login);
             }
         }
 
         private void CopyPassword()
         {
-            try
+            if (listView.SelectedItem is PasswordViewItem item &&
+                item.Password != null && item.Password.SecurePassword.Length > 0)
             {
-                if (listView.SelectedItem is PasswordViewItem item &&
-                    item.Password != null && item.Password.SecurePassword.Length > 0)
-                {
-                    CopyToClipboard(item.Password.SecurePassword.GetAsString());
-                }
-            }
-            catch (Exception ex)
-            {
-                HandleError(ex);
+                CopyToClipboard(item.Password.SecurePassword.GetAsString());
             }
         }
 
@@ -952,6 +966,10 @@ namespace PasswordManager
                 {
                     return false;
                 }
+                if (!ReenterPassword())
+                {
+                    return false;
+                }
                 if (string.IsNullOrEmpty(filename))
                 {
                     var dlg = new Microsoft.Win32.SaveFileDialog()
@@ -965,6 +983,10 @@ namespace PasswordManager
                         dlg.InitialDirectory = initDir;
                     }
                     if (dlg.ShowDialog() != true)
+                    {
+                        return false;
+                    }
+                    if (!ReenterPassword())
                     {
                         return false;
                     }
@@ -1089,7 +1111,14 @@ namespace PasswordManager
         {
             try
             {
-                if (passwordRepository == null) return;
+                if (passwordRepository == null)
+                {
+                    return;
+                }
+                if (!ReenterPassword())
+                {
+                    return;
+                }
                 var keyDir = keyDirectoryCache.Get(passwordRepository.Id);
                 var dlg = new System.Windows.Forms.FolderBrowserDialog()
                 {
@@ -1100,6 +1129,10 @@ namespace PasswordManager
                 {
                     if (!string.Equals(keyDir, dlg.SelectedPath, StringComparison.InvariantCultureIgnoreCase))
                     {
+                        if (!ReenterPassword())
+                        {
+                            return;
+                        }
                         passwordRepository.MoveKey(keyDir, dlg.SelectedPath);
                         keyDirectoryCache.Set(passwordRepository.Id, dlg.SelectedPath);                        
                     }
@@ -1115,7 +1148,14 @@ namespace PasswordManager
         {
             try
             {
-                if (passwordRepository == null) return;
+                if (passwordRepository == null)
+                {
+                    return;
+                }
+                if (!ReenterPassword())
+                {
+                    return;
+                }
                 var dlg = new ChangeMasterPasswordWindow(
                     this,
                     Properties.Resources.TITLE_CHANGE_MASTER_PASSWORD,
@@ -1124,6 +1164,10 @@ namespace PasswordManager
                 {
                     if (!string.IsNullOrEmpty(passwordFilename))
                     {
+                        if (!ReenterPassword())
+                        {
+                            return;
+                        }
                         var keyDirectory = keyDirectoryCache.Get(passwordRepository.Id);
                         passwordRepository.ChangeMasterPassword(passwordFilename, keyDirectory, dlg.SecurePassword);                        
                     }
@@ -1141,6 +1185,14 @@ namespace PasswordManager
         {
             try
             {
+                if (passwordRepository == null)
+                {
+                    return;
+                }
+                if (!ReenterPassword())
+                {
+                    return;
+                }
                 var dlg = new PropertiesWindow(
                     this,
                     Properties.Resources.TITLE_PROPERTIES,
@@ -1162,6 +1214,10 @@ namespace PasswordManager
         {
             try
             {
+                if (!ReenterPassword())
+                {
+                    return;
+                }
                 Properties.Settings.Default.ShowLoginColumn = menuItemShowLoginColumn.IsChecked;
                 UpdateLoginColumn();
             }
@@ -1175,6 +1231,10 @@ namespace PasswordManager
         {
             try
             {
+                if (!ReenterPassword())
+                {
+                    return;
+                }
                 Properties.Settings.Default.ShowPasswordColumn = menuItemShowPasswordColumn.IsChecked;
                 UpdatePasswordColumn();
             }
@@ -1184,7 +1244,7 @@ namespace PasswordManager
             }
         }
 
-        private void GeneratePassword()
+        public void GeneratePassword()
         {
             try
             {

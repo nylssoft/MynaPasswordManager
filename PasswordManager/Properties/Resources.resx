@@ -331,11 +331,20 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   <data name="TOOLTIP_ADD" xml:space="preserve">
     <value>Add</value>
   </data>
+  <data name="TOOLTIP_COPY_LOGIN" xml:space="preserve">
+    <value>Copy login to clipboard</value>
+  </data>
+  <data name="TOOLTIP_COPY_PASSWORD" xml:space="preserve">
+    <value>Copy password to clipboard</value>
+  </data>
   <data name="TOOLTIP_DELETE" xml:space="preserve">
     <value>Remove</value>
   </data>
   <data name="TOOLTIP_EDIT" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="TOOLTIP_GENERATE_PASSWORD" xml:space="preserve">
+    <value>Start password generator</value>
   </data>
   <data name="TOOLTIP_HIDE_PASSWORD" xml:space="preserve">
     <value>Hide password</value>

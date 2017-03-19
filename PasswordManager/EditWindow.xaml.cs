@@ -18,6 +18,7 @@
 using PasswordManager.Repository;
 using System;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace PasswordManager
@@ -92,5 +93,61 @@ namespace PasswordManager
             changed = true;
             UpdateControls();
         }
+
+        private void Command_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            RoutedUICommand r = e.Command as RoutedUICommand;
+            if (r == null) return;
+            switch (r.Name)
+            {
+                case "CopyLogin":
+                    e.CanExecute = textBoxLogin.Text.Length > 0;
+                    break;
+                case "CopyPassword":
+                    e.CanExecute = passwordBox.SecurePassword.Length > 0;
+                    break;
+                case "OpenURL":
+                    e.CanExecute = textBoxUrl.Text.Length > 0;
+                    break;
+                case "GeneratePassword":
+                    e.CanExecute = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Command_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            RoutedUICommand r = e.Command as RoutedUICommand;
+            if (r == null) return;
+            MainWindow mainWindow = Owner as MainWindow;
+            if (mainWindow == null) return;
+            switch (r.Name)
+            {
+                case "CopyLogin":
+                    mainWindow.CopyToClipboard(textBoxLogin.Text, false);
+                    break;
+                case "CopyPassword":
+                    bool pwdcheck = false;
+                    var pwd = passwordBox.SecurePassword;
+                    if (!pwdChanged && Password != null)
+                    {
+                        pwd = Password.SecurePassword;
+                        pwdcheck = true;
+                    }
+                    mainWindow.CopyToClipboard(pwd.GetAsString(), pwdcheck);
+                    break;
+                case "OpenURL":
+                    mainWindow.OpenURL(textBoxUrl.Text);
+                    break;
+                case "GeneratePassword":
+                    mainWindow.GeneratePassword();
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }

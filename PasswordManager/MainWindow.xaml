@@ -123,7 +123,11 @@
                         <MenuItem x:Name="menuItemShowLoginColumn" IsCheckable="True" Command="self:CustomCommands.ShowLoginColumn"/>
                         <MenuItem x:Name="menuItemShowPasswordColumn" IsCheckable="True" Command="self:CustomCommands.ShowPasswordColumn"/>
                         <Separator/>
-                        <MenuItem Command="self:CustomCommands.GeneratePassword"/>
+                        <MenuItem Command="self:CustomCommands.GeneratePassword">
+                            <MenuItem.Icon>
+                                <Image Source="Images/16x16/kgpg_info.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </MenuItem>
                     <MenuItem Header="{x:Static props:Resources.MENUITEM_HELP}">
                         <MenuItem Command="self:CustomCommands.About">
