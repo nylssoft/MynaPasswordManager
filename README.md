@@ -36,6 +36,7 @@ document-properties-2.png / gnome / GPLv2<br>
 document-save-7.png / nuovext2 / LGPL-2.1<br>
 document-save-as-6.png / nuovext2 / LGPL-2.1<br>
 edit.png / gimp / GPLv2<br>
+edit-copy-7.png / famfamfam-silk / CC-BY-2.5 or CC-BY-3.0<br>
 homepage.png / nuvola / LGPL-2.1<br>
 key.png / famfamfam-silk / CC-BY-2.5 or CC-BY-3.0<br>
 kgpg_info.png / nuvola / LGPL-2.1<br>
