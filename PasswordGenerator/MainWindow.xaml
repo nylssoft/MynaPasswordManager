@@ -54,6 +54,6 @@
         <Label Grid.Row="5" Grid.Column="0" Content="{x:Static props:Resources.LABEL_LOWER_CHARS}" Target="{Binding ElementName=textBoxMinLowerChars}"/>
         <TextBox x:Name="textBoxMinLowerChars" Grid.Row="5" Grid.Column="1" Height="23" Width="50" HorizontalAlignment="Left" MaxLength="3" Text="1"/>
         <TextBox x:Name="textBoxLowerChars" Grid.Row="5" Grid.Column="2" Height="23" Margin="10,0,0,0" MaxLength="40"/>
-        <TextBlock Text="Test" Grid.Row="6" Grid.ColumnSpan="3" x:Name="textBlockStatus" VerticalAlignment="Bottom" />
+        <TextBlock Grid.Row="6" Grid.ColumnSpan="3" x:Name="textBlockStatus" VerticalAlignment="Bottom" />
     </Grid>
 </Window>

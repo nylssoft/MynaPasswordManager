@@ -277,6 +277,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Se_ttings... ähnelt.
+        /// </summary>
+        public static string CMD_SETTINGS {
+            get {
+                return ResourceManager.GetString("CMD_SETTINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Show _login column ähnelt.
         /// </summary>
         public static string CMD_SHOW_LOGIN_COLUMN {
@@ -390,6 +399,24 @@ namespace PasswordManager.Properties {
         public static string FILE_DIALOG_FILTER {
             get {
                 return ResourceManager.GetString("FILE_DIALOG_FILTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die C_lear clipboard after (seconds): ähnelt.
+        /// </summary>
+        public static string LABEL_AUTO_CLEAR_CLIPBOARD {
+            get {
+                return ResourceManager.GetString("LABEL_AUTO_CLEAR_CLIPBOARD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Hide password after (seconds): ähnelt.
+        /// </summary>
+        public static string LABEL_AUTO_HIDE_PASSWORD {
+            get {
+                return ResourceManager.GetString("LABEL_AUTO_HIDE_PASSWORD", resourceCulture);
             }
         }
         
@@ -516,6 +543,15 @@ namespace PasswordManager.Properties {
         public static string LABEL_PASSWORD_FILE {
             get {
                 return ResourceManager.GetString("LABEL_PASSWORD_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die _Reenter password after (seconds): ähnelt.
+        /// </summary>
+        public static string LABEL_REENTER_PASSWORD {
+            get {
+                return ResourceManager.GetString("LABEL_REENTER_PASSWORD", resourceCulture);
             }
         }
         
@@ -682,6 +718,15 @@ namespace PasswordManager.Properties {
         public static string TITLE_PROPERTIES {
             get {
                 return ResourceManager.GetString("TITLE_PROPERTIES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Settings ähnelt.
+        /// </summary>
+        public static string TITLE_SETTINGS {
+            get {
+                return ResourceManager.GetString("TITLE_SETTINGS", resourceCulture);
             }
         }
         

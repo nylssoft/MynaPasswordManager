@@ -153,5 +153,10 @@ namespace PasswordManager
             typeof(CustomCommands),
             new InputGestureCollection() { new KeyGesture(Key.T, ModifierKeys.Control) });
 
+        public static readonly RoutedUICommand ShowSettings =
+            new RoutedUICommand(
+            Properties.Resources.CMD_SETTINGS,
+            "ShowSettings",
+            typeof(CustomCommands));
     }
 }

@@ -189,6 +189,9 @@
   <data name="CMD_SAVE_AS" xml:space="preserve">
     <value>Save _As...</value>
   </data>
+  <data name="CMD_SETTINGS" xml:space="preserve">
+    <value>Se_ttings...</value>
+  </data>
   <data name="CMD_SHOW_LOGIN_COLUMN" xml:space="preserve">
     <value>Show _login column</value>
   </data>
@@ -227,6 +230,12 @@
   </data>
   <data name="FILE_DIALOG_FILTER" xml:space="preserve">
     <value>Password files (*.pwd)|*.pwd|All files (*.*)|*.*</value>
+  </data>
+  <data name="LABEL_AUTO_CLEAR_CLIPBOARD" xml:space="preserve">
+    <value>C_lear clipboard after (seconds):</value>
+  </data>
+  <data name="LABEL_AUTO_HIDE_PASSWORD" xml:space="preserve">
+    <value>_Hide password after (seconds):</value>
   </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Confirm m_aster password:</value>
@@ -269,6 +278,9 @@
   </data>
   <data name="LABEL_PASSWORD_FILE" xml:space="preserve">
     <value>Password _file:</value>
+  </data>
+  <data name="LABEL_REENTER_PASSWORD" xml:space="preserve">
+    <value>_Reenter password after (seconds):</value>
   </data>
   <data name="LABEL_SELECT_KEY_DIRECTORY" xml:space="preserve">
     <value>Select key directory.</value>
@@ -327,6 +339,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   </data>
   <data name="TITLE_PROPERTIES" xml:space="preserve">
     <value>Properties</value>
+  </data>
+  <data name="TITLE_SETTINGS" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="TOOLTIP_ADD" xml:space="preserve">
     <value>Add</value>

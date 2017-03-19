@@ -252,6 +252,7 @@ namespace PasswordManager
                 case "ShowLoginColumn":
                 case "ShowPasswordColumn":
                 case "GeneratePassword":
+                case "ShowSettings":
                     e.CanExecute = true;
                     break;
                 case "Save":
@@ -353,6 +354,9 @@ namespace PasswordManager
                     break;
                 case "GeneratePassword":
                     GeneratePassword();
+                    break;
+                case "ShowSettings":
+                    ShowSettings();
                     break;
                 default:
                     break;
@@ -1252,6 +1256,32 @@ namespace PasswordManager
                 if (File.Exists(pwdgen))
                 {
                     Process.Start(pwdgen);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+        }
+
+        void ShowSettings()
+        {
+            try
+            {
+                if (!ReenterPassword())
+                {
+                    return;
+                }
+                var w = new SettingsWindow();
+                if (w.ShowDialog() == true)
+                {
+                    if (!ReenterPassword())
+                    {
+                        return;
+                    }
+                    autoClearClipboardAfterSec = Properties.Settings.Default.AutoClearClipboard;
+                    autoHidePasswordAfterSec = Properties.Settings.Default.AutoHidePassword;
+                    reenterPasswordAfterSec = Properties.Settings.Default.ReenterPassword;
                 }
             }
             catch (Exception ex)

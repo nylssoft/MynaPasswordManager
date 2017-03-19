@@ -41,6 +41,7 @@
         <CommandBinding Command="self:CustomCommands.ShowLoginColumn" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ShowPasswordColumn" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.GeneratePassword" CanExecute="Command_CanExecute" Executed="Command_Executed" />
+        <CommandBinding Command="self:CustomCommands.ShowSettings" CanExecute="Command_CanExecute" Executed="Command_Executed" />
     </Window.CommandBindings>
     <Grid Margin="0,0,0,0">
         <DockPanel LastChildFill="True">
@@ -79,6 +80,8 @@
                         <MenuItem Command="self:CustomCommands.ChangeMasterPassword" />
                         <MenuItem Command="self:CustomCommands.ChangeKeyDirectory" />
                         <MenuItem Command="self:CustomCommands.Props" />
+                        <Separator />
+                        <MenuItem Command="self:CustomCommands.ShowSettings" />
                         <Separator />
                         <MenuItem Command="self:CustomCommands.Exit">
                             <MenuItem.Icon>

@@ -189,6 +189,9 @@
   <data name="CMD_SAVE_AS" xml:space="preserve">
     <value>Speichern _unter...</value>
   </data>
+  <data name="CMD_SETTINGS" xml:space="preserve">
+    <value>Einste_llungen...</value>
+  </data>
   <data name="CMD_SHOW_LOGIN_COLUMN" xml:space="preserve">
     <value>_Spalte für Login anzeigen</value>
   </data>
@@ -227,6 +230,12 @@
   </data>
   <data name="FILE_DIALOG_FILTER" xml:space="preserve">
     <value>Passwort Dateien (*.pwd)|*.pwd|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="LABEL_AUTO_CLEAR_CLIPBOARD" xml:space="preserve">
+    <value>_Lösche Zwischenablage nach (Sekunden):</value>
+  </data>
+  <data name="LABEL_AUTO_HIDE_PASSWORD" xml:space="preserve">
+    <value>_Verstecke Passwort nach (Sekunden):</value>
   </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Bestätigtes Ha_uptpasswort:</value>
@@ -269,6 +278,9 @@
   </data>
   <data name="LABEL_PASSWORD_FILE" xml:space="preserve">
     <value>Passwortdatei:</value>
+  </data>
+  <data name="LABEL_REENTER_PASSWORD" xml:space="preserve">
+    <value>_Erneuerte Passwortüberprüfung nach (Sekunden):</value>
   </data>
   <data name="LABEL_SELECT_KEY_DIRECTORY" xml:space="preserve">
     <value>Wähle Schlüsselverzeichnis.</value>
@@ -327,6 +339,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   </data>
   <data name="TITLE_PROPERTIES" xml:space="preserve">
     <value>Eigenschaften</value>
+  </data>
+  <data name="TITLE_SETTINGS" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
   <data name="TOOLTIP_ADD" xml:space="preserve">
     <value>Hinzufügen</value>
