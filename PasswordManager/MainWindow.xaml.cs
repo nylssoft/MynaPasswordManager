@@ -379,7 +379,7 @@ namespace PasswordManager
             var t = Properties.Settings.Default.Top;
             var w = Properties.Settings.Default.Width;
             var h = Properties.Settings.Default.Height;
-            if (l >=0 && t >= 0 && w > 0 && h > 0)
+            if (w > 0 && h > 0)
             {
                 var rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
                 if (l+w < rect.Width && t+h < rect.Height)
