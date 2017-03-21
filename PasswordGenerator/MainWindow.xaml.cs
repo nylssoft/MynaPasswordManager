@@ -39,6 +39,11 @@ namespace PasswordGenerator
         public MainWindow()
         {
             Title = Properties.Resources.TITLE_GENERATE_PASSWORD;
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length > 1 && string.Equals(args[1], "topmost"))
+            {
+                Topmost = true;
+            }
             InitializeComponent();
             autoClearClipboardAfterSec = Properties.Settings.Default.AutoClearClipboard;
             textBoxDigits.Text = Properties.Settings.Default.PasswordGeneratorDigits;

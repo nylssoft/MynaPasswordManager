@@ -142,6 +142,13 @@ namespace PasswordManager
                             copiedToClipboard = false;
                             Clipboard.Clear();
                         }
+                        if (WindowState == WindowState.Normal)
+                        {
+                            Properties.Settings.Default.Left = Left;
+                            Properties.Settings.Default.Top = Top;
+                            Properties.Settings.Default.Width = Width;
+                            Properties.Settings.Default.Height = Height;
+                        }
                         Properties.Settings.Default.Save();
                         if (thumbnailCache != null)
                         {
@@ -367,6 +374,22 @@ namespace PasswordManager
 
         private void Init()
         {
+            Topmost = Properties.Settings.Default.Topmost;
+            var l = Properties.Settings.Default.Left;
+            var t = Properties.Settings.Default.Top;
+            var w = Properties.Settings.Default.Width;
+            var h = Properties.Settings.Default.Height;
+            if (l >=0 && t >= 0 && w > 0 && h > 0)
+            {
+                var rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+                if (l+w < rect.Width && t+h < rect.Height)
+                {
+                    Left = l;
+                    Top = t;
+                    Width = w;
+                    Height = h;
+                }
+            }            
             autoClearClipboardAfterSec = Properties.Settings.Default.AutoClearClipboard;
             autoHidePasswordAfterSec = Properties.Settings.Default.AutoHidePassword;
             reenterPasswordAfterSec = Properties.Settings.Default.ReenterPassword;
@@ -592,10 +615,6 @@ namespace PasswordManager
                 EditWindow w = new EditWindow(this, Properties.Resources.TITLE_ADD, imageKey16x16);
                 if (w.ShowDialog() == true)
                 {
-                    if (!ReenterPassword())
-                    {
-                        return;
-                    }
                     passwordRepository.Add(w.Password);
                     var item = new PasswordViewItem(w.Password, imageKey16x16);
                     listView.Items.Add(item);
@@ -639,10 +658,6 @@ namespace PasswordManager
                 var w = new EditWindow(this, Properties.Resources.TITLE_EDIT, item.Image, item.Password);
                 if (w.ShowDialog() == true)
                 {
-                    if (!ReenterPassword())
-                    {
-                        return;
-                    }
                     passwordRepository.Update(w.Password);
                     item.Update(w.Password);
                     UpdateControls();
@@ -1220,6 +1235,7 @@ namespace PasswordManager
             {
                 if (!ReenterPassword())
                 {
+                    UpdateControls();
                     return;
                 }
                 Properties.Settings.Default.ShowLoginColumn = menuItemShowLoginColumn.IsChecked;
@@ -1237,6 +1253,7 @@ namespace PasswordManager
             {
                 if (!ReenterPassword())
                 {
+                    UpdateControls();
                     return;
                 }
                 Properties.Settings.Default.ShowPasswordColumn = menuItemShowPasswordColumn.IsChecked;
@@ -1255,7 +1272,8 @@ namespace PasswordManager
                 string pwdgen = "%Module%\\MynaPasswordGenerator.exe".ReplaceSpecialFolder();
                 if (File.Exists(pwdgen))
                 {
-                    Process.Start(pwdgen);
+                    string args = Topmost ? "topmost" : "";
+                    Process.Start(pwdgen, args);
                 }
             }
             catch (Exception ex)
@@ -1272,13 +1290,9 @@ namespace PasswordManager
                 {
                     return;
                 }
-                var w = new SettingsWindow();
+                var w = new SettingsWindow(this);
                 if (w.ShowDialog() == true)
                 {
-                    if (!ReenterPassword())
-                    {
-                        return;
-                    }
                     autoClearClipboardAfterSec = Properties.Settings.Default.AutoClearClipboard;
                     autoHidePasswordAfterSec = Properties.Settings.Default.AutoHidePassword;
                     reenterPasswordAfterSec = Properties.Settings.Default.ReenterPassword;

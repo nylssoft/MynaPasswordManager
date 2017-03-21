@@ -30,6 +30,8 @@ namespace PasswordManager
         {
             Owner = owner;
             Title = title;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Topmost = Properties.Settings.Default.Topmost;
             SecurePassword = securePassword;
             InitializeComponent();
             passwordBoxOld.Focus();

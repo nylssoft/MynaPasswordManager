@@ -44,6 +44,8 @@ namespace PasswordManager
         {
             Owner = owner;
             Title = title;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Topmost = Properties.Settings.Default.Topmost;
             this.keyDirCache = keyDirCache;
             this.repository = repository;
             InitializeComponent();

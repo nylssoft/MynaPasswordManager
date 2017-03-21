@@ -565,6 +565,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show _windows always in front ähnelt.
+        /// </summary>
+        public static string LABEL_TOPMOST {
+            get {
+                return ResourceManager.GetString("LABEL_TOPMOST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die _URL: ähnelt.
         /// </summary>
         public static string LABEL_URL {

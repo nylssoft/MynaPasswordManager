@@ -285,6 +285,9 @@
   <data name="LABEL_SELECT_KEY_DIRECTORY" xml:space="preserve">
     <value>Select key directory.</value>
   </data>
+  <data name="LABEL_TOPMOST" xml:space="preserve">
+    <value>Show _windows always in front</value>
+  </data>
   <data name="LABEL_URL" xml:space="preserve">
     <value>_URL:</value>
   </data>

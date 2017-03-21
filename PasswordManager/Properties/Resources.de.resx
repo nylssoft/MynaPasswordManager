@@ -285,6 +285,9 @@
   <data name="LABEL_SELECT_KEY_DIRECTORY" xml:space="preserve">
     <value>Wähle Schlüsselverzeichnis.</value>
   </data>
+  <data name="LABEL_TOPMOST" xml:space="preserve">
+    <value>_Fenster immer im Vordergrund anzeigen</value>
+  </data>
   <data name="LABEL_URL" xml:space="preserve">
     <value>_URL:</value>
   </data>
@@ -311,6 +314,9 @@
   </data>
   <data name="SELECTED_ONE" xml:space="preserve">
     <value>1 Element ausgewählt.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="TEXT_COPYRIGHT" xml:space="preserve">
     <value>Copyright 2017 Niels Stockfleth

@@ -25,6 +25,8 @@ namespace PasswordManager
         public AboutWindow(Window owner)
         {
             Owner = owner;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Topmost = Properties.Settings.Default.Topmost;
             var assembly = Assembly.GetExecutingAssembly();
             var productAttribute = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), true);
             var versionAttribute = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyFileVersionAttribute), true);

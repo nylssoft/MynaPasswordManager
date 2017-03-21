@@ -36,6 +36,8 @@ namespace PasswordManager
         {
             Owner = owner;
             Title = title;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Topmost = Properties.Settings.Default.Topmost;
             this.keyDirCache = keyDirCache;
             InitializeComponent();
             textBoxKeyDirectory.Text = keyDirCache.GetLastUsed();

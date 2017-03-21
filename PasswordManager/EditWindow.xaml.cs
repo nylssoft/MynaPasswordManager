@@ -34,6 +34,8 @@ namespace PasswordManager
         {
             Owner = owner;
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            Topmost = Properties.Settings.Default.Topmost;
             Title = title;
             Icon = icon;
             Password = new Password();

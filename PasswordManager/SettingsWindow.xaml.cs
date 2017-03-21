@@ -25,10 +25,13 @@ namespace PasswordManager
     {
         private bool changed;
 
-        public SettingsWindow()
+        public SettingsWindow(Window owner)
         {
+            Owner = owner;
             Title = Properties.Resources.TITLE_SETTINGS;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
             InitializeComponent();
+            checkBoxTopmost.IsChecked = Properties.Settings.Default.Topmost;
             textBoxAutoClearClipboard.Text = Convert.ToString(Properties.Settings.Default.AutoClearClipboard);
             textBoxAutoHidePassword.Text = Convert.ToString(Properties.Settings.Default.AutoHidePassword);
             textBoxReenterPassword.Text = Convert.ToString(Properties.Settings.Default.ReenterPassword);
@@ -67,12 +70,29 @@ namespace PasswordManager
             {
                 Properties.Settings.Default.ReenterPassword = val;
             }
+            Properties.Settings.Default.Topmost = Topmost;
             DialogResult = true;
             Close();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            changed = true;
+            UpdateControls();
+        }
+
+        private void checkBoxTopmost_Checked(object sender, RoutedEventArgs e)
+        {
+            Topmost = true;
+            Owner.Topmost = true;
+            changed = true;
+            UpdateControls();
+        }
+
+        private void checkBoxTopmost_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Topmost = false;
+            Owner.Topmost = false;
             changed = true;
             UpdateControls();
         }
