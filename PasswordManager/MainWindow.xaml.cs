@@ -25,6 +25,7 @@ using System.Security;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
@@ -374,22 +375,12 @@ namespace PasswordManager
 
         private void Init()
         {
+            this.RestorePosition(
+                Properties.Settings.Default.Left,
+                Properties.Settings.Default.Top,
+                Properties.Settings.Default.Width,
+                Properties.Settings.Default.Height);
             Topmost = Properties.Settings.Default.Topmost;
-            var l = Properties.Settings.Default.Left;
-            var t = Properties.Settings.Default.Top;
-            var w = Properties.Settings.Default.Width;
-            var h = Properties.Settings.Default.Height;
-            if (w > 0 && h > 0)
-            {
-                var rect = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
-                if (l+w < rect.Width && t+h < rect.Height)
-                {
-                    Left = l;
-                    Top = t;
-                    Width = w;
-                    Height = h;
-                }
-            }            
             autoClearClipboardAfterSec = Properties.Settings.Default.AutoClearClipboard;
             autoHidePasswordAfterSec = Properties.Settings.Default.AutoHidePassword;
             reenterPasswordAfterSec = Properties.Settings.Default.ReenterPassword;

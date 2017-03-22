@@ -30,6 +30,30 @@ namespace PasswordManager
 {
     public static class Extensions
     {
+        #region Window extensions
+
+        public static void RestorePosition(this Window window, double left, double top, double width, double height)
+        {
+            var virtualWidth = System.Windows.SystemParameters.VirtualScreenWidth;
+            var virtualHeight = System.Windows.SystemParameters.VirtualScreenHeight;
+            height = Math.Min(height, virtualHeight);
+            width = Math.Min(width, virtualWidth);
+            if (top + height / 2 > virtualHeight)
+            {
+                top = virtualHeight - height;
+            }
+            if (left + width / 2 > virtualWidth)
+            {
+                left = virtualWidth - width;
+            }
+            window.Left = left;
+            window.Top = top;
+            window.Width = width;
+            window.Height = height;
+        }
+
+        #endregion
+
         #region ListViewItem extensions
 
         public static ListViewItem GetItemAt(this ListView listView, Point clientRelativePosition)
