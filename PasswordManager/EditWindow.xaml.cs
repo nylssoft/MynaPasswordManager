@@ -88,9 +88,14 @@ namespace PasswordManager
             var url = textBoxUrl.Text.ToLowerInvariant();
             if (!url.StartsWith("http://") && !url.StartsWith("https://"))
             {
+                url = $"https://{textBoxUrl.Text}";
+                if (UrlIsValid(url))
                 {
+                    return url;
                 }
+                return $"http://{textBoxUrl.Text}";
             }
+            return textBoxUrl.Text;
         }
 
         private bool UrlIsValid(string url)
