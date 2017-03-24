@@ -38,18 +38,21 @@ namespace PasswordManager
             var virtualHeight = System.Windows.SystemParameters.VirtualScreenHeight;
             height = Math.Min(height, virtualHeight);
             width = Math.Min(width, virtualWidth);
-            if (top + height / 2 > virtualHeight)
+            if (width >= window.MinWidth && height >= window.MinHeight)
             {
-                top = virtualHeight - height;
+                if (top + height / 2 > virtualHeight)
+                {
+                    top = virtualHeight - height;
+                }
+                if (left + width / 2 > virtualWidth)
+                {
+                    left = virtualWidth - width;
+                }
+                window.Left = left;
+                window.Top = top;
+                window.Width = width;
+                window.Height = height;
             }
-            if (left + width / 2 > virtualWidth)
-            {
-                left = virtualWidth - width;
-            }
-            window.Left = left;
-            window.Top = top;
-            window.Width = width;
-            window.Height = height;
         }
 
         #endregion
