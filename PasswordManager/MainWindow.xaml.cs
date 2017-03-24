@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
@@ -571,8 +572,8 @@ namespace PasswordManager
 
         private void OpenURL()
         {
-            var item = listView.SelectedItem as PasswordViewItem;
-            if (item != null && !string.IsNullOrEmpty(item.Password.Url))
+            if (listView.SelectedItem is PasswordViewItem item &&
+                !string.IsNullOrEmpty(item.Password.Url))
             {
                 OpenURL(item.Password.Url);
             }
