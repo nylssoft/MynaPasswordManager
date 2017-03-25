@@ -73,7 +73,7 @@ namespace PasswordManager
             }
             Password.Name = textBoxName.Text;
             Password.Login = textBoxLogin.Text;
-            Password.Url = GetURL();
+            Password.Url = textBoxUrl.Text;
             Password.Description = textBoxDescription.Text;
             if (pwdChanged)
             {
@@ -81,36 +81,6 @@ namespace PasswordManager
             }
             DialogResult = true;
             Close();
-        }
-
-        private string GetURL()
-        {
-            var url = textBoxUrl.Text.ToLowerInvariant();
-            if (!url.StartsWith("http://") && !url.StartsWith("https://"))
-            {
-                url = $"https://{textBoxUrl.Text}";
-                if (UrlIsValid(url))
-                {
-                    return url;
-                }
-                return $"http://{textBoxUrl.Text}";
-            }
-            return textBoxUrl.Text;
-        }
-
-        private bool UrlIsValid(string url)
-        {
-            try
-            {
-                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-                request.Timeout = 1000;
-                request.Method = "HEAD";
-                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                int statusCode = (int)response.StatusCode;
-                return statusCode >= 100 && statusCode < 400;
-            }
-            catch { /* ignored */ }
-            return false;
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
@@ -172,7 +142,7 @@ namespace PasswordManager
                     mainWindow.CopyToClipboard(pwd.GetAsString(), pwdcheck);
                     break;
                 case "OpenURL":
-                    mainWindow.OpenURL(GetURL());
+                    mainWindow.OpenURL(textBoxUrl.Text);
                     break;
                 case "GeneratePassword":
                     mainWindow.GeneratePassword();

@@ -587,12 +587,29 @@ namespace PasswordManager
                 if (!url.StartsWith("http://") && !url.StartsWith("https://"))
                 {
                     url = $"https://{url}";
+                    if (!IsUrlValid(url))
+                    {
+                        url = $"http://{itemurl.ToLowerInvariant()}";
+                    }
                 }
                 Process.Start(url);
             }
             catch (Exception ex)
             {
                 HandleError(ex);
+            }
+        }
+
+        private bool IsUrlValid(string url)
+        {
+            try
+            {
+                WebRequest.Create(url).GetResponse();
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
