@@ -1,5 +1,5 @@
 ﻿/*
-    PasswordManager
+    Myna Password Manager
     Copyright (C) 2017 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
@@ -16,12 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using PasswordManager.Repository;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace PasswordManager

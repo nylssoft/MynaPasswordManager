@@ -1,5 +1,5 @@
 ﻿/*
-    PasswordManager
+    Myna Password Manager
     Copyright (C) 2017 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
@@ -17,11 +17,8 @@
 */
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PasswordGenerator
 {

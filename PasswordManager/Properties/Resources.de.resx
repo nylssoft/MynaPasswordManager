@@ -315,9 +315,6 @@
   <data name="SELECTED_ONE" xml:space="preserve">
     <value>1 Element ausgewählt.</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
   <data name="TEXT_COPYRIGHT" xml:space="preserve">
     <value>Copyright 2017 Niels Stockfleth
 
