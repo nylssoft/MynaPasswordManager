@@ -175,7 +175,7 @@
             </Grid>
             <StatusBar DockPanel.Dock="Bottom">
                 <StatusBarItem>
-                    <TextBlock x:Name="textBlockStatus" />
+                    <TextBlock x:Name="textBlockStatus" TextTrimming="CharacterEllipsis"/>
                 </StatusBarItem>
             </StatusBar>
             <ListView VirtualizingStackPanel.IsVirtualizing="False" KeyboardNavigation.TabIndex="3" x:Name="listView" TextSearch.TextPath="Name" MouseDoubleClick="ListView_MouseDoubleClick" ContextMenuOpening="ListView_ContextMenuOpening" SelectionChanged="ListView_SelectionChanged">
