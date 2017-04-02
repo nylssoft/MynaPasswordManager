@@ -154,16 +154,16 @@
                     </ToolBar>
                     <ToolBar KeyboardNavigation.TabNavigation="Continue">
                         <Button Command="self:CustomCommands.Add" ToolTip="{x:Static props:Resources.TOOLTIP_ADD}">
-                            <Image x:Name="imageAdd" Source="Images/32x32/list-add-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                            <Image Source="Images/32x32/list-add-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                         </Button>
                         <Button Command="self:CustomCommands.Remove" ToolTip="{x:Static props:Resources.TOOLTIP_DELETE}">
-                            <Image x:Name="imageDelete" Source="Images/32x32/list-remove-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                            <Image Source="Images/32x32/list-remove-4.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                         </Button>
                         <Button Command="self:CustomCommands.Edit" ToolTip="{x:Static props:Resources.TOOLTIP_EDIT}">
-                            <Image x:Name="imageEdit" Source="Images/32x32/edit.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                            <Image Source="Images/32x32/edit.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                         </Button>
                         <Button Command="self:CustomCommands.OpenURL" ToolTip="{x:Static props:Resources.TOOLTIP_OPEN_URL}">
-                            <Image x:Name="imageOpen" Source="Images/32x32/homepage.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
+                            <Image Source="Images/32x32/homepage.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
                         </Button>
                         <Button Command="self:CustomCommands.TogglePassword" x:Name="buttonToggleShow" ToolTip="{x:Static props:Resources.TOOLTIP_SHOW_PASSWORD}">
                             <Image x:Name="imageToggleShow" Source="Images/32x32/document-decrypt-3.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>
