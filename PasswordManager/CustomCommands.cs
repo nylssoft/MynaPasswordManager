@@ -146,6 +146,12 @@ namespace PasswordManager
             "ShowPasswordColumn",
             typeof(CustomCommands));
 
+        public static readonly RoutedUICommand ShowToolbar =
+            new RoutedUICommand(
+            Properties.Resources.CMD_SHOW_TOOLBAR,
+            "ShowToolbar",
+            typeof(CustomCommands));
+
         public static readonly RoutedUICommand GeneratePassword =
             new RoutedUICommand(
             Properties.Resources.CMD_GENERATE_PASSWORD,

@@ -259,6 +259,7 @@ namespace PasswordManager
                 case "About":
                 case "ShowLoginColumn":
                 case "ShowPasswordColumn":
+                case "ShowToolbar":
                 case "GeneratePassword":
                 case "ShowSettings":
                     e.CanExecute = true;
@@ -360,6 +361,9 @@ namespace PasswordManager
                 case "ShowPasswordColumn":
                     ShowPasswordColumn();
                     break;
+                case "ShowToolbar":
+                    ShowToolbar();
+                    break;
                 case "GeneratePassword":
                     GeneratePassword();
                     break;
@@ -396,6 +400,7 @@ namespace PasswordManager
             PrepareDirectory(keyDirectoryCache.GetLastUsed());
             UpdateLoginColumn();
             UpdatePasswordColumn();
+            UpdateToolbar();
             SortListView();
             UpdateControls();
             var filename = Properties.Settings.Default.LastUsedRepositoryFile;
@@ -436,6 +441,21 @@ namespace PasswordManager
                 {
                     gv.Columns.Add(gridViewColumnPassword);
                 }
+            }
+        }
+
+        private void UpdateToolbar()
+        {
+            var g = grid.RowDefinitions[1].Height;
+            if (g.IsAuto && !Properties.Settings.Default.ShowToolbar)
+            {
+                grid.RowDefinitions[1].Height = new GridLength(0.0);
+                toolbarTray.Visibility = Visibility.Hidden;
+            }
+            else if (!g.IsAuto && Properties.Settings.Default.ShowToolbar)
+            {
+                grid.RowDefinitions[1].Height = new GridLength(30, GridUnitType.Auto);
+                toolbarTray.Visibility = Visibility.Visible;
             }
         }
 
@@ -500,6 +520,7 @@ namespace PasswordManager
             }
             menuItemShowLoginColumn.IsChecked = Properties.Settings.Default.ShowLoginColumn;
             menuItemShowPasswordColumn.IsChecked = Properties.Settings.Default.ShowPasswordColumn;
+            menuItemShowToolbar.IsChecked = Properties.Settings.Default.ShowToolbar;
             UpdateStatus();
         }
 
@@ -1273,6 +1294,18 @@ namespace PasswordManager
             }
         }
 
+        private void ShowToolbar()
+        {
+            try
+            {
+                Properties.Settings.Default.ShowToolbar = menuItemShowToolbar.IsChecked;
+                UpdateToolbar();
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+        }
         public void GeneratePassword()
         {
             try

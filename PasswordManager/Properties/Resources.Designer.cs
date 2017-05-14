@@ -313,6 +313,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Show _toolbar ähnelt.
+        /// </summary>
+        public static string CMD_SHOW_TOOLBAR {
+            get {
+                return ResourceManager.GetString("CMD_SHOW_TOOLBAR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Login ähnelt.
         /// </summary>
         public static string COLUMN_LOGIN {

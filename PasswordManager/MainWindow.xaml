@@ -40,12 +40,13 @@
         <CommandBinding Command="self:CustomCommands.About" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ShowLoginColumn" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ShowPasswordColumn" CanExecute="Command_CanExecute" Executed="Command_Executed" />
+        <CommandBinding Command="self:CustomCommands.ShowToolbar" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.GeneratePassword" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ShowSettings" CanExecute="Command_CanExecute" Executed="Command_Executed" />
     </Window.CommandBindings>
     <Grid Margin="0,0,0,0">
         <DockPanel LastChildFill="True">
-            <Grid DockPanel.Dock="Top">
+            <Grid x:Name="grid" DockPanel.Dock="Top">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -126,6 +127,8 @@
                         <MenuItem x:Name="menuItemShowLoginColumn" IsCheckable="True" Command="self:CustomCommands.ShowLoginColumn"/>
                         <MenuItem x:Name="menuItemShowPasswordColumn" IsCheckable="True" Command="self:CustomCommands.ShowPasswordColumn"/>
                         <Separator/>
+                        <MenuItem x:Name="menuItemShowToolbar" IsCheckable="True" Command="self:CustomCommands.ShowToolbar"/>
+                        <Separator/>
                         <MenuItem Command="self:CustomCommands.GeneratePassword">
                             <MenuItem.Icon>
                                 <Image Source="Images/16x16/kgpg_info.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
@@ -140,7 +143,7 @@
                         </MenuItem>
                     </MenuItem>
                 </Menu>
-                <ToolBarTray Grid.Row="1" KeyboardNavigation.TabIndex="1">
+                <ToolBarTray x:Name="toolbarTray" Grid.Row="1" KeyboardNavigation.TabIndex="1">
                     <ToolBar KeyboardNavigation.TabNavigation="Continue">
                         <Button Command="self:CustomCommands.New" ToolTip="{x:Static props:Resources.TOOLTIP_NEW}">
                             <Image Source="Images/32x32/document-new-6.png" Style="{StaticResource ImageEnabled}" Width="32" Height="32"/>

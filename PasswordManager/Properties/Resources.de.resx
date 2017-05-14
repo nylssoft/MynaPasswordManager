@@ -201,6 +201,9 @@
   <data name="CMD_SHOW_PASSWORD_COLUMN" xml:space="preserve">
     <value>Spalte für Pass_wort anzeigen</value>
   </data>
+  <data name="CMD_SHOW_TOOLBAR" xml:space="preserve">
+    <value>S_ymbolleiste anzeigen</value>
+  </data>
   <data name="COLUMN_LOGIN" xml:space="preserve">
     <value>Login</value>
   </data>
