@@ -107,6 +107,15 @@ namespace PasswordManager
                     if (tsidle.TotalSeconds > reenterPasswordAfterSec)
                     {
                         reenterPassword = true;
+                        if (Properties.Settings.Default.AutoLockWindow)
+                        {
+                            gridMain.Visibility = Visibility.Hidden;
+                            gridLock.Visibility = Visibility.Visible;
+                            if (Properties.Settings.Default.AutoMinimizeWindow)
+                            {
+                                WindowState = WindowState.Minimized;
+                            }
+                        }
                     }
                 }
             }
@@ -231,7 +240,12 @@ namespace PasswordManager
         private void Command_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             RoutedUICommand r = e.Command as RoutedUICommand;
-            if (r == null) return;
+            if (r == null ||
+                Properties.Settings.Default.AutoLockWindow && reenterPassword)
+            {
+                e.CanExecute = false;
+                return;
+            }
             int selected = 0;
             bool hasUrl = false;
             bool hasLogin = false;
@@ -373,6 +387,11 @@ namespace PasswordManager
                 default:
                     break;
             }
+        }
+
+        private void ButtonVerifyPassword_Click(object sender, RoutedEventArgs e)
+        {
+            ReenterPassword();
         }
 
         // actions
@@ -834,6 +853,8 @@ namespace PasswordManager
                     }
                     reenterPassword = false;
                     idleSince = DateTime.Now;
+                    gridLock.Visibility = Visibility.Hidden;
+                    gridMain.Visibility = Visibility.Visible;
                 }
             }
             catch (Exception ex)

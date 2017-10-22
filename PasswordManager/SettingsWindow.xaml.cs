@@ -24,6 +24,7 @@ namespace PasswordManager
     public partial class SettingsWindow : Window
     {
         private bool changed;
+        private bool init;
 
         public SettingsWindow(Window owner)
         {
@@ -31,13 +32,16 @@ namespace PasswordManager
             Title = Properties.Resources.TITLE_SETTINGS;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             InitializeComponent();
+            init = true;
             checkBoxTopmost.IsChecked = Properties.Settings.Default.Topmost;
             textBoxAutoClearClipboard.Text = Convert.ToString(Properties.Settings.Default.AutoClearClipboard);
             textBoxAutoHidePassword.Text = Convert.ToString(Properties.Settings.Default.AutoHidePassword);
             textBoxReenterPassword.Text = Convert.ToString(Properties.Settings.Default.ReenterPassword);
-            changed = false;
+            checkBoxLock.IsChecked = Properties.Settings.Default.AutoLockWindow;
+            checkBoxMinimize.IsChecked = Properties.Settings.Default.AutoMinimizeWindow;
             UpdateControls();
             textBoxAutoClearClipboard.Focus();
+            init = false;
         }
 
         private void UpdateControls()
@@ -51,6 +55,13 @@ namespace PasswordManager
             if (ok)
             {
                 ok = Int32.TryParse(textBoxReenterPassword.Text, out val) && val >= 0;
+            }
+            checkBoxMinimize.IsEnabled = checkBoxLock.IsChecked == true;
+            if (!checkBoxMinimize.IsEnabled && checkBoxMinimize.IsChecked == true)
+            {
+                init = true;
+                checkBoxMinimize.IsChecked = false;
+                init = false;
             }
             buttonOK.IsEnabled = ok && changed;
         }
@@ -71,18 +82,22 @@ namespace PasswordManager
                 Properties.Settings.Default.ReenterPassword = val;
             }
             Properties.Settings.Default.Topmost = Topmost;
+            Properties.Settings.Default.AutoLockWindow = checkBoxLock.IsChecked == true;
+            Properties.Settings.Default.AutoMinimizeWindow = checkBoxMinimize.IsChecked == true;
             DialogResult = true;
             Close();
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (init) return;
             changed = true;
             UpdateControls();
         }
 
         private void checkBoxTopmost_Checked(object sender, RoutedEventArgs e)
         {
+            if (init) return;
             Topmost = true;
             Owner.Topmost = true;
             changed = true;
@@ -91,8 +106,16 @@ namespace PasswordManager
 
         private void checkBoxTopmost_Unchecked(object sender, RoutedEventArgs e)
         {
+            if (init) return;
             Topmost = false;
             Owner.Topmost = false;
+            changed = true;
+            UpdateControls();
+        }
+
+        private void CheckBox_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (init) return;
             changed = true;
             UpdateControls();
         }

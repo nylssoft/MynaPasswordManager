@@ -19,7 +19,7 @@ namespace PasswordManager.Properties {
     // -Klasse über ein Tool wie ResGen oder Visual Studio automatisch generiert.
     // Um einen Member hinzuzufügen oder zu entfernen, bearbeiten Sie die .ResX-Datei und führen dann ResGen
     // mit der /str-Option erneut aus, oder Sie erstellen Ihr VS-Projekt neu.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -426,6 +426,24 @@ namespace PasswordManager.Properties {
         public static string LABEL_AUTO_HIDE_PASSWORD {
             get {
                 return ResourceManager.GetString("LABEL_AUTO_HIDE_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lock window automatically ähnelt.
+        /// </summary>
+        public static string LABEL_AUTOLOCK {
+            get {
+                return ResourceManager.GetString("LABEL_AUTOLOCK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die and minimize window ähnelt.
+        /// </summary>
+        public static string LABEL_AUTOMINIMIZE {
+            get {
+                return ResourceManager.GetString("LABEL_AUTOMINIMIZE", resourceCulture);
             }
         }
         

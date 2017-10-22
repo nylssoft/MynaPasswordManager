@@ -234,6 +234,12 @@
   <data name="FILE_DIALOG_FILTER" xml:space="preserve">
     <value>Password files (*.pwd)|*.pwd|All files (*.*)|*.*</value>
   </data>
+  <data name="LABEL_AUTOLOCK" xml:space="preserve">
+    <value>Lock window automatically</value>
+  </data>
+  <data name="LABEL_AUTOMINIMIZE" xml:space="preserve">
+    <value>and minimize window</value>
+  </data>
   <data name="LABEL_AUTO_CLEAR_CLIPBOARD" xml:space="preserve">
     <value>C_lear clipboard after (seconds):</value>
   </data>
