@@ -1,10 +1,12 @@
 # Myna Password Manager
 
+## Overview
+
 A password manager for Windows using WPF.
 
 ![screenshot](screenshots/mynapasswordmanager.png)
 
-# Installation
+## Installation
 
 The latest MSI file can be found here: https://github.com/nylssoft/MynaPasswordManager/releases/download/V1.0.4/MynaPasswordManager.msi.
 
