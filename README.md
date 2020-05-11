@@ -8,9 +8,10 @@ A password manager for Windows using WPF.
 
 The latest MSI file can be found here: https://github.com/nylssoft/MynaPasswordManager/releases/download/V1.0.4/MynaPasswordManager.msi.
 
-The program requires the .NET framework v4.5.2.
+The program requires .NET framework v4.5.2.
 
 ## Encryption
+
 The passwords for each item are encrypted with the Rijndael algorithm using an encrypted key file.
 Preferable the key file should be stored on a different device than the password file.
 The key file is encrypted using the SHA-256 hash of the master password.
