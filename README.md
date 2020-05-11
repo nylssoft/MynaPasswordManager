@@ -2,7 +2,7 @@
 
 A password manager for Windows using WPF.
 
-![screenshot](mynapasswordmanager.png)
+![screenshot](screenshots/mynapasswordmanager.png)
 
 # Installation
 
@@ -32,37 +32,37 @@ The process itself tries to keep the plain text passwords in memory as short as 
 
 ### Create New Repository
 
-![Create New Repository Screenshot](mynapasswordmanager_create.png)
+![Create New Repository Screenshot](screenshots/mynapasswordmanager_create.png)
 
 ### Menu Items
 
 #### File Menu Item
 
-![File Menu Items Screenshot](mynapasswordmanager_file.png)
+![File Menu Items Screenshot](screenshots/mynapasswordmanager_file.png)
 
 #### Edit Menu Item
 
-![Edit Menu Items Screenshot](mynapasswordmanager_edit.png)
+![Edit Menu Items Screenshot](screenshots/mynapasswordmanager_edit.png)
 
 #### View Menu Item
 
-![View Menu Items Screenshot](mynapasswordmanager_view.png)
+![View Menu Items Screenshot](screenshots/mynapasswordmanager_view.png)
 
 #### Context Menu Item and Search Filter
 
-![Filter Context Menu Screenshot](mynapasswordmanager_filterandcontext.png)
+![Filter Context Menu Screenshot](screenshots/mynapasswordmanager_filterandcontext.png)
 
 ### Add Password Entry
 
-![Add Password Entry](mynapasswordmanager_add.png)
+![Add Password Entry](screenshots/mynapasswordmanager_add.png)
 
 ### Password Generator
 
-![Password Generator](mynapasswordmanager_pwdgen.png)
+![Password Generator](screenshots/mynapasswordmanager_pwdgen.png)
 
 ### Settings
 
-![Settings](mynapasswordmanager_settings.png)
+![Settings](screenshots/mynapasswordmanager_settings.png)
 
 ## Build
 
