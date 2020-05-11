@@ -2,30 +2,75 @@
 
 A password manager for Windows using WPF.
 
+![screenshot](mynapasswordmanager.png)
+
+# Installation
+
+The latest MSI file can be found here: https://github.com/nylssoft/MynaPasswordManager/releases/download/V1.0.4/MynaPasswordManager.msi.
+
+The program requires the .NET framework v4.5.2.
+
+## Encryption
 The passwords for each item are encrypted with the Rijndael algorithm using an encrypted key file.
 Preferable the key file should be stored on a different device than the password file.
 The key file is encrypted using the SHA-256 hash of the master password.
 The process itself tries to keep the plain text passwords in memory as short as possible. The SecureString class is used to store passwords in memory for the life time of the process.
 
-Features:
+## Features
 
-- Random password generator
-- Copy login and password to clipboard and clear clipboard after 30 seconds
-- Open website for login
-- Shortcuts for most commands
-- Thumbnails for login websites
-- Secure password storage in memory and in encrypted files
-- Change of master password and key file
-- Available for German and English
+* Random password generator
+* Copy login and password to clipboard and clear clipboard after 30 seconds
+* Open website for login
+* Shortcuts for most commands
+* Thumbnails for login websites
+* Secure password storage in memory and in encrypted files
+* Change of master password and key file
+* Available for German and English
 
-Build:
+## Screenshots
+
+### Create New Repository
+
+![Create New Repository Screenshot](mynapasswordmanager_create.png)
+
+### Menu Items
+
+#### File Menu Item
+
+![File Menu Items Screenshot](mynapasswordmanager_file.png)
+
+#### Edit Menu Item
+
+![Edit Menu Items Screenshot](mynapasswordmanager_edit.png)
+
+#### View Menu Item
+
+![View Menu Items Screenshot](mynapasswordmanager_view.png)
+
+#### Context Menu Item and Search Filter
+
+![Filter Context Menu Screenshot](mynapasswordmanager_filterandcontext.png)
+
+### Add Password Entry
+
+![Add Password Entry](mynapasswordmanager_add.png)
+
+### Password Generator
+
+![Password Generator](mynapasswordmanager_pwdgen.png)
+
+### Settings
+
+![Settings](mynapasswordmanager_settings.png)
+
+## Build
 
 - Build with VS 2017
 - WiX ToolSet is required to build a MSI, see https://http://wixtoolset.org/
 
-Licenses:
+## Licenses
 
-The following icons are used from the Open Icon Library (https://sourceforge.net/projects/openiconlibrary):
+The following icons are used from the **Open Icon Library** (https://sourceforge.net/projects/openiconlibrary):
 
 application-exit-5.png / nuovext2 / LGPL-2.1<br>
 document-decrypt-3.png / oxygen / CC-BY-SA 3.0 or LGPL<br>
