@@ -69,7 +69,7 @@ The process itself tries to keep the plain text passwords in memory as short as 
 ## Build
 
 - Build with VS 2017
-- WiX ToolSet is required to build a MSI, see https://http://wixtoolset.org/
+- WiX ToolSet is required to build a MSI, see https://wixtoolset.org/
 
 ## Licenses
 
