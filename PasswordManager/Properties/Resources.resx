@@ -135,6 +135,12 @@
   <data name="BUTTON_OK" xml:space="preserve">
     <value>_OK</value>
   </data>
+  <data name="BUTTON_UPLOAD" xml:space="preserve">
+    <value>Upl_oad</value>
+  </data>
+  <data name="CLOUD_UPLOAD_SUCCEEDED" xml:space="preserve">
+    <value>All passwords successfully uploaded.</value>
+  </data>
   <data name="CMD_ABOUT" xml:space="preserve">
     <value>_About...</value>
   </data>
@@ -149,6 +155,9 @@
   </data>
   <data name="CMD_CLOSE" xml:space="preserve">
     <value>_Close</value>
+  </data>
+  <data name="CMD_CLOUD_UPLOAD" xml:space="preserve">
+    <value>_Upload passwords into cloud...</value>
   </data>
   <data name="CMD_COPY_LOGIN" xml:space="preserve">
     <value>Copy _login to clipboard</value>
@@ -213,6 +222,12 @@
   <data name="COLUMN_PASSWORD" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="ERROR_CLOUD_LOGIN_FAILED" xml:space="preserve">
+    <value>Invalid username/password specified or account is disabled.</value>
+  </data>
+  <data name="ERROR_CLOUD_UPLOAD_FAILED" xml:space="preserve">
+    <value>Failed to upload password items.</value>
+  </data>
   <data name="ERROR_INVALID_FORMAT" xml:space="preserve">
     <value>The selected file has the wrong format.</value>
   </data>
@@ -245,6 +260,9 @@
   </data>
   <data name="LABEL_AUTO_HIDE_PASSWORD" xml:space="preserve">
     <value>_Hide password after (seconds):</value>
+  </data>
+  <data name="LABEL_CLOUD_SECRET_KEY" xml:space="preserve">
+    <value>_Secret Key:</value>
   </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Confirm m_aster password:</value>
@@ -325,7 +343,7 @@
     <value>1 item selected.</value>
   </data>
   <data name="TEXT_COPYRIGHT" xml:space="preserve">
-    <value>Copyright 2017 Niels Stockfleth
+    <value>Copyright 2017-2020 Niels Stockfleth
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -339,6 +357,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   </data>
   <data name="TITLE_CHANGE_MASTER_PASSWORD" xml:space="preserve">
     <value>Change master password</value>
+  </data>
+  <data name="TITLE_CLOUD_UPLOAD" xml:space="preserve">
+    <value>Upload passwords into cloud</value>
   </data>
   <data name="TITLE_EDIT" xml:space="preserve">
     <value>Edit</value>

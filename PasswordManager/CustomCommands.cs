@@ -80,6 +80,12 @@ namespace PasswordManager
             "ChangeMasterPassword",
             typeof(CustomCommands));
 
+        public static readonly RoutedUICommand CloudUpload =
+            new RoutedUICommand(
+            Properties.Resources.CMD_CLOUD_UPLOAD,
+            "CloudUpload",
+            typeof(CustomCommands));
+
         public static readonly RoutedUICommand Add =
             new RoutedUICommand(
             Properties.Resources.CMD_ADD,

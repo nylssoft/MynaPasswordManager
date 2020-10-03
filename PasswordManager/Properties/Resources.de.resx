@@ -135,6 +135,12 @@
   <data name="BUTTON_OK" xml:space="preserve">
     <value>_OK</value>
   </data>
+  <data name="BUTTON_UPLOAD" xml:space="preserve">
+    <value>_Hochladen</value>
+  </data>
+  <data name="CLOUD_UPLOAD_SUCCEEDED" xml:space="preserve">
+    <value>Alle Passwörter wurden erfolgreich hochgeladen.</value>
+  </data>
   <data name="CMD_ABOUT" xml:space="preserve">
     <value>Ü_ber...</value>
   </data>
@@ -149,6 +155,9 @@
   </data>
   <data name="CMD_CLOSE" xml:space="preserve">
     <value>S_chließen</value>
+  </data>
+  <data name="CMD_CLOUD_UPLOAD" xml:space="preserve">
+    <value>_Passwörter in Cloud hochladen...</value>
   </data>
   <data name="CMD_COPY_LOGIN" xml:space="preserve">
     <value>_Login in die Zwischenablage kopieren</value>
@@ -213,6 +222,12 @@
   <data name="COLUMN_PASSWORD" xml:space="preserve">
     <value>Passwort</value>
   </data>
+  <data name="ERROR_CLOUD_LOGIN_FAILED" xml:space="preserve">
+    <value>Ungültiger Benutzername/Kennwort oder das Konto wurde gesperrt.</value>
+  </data>
+  <data name="ERROR_CLOUD_UPLOAD_FAILED" xml:space="preserve">
+    <value>Die Passwörter können nicht hochgeladen werden.</value>
+  </data>
   <data name="ERROR_INVALID_FORMAT" xml:space="preserve">
     <value>Die ausgewählte Datei ist nicht im richtigen Format.</value>
   </data>
@@ -245,6 +260,9 @@
   </data>
   <data name="LABEL_AUTO_HIDE_PASSWORD" xml:space="preserve">
     <value>_Verstecke Passwort nach (Sekunden):</value>
+  </data>
+  <data name="LABEL_CLOUD_SECRET_KEY" xml:space="preserve">
+    <value>_Geheimer Schlüssel:</value>
   </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Bestätigtes Ha_uptpasswort:</value>
@@ -325,7 +343,7 @@
     <value>1 Element ausgewählt.</value>
   </data>
   <data name="TEXT_COPYRIGHT" xml:space="preserve">
-    <value>Copyright 2017 Niels Stockfleth
+    <value>Copyright 2017 - 2020 Niels Stockfleth
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -339,6 +357,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   </data>
   <data name="TITLE_CHANGE_MASTER_PASSWORD" xml:space="preserve">
     <value>Hauptpasswort ändern</value>
+  </data>
+  <data name="TITLE_CLOUD_UPLOAD" xml:space="preserve">
+    <value>Passwörter in die Cloud hochladen</value>
   </data>
   <data name="TITLE_EDIT" xml:space="preserve">
     <value>Bearbeiten</value>

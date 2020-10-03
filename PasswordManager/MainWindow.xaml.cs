@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017 Niels Stockfleth
+    Copyright (C) 2017-2020 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -287,6 +287,7 @@ namespace PasswordManager
                 case "Add":
                 case "ChangeKeyDirectory":
                 case "ChangeMasterPassword":
+                case "CloudUpload":
                     e.CanExecute = hasRepository;
                     break;
                 case "Edit":
@@ -341,6 +342,9 @@ namespace PasswordManager
                     break;
                 case "ChangeMasterPassword":
                     ChangeMasterPassword();
+                    break;
+                case "CloudUpload":
+                    CloudUpload();
                     break;
                 case "Properties":
                     ShowProperties();
@@ -1243,6 +1247,27 @@ namespace PasswordManager
                     passwordSecureString = dlg.SecurePassword;
                     UpdateControls();
                 }
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+        }
+
+        private void CloudUpload()
+        {
+            try
+            {
+                if (passwordRepository == null)
+                {
+                    return;
+                }
+                if (!ReenterPassword())
+                {
+                    return;
+                }
+                var dlg = new CloudUploadWindow(this, Properties.Resources.TITLE_CLOUD_UPLOAD, passwordRepository.Passwords);
+                dlg.ShowDialog();
             }
             catch (Exception ex)
             {
