@@ -135,8 +135,14 @@
   <data name="BUTTON_OK" xml:space="preserve">
     <value>_OK</value>
   </data>
+  <data name="BUTTON_REGISTER" xml:space="preserve">
+    <value>_Register</value>
+  </data>
   <data name="BUTTON_UPLOAD" xml:space="preserve">
     <value>Upl_oad</value>
+  </data>
+  <data name="CLOUD_REGISTER_SUCCEEDED" xml:space="preserve">
+    <value>Cloud user has been registered succesfully.</value>
   </data>
   <data name="CLOUD_UPLOAD_SUCCEEDED" xml:space="preserve">
     <value>All passwords successfully uploaded.</value>
@@ -155,6 +161,9 @@
   </data>
   <data name="CMD_CLOSE" xml:space="preserve">
     <value>_Close</value>
+  </data>
+  <data name="CMD_CLOUD_REGISTER" xml:space="preserve">
+    <value>_Register cloud user...</value>
   </data>
   <data name="CMD_CLOUD_UPLOAD" xml:space="preserve">
     <value>_Upload passwords into cloud...</value>
@@ -225,6 +234,9 @@
   <data name="ERROR_CLOUD_LOGIN_FAILED" xml:space="preserve">
     <value>Invalid username/password specified or account is disabled.</value>
   </data>
+  <data name="ERROR_CLOUD_REGISTER_FAILED" xml:space="preserve">
+    <value>User is already registered or maximum number of registrations exceeded.</value>
+  </data>
   <data name="ERROR_CLOUD_UPLOAD_FAILED" xml:space="preserve">
     <value>Failed to upload password items.</value>
   </data>
@@ -250,10 +262,10 @@
     <value>Password files (*.pwd)|*.pwd|All files (*.*)|*.*</value>
   </data>
   <data name="LABEL_AUTOLOCK" xml:space="preserve">
-    <value>Lock window automatically</value>
+    <value>Lock w_indow automatically</value>
   </data>
   <data name="LABEL_AUTOMINIMIZE" xml:space="preserve">
-    <value>and minimize window</value>
+    <value>and minimi_ze window</value>
   </data>
   <data name="LABEL_AUTO_CLEAR_CLIPBOARD" xml:space="preserve">
     <value>C_lear clipboard after (seconds):</value>
@@ -263,6 +275,9 @@
   </data>
   <data name="LABEL_CLOUD_SECRET_KEY" xml:space="preserve">
     <value>_Secret Key:</value>
+  </data>
+  <data name="LABEL_CLOUD_URL" xml:space="preserve">
+    <value>Clo_ud URL:</value>
   </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Confirm m_aster password:</value>
@@ -357,6 +372,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   </data>
   <data name="TITLE_CHANGE_MASTER_PASSWORD" xml:space="preserve">
     <value>Change master password</value>
+  </data>
+  <data name="TITLE_CLOUD_REGISTER" xml:space="preserve">
+    <value>Register cloud user</value>
   </data>
   <data name="TITLE_CLOUD_UPLOAD" xml:space="preserve">
     <value>Upload passwords into cloud</value>

@@ -135,8 +135,14 @@
   <data name="BUTTON_OK" xml:space="preserve">
     <value>_OK</value>
   </data>
+  <data name="BUTTON_REGISTER" xml:space="preserve">
+    <value>_Registrieren</value>
+  </data>
   <data name="BUTTON_UPLOAD" xml:space="preserve">
     <value>_Hochladen</value>
+  </data>
+  <data name="CLOUD_REGISTER_SUCCEEDED" xml:space="preserve">
+    <value>Cloud-Benutzer wurde erfolgreich registriert.</value>
   </data>
   <data name="CLOUD_UPLOAD_SUCCEEDED" xml:space="preserve">
     <value>Alle Passwörter wurden erfolgreich hochgeladen.</value>
@@ -155,6 +161,9 @@
   </data>
   <data name="CMD_CLOSE" xml:space="preserve">
     <value>S_chließen</value>
+  </data>
+  <data name="CMD_CLOUD_REGISTER" xml:space="preserve">
+    <value>Cloud-_Benutzer registrieren...</value>
   </data>
   <data name="CMD_CLOUD_UPLOAD" xml:space="preserve">
     <value>_Passwörter in Cloud hochladen...</value>
@@ -225,6 +234,9 @@
   <data name="ERROR_CLOUD_LOGIN_FAILED" xml:space="preserve">
     <value>Ungültiger Benutzername/Kennwort oder das Konto wurde gesperrt.</value>
   </data>
+  <data name="ERROR_CLOUD_REGISTER_FAILED" xml:space="preserve">
+    <value>Cloud-Benutzer wurde schon registriert oder die maximale Anzahl der Registrierungen ist überschritten.</value>
+  </data>
   <data name="ERROR_CLOUD_UPLOAD_FAILED" xml:space="preserve">
     <value>Die Passwörter können nicht hochgeladen werden.</value>
   </data>
@@ -250,10 +262,10 @@
     <value>Passwort Dateien (*.pwd)|*.pwd|Alle Dateien (*.*)|*.*</value>
   </data>
   <data name="LABEL_AUTOLOCK" xml:space="preserve">
-    <value>Fenster automatisch sperren</value>
+    <value>Fenster automatisch _sperren</value>
   </data>
   <data name="LABEL_AUTOMINIMIZE" xml:space="preserve">
-    <value>und Fenster minimieren</value>
+    <value>und Fenster m_inimieren</value>
   </data>
   <data name="LABEL_AUTO_CLEAR_CLIPBOARD" xml:space="preserve">
     <value>_Lösche Zwischenablage nach (Sekunden):</value>
@@ -263,6 +275,9 @@
   </data>
   <data name="LABEL_CLOUD_SECRET_KEY" xml:space="preserve">
     <value>_Geheimer Schlüssel:</value>
+  </data>
+  <data name="LABEL_CLOUD_URL" xml:space="preserve">
+    <value>Clo_ud-URL:</value>
   </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Bestätigtes Ha_uptpasswort:</value>
@@ -357,6 +372,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   </data>
   <data name="TITLE_CHANGE_MASTER_PASSWORD" xml:space="preserve">
     <value>Hauptpasswort ändern</value>
+  </data>
+  <data name="TITLE_CLOUD_REGISTER" xml:space="preserve">
+    <value>Cloud-Benutzer registrieren</value>
   </data>
   <data name="TITLE_CLOUD_UPLOAD" xml:space="preserve">
     <value>Passwörter in die Cloud hochladen</value>

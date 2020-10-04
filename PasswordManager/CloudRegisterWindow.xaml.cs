@@ -16,38 +16,25 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using PasswordManager.Properties;
-using PasswordManager.Repository;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
 namespace PasswordManager
 {
-    public partial class CloudUploadWindow : Window
+    public partial class CloudRegisterWindow : Window
     {
-        private List<Password> passwords;
-
         private bool uploading = false;
 
-        public CloudUploadWindow(Window owner, string title, List<Password> passwords)
+        public CloudRegisterWindow(Window owner, string title)
         {
             Owner = owner;
             Title = title;
-            this.passwords = passwords;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             Topmost = Settings.Default.Topmost;
             InitializeComponent();
-            textBoxUsername.Text = Settings.Default.CloudUsername;
-            if (textBoxUsername.Text.Length == 0)
-            {
-                textBoxUsername.Focus();
-            }
-            else
-            {
-                passwordBoxUser.Focus();
-            }
+            textBoxUsername.Focus();
             UpdateControls();
         }
 
@@ -57,24 +44,24 @@ namespace PasswordManager
             {
                 textBoxUsername.IsEnabled = false;
                 passwordBoxUser.IsEnabled = false;
-                passwordBoxSecretKey.IsEnabled = false;
+                passwordBoxConfirm.IsEnabled = false;
                 buttonCancel.IsEnabled = false;
-                buttonUpload.IsEnabled = false;
+                buttonRegister.IsEnabled = false;
             }
             else
             {
                 textBoxUsername.IsEnabled = true;
                 passwordBoxUser.IsEnabled = true;
-                passwordBoxSecretKey.IsEnabled = true;
-                buttonCancel.IsEnabled = true;                
-                buttonUpload.IsEnabled =
+                passwordBoxConfirm.IsEnabled = true;
+                buttonCancel.IsEnabled = true;
+                buttonRegister.IsEnabled =
                     textBoxUsername.Text.Length > 0 &&
                     passwordBoxUser.SecurePassword.Length > 0 &&
-                    passwordBoxSecretKey.SecurePassword.Length > 0;
+                    passwordBoxConfirm.Password == passwordBoxUser.Password;
             }
         }
 
-        private async void ButtonUpload_Click(object sender, RoutedEventArgs e)
+        private async void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
             var old = Cursor;
             try
@@ -82,11 +69,10 @@ namespace PasswordManager
                 Cursor = Cursors.Wait;
                 uploading = true;
                 UpdateControls();
-                var token = await RestClient.Authenticate(textBoxUsername.Text, passwordBoxUser.Password);
-                await RestClient.UploadPasswords(token, passwordBoxSecretKey.Password, passwords);
+                await RestClient.RegisterUser(textBoxUsername.Text, passwordBoxUser.Password);
                 Cursor = old;
                 uploading = false;
-                MessageBox.Show(Properties.Resources.CLOUD_UPLOAD_SUCCEEDED, Title, MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(Properties.Resources.CLOUD_REGISTER_SUCCEEDED, Title, MessageBoxButton.OK, MessageBoxImage.Information);
                 Settings.Default.CloudUsername = textBoxUsername.Text;
                 DialogResult = true;
                 Close();

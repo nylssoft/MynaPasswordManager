@@ -33,6 +33,7 @@ namespace PasswordManager
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             InitializeComponent();
             init = true;
+            textBoxCloudUrl.Text = Properties.Settings.Default.CloudUrl;
             checkBoxTopmost.IsChecked = Properties.Settings.Default.Topmost;
             textBoxAutoClearClipboard.Text = Convert.ToString(Properties.Settings.Default.AutoClearClipboard);
             textBoxAutoHidePassword.Text = Convert.ToString(Properties.Settings.Default.AutoHidePassword);
@@ -40,7 +41,7 @@ namespace PasswordManager
             checkBoxLock.IsChecked = Properties.Settings.Default.AutoLockWindow;
             checkBoxMinimize.IsChecked = Properties.Settings.Default.AutoMinimizeWindow;
             UpdateControls();
-            textBoxAutoClearClipboard.Focus();
+            textBoxCloudUrl.Focus();
             init = false;
         }
 
@@ -56,6 +57,10 @@ namespace PasswordManager
             {
                 ok = Int32.TryParse(textBoxReenterPassword.Text, out val) && val >= 0;
             }
+            if (ok)
+            {
+                ok = textBoxCloudUrl.Text.Length == 0 || textBoxCloudUrl.Text.StartsWith("https://");
+            }
             checkBoxMinimize.IsEnabled = checkBoxLock.IsChecked == true;
             if (!checkBoxMinimize.IsEnabled && checkBoxMinimize.IsChecked == true)
             {
@@ -69,6 +74,7 @@ namespace PasswordManager
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             int val = -1;
+            Properties.Settings.Default.CloudUrl = textBoxCloudUrl.Text;
             if (Int32.TryParse(textBoxAutoClearClipboard.Text, out val))
             {
                 Properties.Settings.Default.AutoClearClipboard = val;

@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017 Niels Stockfleth
+    Copyright (C) 2017-2020 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -78,6 +78,12 @@ namespace PasswordManager
             new RoutedUICommand(
             Properties.Resources.CMD_CHANGE_MASTER_PASSWORD,
             "ChangeMasterPassword",
+            typeof(CustomCommands));
+
+        public static readonly RoutedUICommand CloudRegister =
+            new RoutedUICommand(
+            Properties.Resources.CMD_CLOUD_REGISTER,
+            "CloudRegister",
             typeof(CustomCommands));
 
         public static readonly RoutedUICommand CloudUpload =

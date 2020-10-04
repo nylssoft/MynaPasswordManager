@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+using PasswordManager.Properties;
 using PasswordManager.Repository;
 using System;
 using System.Collections.Generic;
@@ -287,8 +288,13 @@ namespace PasswordManager
                 case "Add":
                 case "ChangeKeyDirectory":
                 case "ChangeMasterPassword":
-                case "CloudUpload":
                     e.CanExecute = hasRepository;
+                    break;
+                case "CloudUpload":
+                    e.CanExecute = hasRepository && Settings.Default.CloudUrl.Length > 0;
+                    break;
+                case "CloudRegister":
+                    e.CanExecute = Settings.Default.CloudUrl.Length > 0;
                     break;
                 case "Edit":
                     e.CanExecute = selected == 1;
@@ -345,6 +351,9 @@ namespace PasswordManager
                     break;
                 case "CloudUpload":
                     CloudUpload();
+                    break;
+                case "CloudRegister":
+                    CloudRegister();
                     break;
                 case "Properties":
                     ShowProperties();
@@ -1267,6 +1276,27 @@ namespace PasswordManager
                     return;
                 }
                 var dlg = new CloudUploadWindow(this, Properties.Resources.TITLE_CLOUD_UPLOAD, passwordRepository.Passwords);
+                dlg.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+        }
+
+        private void CloudRegister()
+        {
+            try
+            {
+                if (passwordRepository == null)
+                {
+                    return;
+                }
+                if (!ReenterPassword())
+                {
+                    return;
+                }
+                var dlg = new CloudRegisterWindow(this, Properties.Resources.TITLE_CLOUD_REGISTER);
                 dlg.ShowDialog();
             }
             catch (Exception ex)

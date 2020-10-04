@@ -7,9 +7,10 @@
         xmlns:props="clr-namespace:PasswordManager.Properties"
         mc:Ignorable="d"
         Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
-        Height="260" Width="400" MinHeight="260" MinWidth="400" Icon="Images/logo.png" ResizeMode="NoResize">
+        Height="290" Width="500" MinHeight="290" MinWidth="500" Icon="Images/logo.png">
     <Grid Margin="5,5,5,5">
         <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
@@ -23,16 +24,18 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static props:Resources.LABEL_AUTO_CLEAR_CLIPBOARD}" Target="{Binding ElementName=textBoxAutoClearClipboard}"/>
-        <TextBox x:Name="textBoxAutoClearClipboard" Grid.Row="0" Grid.Column="1" Height="23" Width="50" HorizontalAlignment="Left" MaxLength="5" TextChanged="TextBox_TextChanged"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.LABEL_AUTO_HIDE_PASSWORD}" Target="{Binding ElementName=textBoxAutoHidePassword}"/>
-        <TextBox x:Name="textBoxAutoHidePassword" Grid.Row="1" Grid.Column="1" Height="23" Width="50" HorizontalAlignment="Left" MaxLength="5" TextChanged="TextBox_TextChanged"/>
-        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static props:Resources.LABEL_REENTER_PASSWORD}" Target="{Binding ElementName=textBoxReenterPassword}"/>
-        <TextBox x:Name="textBoxReenterPassword" Grid.Row="2" Grid.Column="1" Height="23" Width="50" HorizontalAlignment="Left" MaxLength="5" TextChanged="TextBox_TextChanged"/>
-        <CheckBox Margin="4,7,0,0" x:Name="checkBoxTopmost" Grid.Row="3" Grid.Column="0" Content="{x:Static props:Resources.LABEL_TOPMOST}" Checked="checkBoxTopmost_Checked" Unchecked="checkBoxTopmost_Unchecked"/>
-        <CheckBox Margin="4,7,0,0" x:Name="checkBoxLock" Grid.Row="4" Grid.Column="0" Content="{x:Static props:Resources.LABEL_AUTOLOCK}" Click="CheckBox_Clicked"/>
-        <CheckBox Margin="24,7,0,0" x:Name="checkBoxMinimize" Grid.Row="5" Grid.Column="0" Content="{x:Static props:Resources.LABEL_AUTOMINIMIZE}" Click="CheckBox_Clicked"/>
-        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static props:Resources.LABEL_CLOUD_URL}" Target="{Binding ElementName=textBoxCloudUrl}"/>
+        <TextBox x:Name="textBoxCloudUrl" Grid.Row="0" Grid.Column="1" Height="23" HorizontalAlignment="Stretch" MaxLength="255" TextChanged="TextBox_TextChanged"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.LABEL_AUTO_CLEAR_CLIPBOARD}" Target="{Binding ElementName=textBoxAutoClearClipboard}"/>
+        <TextBox x:Name="textBoxAutoClearClipboard" Grid.Row="1" Grid.Column="1" Height="23" Width="50" HorizontalAlignment="Left" MaxLength="5" TextChanged="TextBox_TextChanged"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static props:Resources.LABEL_AUTO_HIDE_PASSWORD}" Target="{Binding ElementName=textBoxAutoHidePassword}"/>
+        <TextBox x:Name="textBoxAutoHidePassword" Grid.Row="2" Grid.Column="1" Height="23" Width="50" HorizontalAlignment="Left" MaxLength="5" TextChanged="TextBox_TextChanged"/>
+        <Label Grid.Row="3" Grid.Column="0" Content="{x:Static props:Resources.LABEL_REENTER_PASSWORD}" Target="{Binding ElementName=textBoxReenterPassword}"/>
+        <TextBox x:Name="textBoxReenterPassword" Grid.Row="3" Grid.Column="1" Height="23" Width="50" HorizontalAlignment="Left" MaxLength="5" TextChanged="TextBox_TextChanged"/>
+        <CheckBox Margin="4,7,0,0" x:Name="checkBoxTopmost" Grid.Row="4" Grid.Column="0" Content="{x:Static props:Resources.LABEL_TOPMOST}" Checked="checkBoxTopmost_Checked" Unchecked="checkBoxTopmost_Unchecked"/>
+        <CheckBox Margin="4,7,0,0" x:Name="checkBoxLock" Grid.Row="5" Grid.Column="0" Content="{x:Static props:Resources.LABEL_AUTOLOCK}" Click="CheckBox_Clicked"/>
+        <CheckBox Margin="24,7,0,0" x:Name="checkBoxMinimize" Grid.Row="6" Grid.Column="0" Content="{x:Static props:Resources.LABEL_AUTOMINIMIZE}" Click="CheckBox_Clicked"/>
+        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="buttonOK" IsDefault="True" Content="{x:Static props:Resources.BUTTON_OK}" Height="23" Width="80" Margin="5,0,5,0" Click="ButtonOK_Click"/>
             <Button x:Name="buttonCancel" IsCancel="True" Content="{x:Static props:Resources.BUTTON_CANCEL}" Height="23" Width="80" Margin="5,0,5,0" />
         </StackPanel>

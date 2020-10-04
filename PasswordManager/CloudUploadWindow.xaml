@@ -7,10 +7,9 @@
         mc:Ignorable="d"
         Closing="Window_Closing"
         Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
-        Height="250" Width="600" Icon="Images/logo.png" ResizeMode="NoResize">
+        Height="220" Width="600" Icon="Images/logo.png" ResizeMode="NoResize">
     <Grid Margin="10,10,10,10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
@@ -21,15 +20,13 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static props:Resources.LABEL_URL}" Target="{Binding ElementName=textBoxUrl}" />
-        <TextBox Grid.Row="0" Grid.Column="1" x:Name="textBoxUrl" Height="23" MaxLength="100" TextChanged="OnChanged" />
-        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.LABEL_LOGIN}" Target="{Binding ElementName=textBoxUsername}"/>
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="textBoxUsername" Height="23" MaxLength="100" TextChanged="OnChanged" />
-        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static props:Resources.LABEL_PASSWORD}" Target="{Binding ElementName=passwordBoxUser}" />
-        <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="passwordBoxUser" MaxLength="100" Height="23" PasswordChanged="OnChanged"/>
-        <Label Grid.Row="3" Grid.Column="0" Content="{x:Static props:Resources.LABEL_CLOUD_SECRET_KEY}" Target="{Binding ElementName=passwordBoxSecretKey}" />
-        <PasswordBox Grid.Row="3" Grid.Column="1" x:Name="passwordBoxSecretKey" MaxLength="100" Height="23" PasswordChanged="OnChanged"/>
-        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+        <Label Grid.Row="0" Grid.Column="0" Content="{x:Static props:Resources.LABEL_LOGIN}" Target="{Binding ElementName=textBoxUsername}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="textBoxUsername" Height="23" MaxLength="100" TextChanged="OnChanged" />
+        <Label Grid.Row="1" Grid.Column="0" Content="{x:Static props:Resources.LABEL_PASSWORD}" Target="{Binding ElementName=passwordBoxUser}" />
+        <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="passwordBoxUser" MaxLength="100" Height="23" PasswordChanged="OnChanged"/>
+        <Label Grid.Row="2" Grid.Column="0" Content="{x:Static props:Resources.LABEL_CLOUD_SECRET_KEY}" Target="{Binding ElementName=passwordBoxSecretKey}" />
+        <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="passwordBoxSecretKey" MaxLength="100" Height="23" PasswordChanged="OnChanged"/>
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="buttonUpload" IsDefault="True" Content="{x:Static props:Resources.BUTTON_UPLOAD}" Height="23" Width="80" Margin="5,0,5,0" Click="ButtonUpload_Click" />
             <Button x:Name="buttonCancel" IsCancel="True" Content="{x:Static props:Resources.BUTTON_CANCEL}" Height="23" Width="80" Margin="5,0,0,0" Click="ButtonCancel_Click" />
         </StackPanel>

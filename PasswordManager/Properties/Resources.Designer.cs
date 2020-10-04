@@ -115,11 +115,29 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Register.
+        /// </summary>
+        public static string BUTTON_REGISTER {
+            get {
+                return ResourceManager.GetString("BUTTON_REGISTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upl_oad.
         /// </summary>
         public static string BUTTON_UPLOAD {
             get {
                 return ResourceManager.GetString("BUTTON_UPLOAD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cloud user has been registered succesfully..
+        /// </summary>
+        public static string CLOUD_REGISTER_SUCCEEDED {
+            get {
+                return ResourceManager.GetString("CLOUD_REGISTER_SUCCEEDED", resourceCulture);
             }
         }
         
@@ -174,6 +192,15 @@ namespace PasswordManager.Properties {
         public static string CMD_CLOSE {
             get {
                 return ResourceManager.GetString("CMD_CLOSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Register cloud user....
+        /// </summary>
+        public static string CMD_CLOUD_REGISTER {
+            get {
+                return ResourceManager.GetString("CMD_CLOUD_REGISTER", resourceCulture);
             }
         }
         
@@ -385,6 +412,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User is already registered or maximum number of registrations exceeded..
+        /// </summary>
+        public static string ERROR_CLOUD_REGISTER_FAILED {
+            get {
+                return ResourceManager.GetString("ERROR_CLOUD_REGISTER_FAILED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Failed to upload password items..
         /// </summary>
         public static string ERROR_CLOUD_UPLOAD_FAILED {
@@ -475,7 +511,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Lock window automatically.
+        ///   Looks up a localized string similar to Lock w_indow automatically.
         /// </summary>
         public static string LABEL_AUTOLOCK {
             get {
@@ -484,7 +520,7 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to and minimize window.
+        ///   Looks up a localized string similar to and minimi_ze window.
         /// </summary>
         public static string LABEL_AUTOMINIMIZE {
             get {
@@ -498,6 +534,15 @@ namespace PasswordManager.Properties {
         public static string LABEL_CLOUD_SECRET_KEY {
             get {
                 return ResourceManager.GetString("LABEL_CLOUD_SECRET_KEY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clo_ud URL:.
+        /// </summary>
+        public static string LABEL_CLOUD_URL {
+            get {
+                return ResourceManager.GetString("LABEL_CLOUD_URL", resourceCulture);
             }
         }
         
@@ -772,6 +817,15 @@ namespace PasswordManager.Properties {
         public static string TITLE_CHANGE_MASTER_PASSWORD {
             get {
                 return ResourceManager.GetString("TITLE_CHANGE_MASTER_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register cloud user.
+        /// </summary>
+        public static string TITLE_CLOUD_REGISTER {
+            get {
+                return ResourceManager.GetString("TITLE_CLOUD_REGISTER", resourceCulture);
             }
         }
         
