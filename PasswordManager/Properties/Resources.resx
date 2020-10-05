@@ -132,6 +132,18 @@
   <data name="BUTTON_CANCEL" xml:space="preserve">
     <value>_Cancel</value>
   </data>
+  <data name="BUTTON_COPY_PASSWORD" xml:space="preserve">
+    <value>_Copy</value>
+  </data>
+  <data name="BUTTON_COPY_PASSWORD1" xml:space="preserve">
+    <value>_Copy</value>
+  </data>
+  <data name="BUTTON_EXIT" xml:space="preserve">
+    <value>_Exit</value>
+  </data>
+  <data name="BUTTON_NEW_PASSWORD" xml:space="preserve">
+    <value>_New password</value>
+  </data>
   <data name="BUTTON_OK" xml:space="preserve">
     <value>_OK</value>
   </data>
@@ -255,6 +267,9 @@
   <data name="ERROR_PASSWORD_MIN_CHARS" xml:space="preserve">
     <value>The password must contain at least 4 characters.</value>
   </data>
+  <data name="ERROR_PWDGEN_INVALID_INPUT" xml:space="preserve">
+    <value>The selected file has the wrong format.</value>
+  </data>
   <data name="ERROR_WRONG_PASSWORD" xml:space="preserve">
     <value>The password is wrong.</value>
   </data>
@@ -291,8 +306,14 @@
   <data name="LABEL_DESCRIPTION" xml:space="preserve">
     <value>_Description:</value>
   </data>
+  <data name="LABEL_DIGITS" xml:space="preserve">
+    <value>_Digits</value>
+  </data>
   <data name="LABEL_ENTER_MASTER_PASSWORD_FOR_0" xml:space="preserve">
     <value>Enter the master password for '{0}'.</value>
+  </data>
+  <data name="LABEL_GENERATED_PASSWORD" xml:space="preserve">
+    <value>Password:</value>
   </data>
   <data name="LABEL_KEY" xml:space="preserve">
     <value>Key:</value>
@@ -300,8 +321,14 @@
   <data name="LABEL_KEY_DIRECTORY" xml:space="preserve">
     <value>Key d_irectory:</value>
   </data>
+  <data name="LABEL_LANGUAGE" xml:space="preserve">
+    <value>Lan_guage:</value>
+  </data>
   <data name="LABEL_LOGIN" xml:space="preserve">
     <value>_Login:</value>
+  </data>
+  <data name="LABEL_LOWER_CHARS" xml:space="preserve">
+    <value>Lo_wer characters:</value>
   </data>
   <data name="LABEL_MASTER_PASSWORD" xml:space="preserve">
     <value>_Master password:</value>
@@ -321,14 +348,23 @@
   <data name="LABEL_PASSWORD_FILE" xml:space="preserve">
     <value>Password _file:</value>
   </data>
+  <data name="LABEL_PASSWORD_LENGTH" xml:space="preserve">
+    <value>Password _length:</value>
+  </data>
   <data name="LABEL_REENTER_PASSWORD" xml:space="preserve">
     <value>_Reenter password after (seconds):</value>
   </data>
   <data name="LABEL_SELECT_KEY_DIRECTORY" xml:space="preserve">
     <value>Select key directory.</value>
   </data>
+  <data name="LABEL_SYMBOLS" xml:space="preserve">
+    <value>_Symbols:</value>
+  </data>
   <data name="LABEL_TOPMOST" xml:space="preserve">
     <value>Show _windows always in front</value>
+  </data>
+  <data name="LABEL_UPPER_CHARS" xml:space="preserve">
+    <value>_Upper characters:</value>
   </data>
   <data name="LABEL_URL" xml:space="preserve">
     <value>_URL:</value>
@@ -344,6 +380,15 @@
   </data>
   <data name="MENUITEM_VIEW" xml:space="preserve">
     <value>_View</value>
+  </data>
+  <data name="OPTION_ENGLISH" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="OPTION_GERMAN" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="OPTION_SYSTEM" xml:space="preserve">
+    <value>System language</value>
   </data>
   <data name="QUESTION_DELETE_ITEMS" xml:space="preserve">
     <value>Do you want to delete the selected items?</value>
@@ -364,6 +409,9 @@ This program is free software: you can redistribute it and/or modify it under th
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</value>
   </data>
+  <data name="TEXT_RESTART_REQUIRED" xml:space="preserve">
+    <value>A restart is required to take effect of the changes.</value>
+  </data>
   <data name="TEXT_SEARCH_LIST" xml:space="preserve">
     <value>Search list</value>
   </data>
@@ -381,6 +429,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   </data>
   <data name="TITLE_EDIT" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="TITLE_GENERATE_PASSWORD" xml:space="preserve">
+    <value>Password Generator</value>
   </data>
   <data name="TITLE_NEW" xml:space="preserve">
     <value>New password file</value>

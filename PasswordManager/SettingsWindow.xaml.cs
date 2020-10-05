@@ -25,6 +25,8 @@ namespace PasswordManager
     {
         private bool changed;
         private bool init;
+        
+        private bool IsRestartRequired { get; set; } = false;
 
         public SettingsWindow(Window owner)
         {
@@ -40,6 +42,20 @@ namespace PasswordManager
             textBoxReenterPassword.Text = Convert.ToString(Properties.Settings.Default.ReenterPassword);
             checkBoxLock.IsChecked = Properties.Settings.Default.AutoLockWindow;
             checkBoxMinimize.IsChecked = Properties.Settings.Default.AutoMinimizeWindow;
+            comboBoxLanguage.Items.Add(new ComboBoxItem() { Tag = "", Content = Properties.Resources.OPTION_SYSTEM });
+            comboBoxLanguage.Items.Add(new ComboBoxItem() { Tag = "de", Content = Properties.Resources.OPTION_GERMAN });
+            comboBoxLanguage.Items.Add(new ComboBoxItem() { Tag = "en", Content = Properties.Resources.OPTION_ENGLISH });
+            var lang = Properties.Settings.Default.Language;
+            foreach (ComboBoxItem cb in comboBoxLanguage.Items)
+            {
+                string language = (cb?.Tag as string) ?? "";
+                if (language == lang)
+                {
+                    cb.IsSelected = true;
+                    break;
+                }
+            }
+            IsRestartRequired = false;
             UpdateControls();
             textBoxCloudUrl.Focus();
             init = false;
@@ -69,6 +85,15 @@ namespace PasswordManager
                 init = false;
             }
             buttonOK.IsEnabled = ok && changed;
+            if (IsRestartRequired)
+            {
+                labelRestartRequired.Content = Properties.Resources.TEXT_RESTART_REQUIRED;
+                labelRestartRequired.Foreground = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                labelRestartRequired.Content = "";
+            }
         }
 
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
@@ -90,6 +115,9 @@ namespace PasswordManager
             Properties.Settings.Default.Topmost = Topmost;
             Properties.Settings.Default.AutoLockWindow = checkBoxLock.IsChecked == true;
             Properties.Settings.Default.AutoMinimizeWindow = checkBoxMinimize.IsChecked == true;
+            var cb = comboBoxLanguage.SelectedItem as ComboBoxItem;
+            var language = (cb?.Tag as string) ?? "";
+            Properties.Settings.Default.Language = language;
             DialogResult = true;
             Close();
         }
@@ -125,5 +153,14 @@ namespace PasswordManager
             changed = true;
             UpdateControls();
         }
+
+        private void ComboBoxLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (init) return;
+            IsRestartRequired = true;
+            changed = true;
+            UpdateControls();
+        }
+
     }
 }

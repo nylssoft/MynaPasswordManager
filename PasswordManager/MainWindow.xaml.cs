@@ -65,6 +65,8 @@ namespace PasswordManager
         private static Image contextMenuItemImageHide;
         private static Image contextMenuItemImageShow;
 
+        private PwdGenWindow pwdGenWindow = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -146,6 +148,11 @@ namespace PasswordManager
             {
                 if (!canceled)
                 {
+                    if (pwdGenWindow != null && !pwdGenWindow.IsClosed)
+                    {
+                        pwdGenWindow.Close();
+                        pwdGenWindow = null;
+                    }
                     try
                     {
                         if (copiedToClipboard)
@@ -1386,11 +1393,10 @@ namespace PasswordManager
         {
             try
             {
-                string pwdgen = "%Module%\\MynaPasswordGenerator.exe".ReplaceSpecialFolder();
-                if (File.Exists(pwdgen))
+                if (pwdGenWindow == null || pwdGenWindow.IsClosed)
                 {
-                    string args = Topmost ? "topmost" : "";
-                    Process.Start(pwdgen, args);
+                    pwdGenWindow = new PwdGenWindow();
+                    pwdGenWindow.Show();
                 }
             }
             catch (Exception ex)

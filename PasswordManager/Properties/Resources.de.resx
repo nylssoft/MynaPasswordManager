@@ -132,6 +132,18 @@
   <data name="BUTTON_CANCEL" xml:space="preserve">
     <value>_Abbrechen</value>
   </data>
+  <data name="BUTTON_COPY_PASSWORD" xml:space="preserve">
+    <value>_Kopieren</value>
+  </data>
+  <data name="BUTTON_COPY_PASSWORD1" xml:space="preserve">
+    <value>_Copy</value>
+  </data>
+  <data name="BUTTON_EXIT" xml:space="preserve">
+    <value>_Beenden</value>
+  </data>
+  <data name="BUTTON_NEW_PASSWORD" xml:space="preserve">
+    <value>_Neues Passwort</value>
+  </data>
   <data name="BUTTON_OK" xml:space="preserve">
     <value>_OK</value>
   </data>
@@ -255,6 +267,9 @@
   <data name="ERROR_PASSWORD_MIN_CHARS" xml:space="preserve">
     <value>Das Passwort muss mindestens 4 Zeichen enthalten.</value>
   </data>
+  <data name="ERROR_PWDGEN_INVALID_INPUT" xml:space="preserve">
+    <value>Ungültige Eingabewerte für die Passwortgenerierung.</value>
+  </data>
   <data name="ERROR_WRONG_PASSWORD" xml:space="preserve">
     <value>Das Passwort ist nicht richtig.</value>
   </data>
@@ -291,8 +306,14 @@
   <data name="LABEL_DESCRIPTION" xml:space="preserve">
     <value>_Beschreibung:</value>
   </data>
+  <data name="LABEL_DIGITS" xml:space="preserve">
+    <value>_Ziffern:</value>
+  </data>
   <data name="LABEL_ENTER_MASTER_PASSWORD_FOR_0" xml:space="preserve">
     <value>Geben Sie das Hauptpasswort für '{0}' ein.</value>
+  </data>
+  <data name="LABEL_GENERATED_PASSWORD" xml:space="preserve">
+    <value>Passwort:</value>
   </data>
   <data name="LABEL_KEY" xml:space="preserve">
     <value>Schlüssel:</value>
@@ -300,8 +321,14 @@
   <data name="LABEL_KEY_DIRECTORY" xml:space="preserve">
     <value>Schlüssel_verzeichnis:</value>
   </data>
+  <data name="LABEL_LANGUAGE" xml:space="preserve">
+    <value>Sp_rache:</value>
+  </data>
   <data name="LABEL_LOGIN" xml:space="preserve">
     <value>_Login:</value>
+  </data>
+  <data name="LABEL_LOWER_CHARS" xml:space="preserve">
+    <value>Kl_einbuchstaben:</value>
   </data>
   <data name="LABEL_MASTER_PASSWORD" xml:space="preserve">
     <value>_Hauptpasswort:</value>
@@ -321,14 +348,23 @@
   <data name="LABEL_PASSWORD_FILE" xml:space="preserve">
     <value>Passwortdatei:</value>
   </data>
+  <data name="LABEL_PASSWORD_LENGTH" xml:space="preserve">
+    <value>Passwort_länge:</value>
+  </data>
   <data name="LABEL_REENTER_PASSWORD" xml:space="preserve">
     <value>_Erneuerte Passwortüberprüfung nach (Sekunden):</value>
   </data>
   <data name="LABEL_SELECT_KEY_DIRECTORY" xml:space="preserve">
     <value>Wähle Schlüsselverzeichnis.</value>
   </data>
+  <data name="LABEL_SYMBOLS" xml:space="preserve">
+    <value>_Symbolzeichen:</value>
+  </data>
   <data name="LABEL_TOPMOST" xml:space="preserve">
     <value>_Fenster immer im Vordergrund anzeigen</value>
+  </data>
+  <data name="LABEL_UPPER_CHARS" xml:space="preserve">
+    <value>_Grossbuchstaben:</value>
   </data>
   <data name="LABEL_URL" xml:space="preserve">
     <value>_URL:</value>
@@ -344,6 +380,15 @@
   </data>
   <data name="MENUITEM_VIEW" xml:space="preserve">
     <value>_Ansicht</value>
+  </data>
+  <data name="OPTION_ENGLISH" xml:space="preserve">
+    <value>Englisch</value>
+  </data>
+  <data name="OPTION_GERMAN" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="OPTION_SYSTEM" xml:space="preserve">
+    <value>Systemsprache</value>
   </data>
   <data name="QUESTION_DELETE_ITEMS" xml:space="preserve">
     <value>Wollen Sie die ausgewählten Elemente löschen?</value>
@@ -364,6 +409,9 @@ This program is free software: you can redistribute it and/or modify it under th
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.</value>
   </data>
+  <data name="TEXT_RESTART_REQUIRED" xml:space="preserve">
+    <value>Ein Neustart ist erforderlich damit die Änderungen wirksam werden.</value>
+  </data>
   <data name="TEXT_SEARCH_LIST" xml:space="preserve">
     <value>Liste durchsuchen</value>
   </data>
@@ -381,6 +429,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   </data>
   <data name="TITLE_EDIT" xml:space="preserve">
     <value>Bearbeiten</value>
+  </data>
+  <data name="TITLE_GENERATE_PASSWORD" xml:space="preserve">
+    <value>Passwortgenerator</value>
   </data>
   <data name="TITLE_NEW" xml:space="preserve">
     <value>Neue Passwortdatei</value>

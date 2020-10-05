@@ -106,6 +106,42 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Copy.
+        /// </summary>
+        public static string BUTTON_COPY_PASSWORD {
+            get {
+                return ResourceManager.GetString("BUTTON_COPY_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Copy.
+        /// </summary>
+        public static string BUTTON_COPY_PASSWORD1 {
+            get {
+                return ResourceManager.GetString("BUTTON_COPY_PASSWORD1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Exit.
+        /// </summary>
+        public static string BUTTON_EXIT {
+            get {
+                return ResourceManager.GetString("BUTTON_EXIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _New password.
+        /// </summary>
+        public static string BUTTON_NEW_PASSWORD {
+            get {
+                return ResourceManager.GetString("BUTTON_NEW_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _OK.
         /// </summary>
         public static string BUTTON_OK {
@@ -475,6 +511,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected file has the wrong format..
+        /// </summary>
+        public static string ERROR_PWDGEN_INVALID_INPUT {
+            get {
+                return ResourceManager.GetString("ERROR_PWDGEN_INVALID_INPUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The password is wrong..
         /// </summary>
         public static string ERROR_WRONG_PASSWORD {
@@ -583,11 +628,29 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Digits.
+        /// </summary>
+        public static string LABEL_DIGITS {
+            get {
+                return ResourceManager.GetString("LABEL_DIGITS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter the master password for &apos;{0}&apos;..
         /// </summary>
         public static string LABEL_ENTER_MASTER_PASSWORD_FOR_0 {
             get {
                 return ResourceManager.GetString("LABEL_ENTER_MASTER_PASSWORD_FOR_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password:.
+        /// </summary>
+        public static string LABEL_GENERATED_PASSWORD {
+            get {
+                return ResourceManager.GetString("LABEL_GENERATED_PASSWORD", resourceCulture);
             }
         }
         
@@ -610,11 +673,29 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lan_guage:.
+        /// </summary>
+        public static string LABEL_LANGUAGE {
+            get {
+                return ResourceManager.GetString("LABEL_LANGUAGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Login:.
         /// </summary>
         public static string LABEL_LOGIN {
             get {
                 return ResourceManager.GetString("LABEL_LOGIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lo_wer characters:.
+        /// </summary>
+        public static string LABEL_LOWER_CHARS {
+            get {
+                return ResourceManager.GetString("LABEL_LOWER_CHARS", resourceCulture);
             }
         }
         
@@ -673,6 +754,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password _length:.
+        /// </summary>
+        public static string LABEL_PASSWORD_LENGTH {
+            get {
+                return ResourceManager.GetString("LABEL_PASSWORD_LENGTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to _Reenter password after (seconds):.
         /// </summary>
         public static string LABEL_REENTER_PASSWORD {
@@ -691,11 +781,29 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _Symbols:.
+        /// </summary>
+        public static string LABEL_SYMBOLS {
+            get {
+                return ResourceManager.GetString("LABEL_SYMBOLS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show _windows always in front.
         /// </summary>
         public static string LABEL_TOPMOST {
             get {
                 return ResourceManager.GetString("LABEL_TOPMOST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Upper characters:.
+        /// </summary>
+        public static string LABEL_UPPER_CHARS {
+            get {
+                return ResourceManager.GetString("LABEL_UPPER_CHARS", resourceCulture);
             }
         }
         
@@ -745,6 +853,33 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string OPTION_ENGLISH {
+            get {
+                return ResourceManager.GetString("OPTION_ENGLISH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to German.
+        /// </summary>
+        public static string OPTION_GERMAN {
+            get {
+                return ResourceManager.GetString("OPTION_GERMAN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System language.
+        /// </summary>
+        public static string OPTION_SYSTEM {
+            get {
+                return ResourceManager.GetString("OPTION_SYSTEM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to delete the selected items?.
         /// </summary>
         public static string QUESTION_DELETE_ITEMS {
@@ -790,6 +925,15 @@ namespace PasswordManager.Properties {
         public static string TEXT_COPYRIGHT {
             get {
                 return ResourceManager.GetString("TEXT_COPYRIGHT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A restart is required to take effect of the changes..
+        /// </summary>
+        public static string TEXT_RESTART_REQUIRED {
+            get {
+                return ResourceManager.GetString("TEXT_RESTART_REQUIRED", resourceCulture);
             }
         }
         
@@ -844,6 +988,15 @@ namespace PasswordManager.Properties {
         public static string TITLE_EDIT {
             get {
                 return ResourceManager.GetString("TITLE_EDIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Generator.
+        /// </summary>
+        public static string TITLE_GENERATE_PASSWORD {
+            get {
+                return ResourceManager.GetString("TITLE_GENERATE_PASSWORD", resourceCulture);
             }
         }
         
