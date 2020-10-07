@@ -31,6 +31,12 @@ namespace PasswordManager
     {
         private static HttpClient httpClient = null;
 
+        private class ProblemDetails
+        {
+            public string title { get; set; }
+            public int status { get; set; }
+        }
+
         public static async Task<string> Authenticate(string username, string password)
         {
             var client = GetHttpClient();
@@ -41,16 +47,13 @@ namespace PasswordManager
             var authentication = JsonSerializer.Serialize(new { Username = username, Password = password });
             request.Content = new StringContent(authentication, Encoding.UTF8, "application/json");
             var response = await client.SendAsync(request);
+            await EnsureSuccess(response);
             var res = await response.Content.ReadAsStringAsync();
             var token = JsonSerializer.Deserialize<string>(res);
-            if (token == null || token.Length == 0)
-            {
-                throw new ArgumentException(Resources.ERROR_CLOUD_LOGIN_FAILED);
-            }
             return token;
-        }
+    }
 
-        public static async Task UploadPasswords(string token, string secretKey, List<Password> passwords)
+    public static async Task UploadPasswords(string token, string secretKey, List<Password> passwords)
         {
             var client = GetHttpClient();
             client.DefaultRequestHeaders.Remove("token");
@@ -73,11 +76,7 @@ namespace PasswordManager
             var passwordFile = JsonSerializer.Serialize(new { SecretKey = secretKey, Passwords = pwdItems });
             request.Content = new StringContent(passwordFile, Encoding.UTF8, "application/json");
             var response = await client.SendAsync(request);
-            var res = await response.Content.ReadAsStringAsync();
-            if (bool.Parse(res) != true)
-            {
-                throw new ArgumentException(Properties.Resources.ERROR_CLOUD_UPLOAD_FAILED);
-            }
+            await EnsureSuccess(response);
         }
 
         public static async Task RegisterUser(string username, string password)
@@ -90,11 +89,7 @@ namespace PasswordManager
             var request = new HttpRequestMessage(HttpMethod.Post, "api/pwdman/user");
             request.Content = new StringContent(authentication, Encoding.UTF8, "application/json");
             var response = await client.SendAsync(request);
-            var res = await response.Content.ReadAsStringAsync();
-            if (bool.Parse(res) != true)
-            {
-                throw new ArgumentException(Properties.Resources.ERROR_CLOUD_REGISTER_FAILED);
-            }
+            await EnsureSuccess(response);
         }
 
         private static HttpClient GetHttpClient()
@@ -109,5 +104,14 @@ namespace PasswordManager
             return httpClient;
         }
 
+        private static async Task EnsureSuccess(HttpResponseMessage response)
+        {
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var problemDetails = JsonSerializer.Deserialize<ProblemDetails>(json);
+                throw new ArgumentException(problemDetails.title);
+            }
+        }
     }
 }
