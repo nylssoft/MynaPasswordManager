@@ -31,6 +31,10 @@ namespace PasswordManager
 
         private bool uploading = false;
 
+        private bool requiresPass2 = false;
+
+        private string token;
+
         public CloudUploadWindow(Window owner, string title, List<Password> passwords)
         {
             Owner = owner;
@@ -48,6 +52,7 @@ namespace PasswordManager
             {
                 passwordBoxUser.Focus();
             }
+            textBoxCode.IsEnabled = false;
             UpdateControls();
         }
 
@@ -60,6 +65,15 @@ namespace PasswordManager
                 passwordBoxSecretKey.IsEnabled = false;
                 buttonCancel.IsEnabled = false;
                 buttonUpload.IsEnabled = false;
+            }
+            else if (requiresPass2)
+            {
+                textBoxUsername.IsEnabled = false;
+                passwordBoxUser.IsEnabled = false;
+                passwordBoxSecretKey.IsEnabled = false;
+                textBoxCode.IsEnabled = true;
+                buttonCancel.IsEnabled = true;
+                buttonUpload.IsEnabled = true;
             }
             else
             {
@@ -82,7 +96,25 @@ namespace PasswordManager
                 Cursor = Cursors.Wait;
                 uploading = true;
                 UpdateControls();
-                var token = await RestClient.Authenticate(textBoxUsername.Text, passwordBoxUser.Password);
+                if (requiresPass2)
+                {
+                    token = await RestClient.AuthenticatePass2(token, textBoxCode.Text);
+                    requiresPass2 = false;
+                }
+                else if (string.IsNullOrEmpty(token))
+                {
+                    var authResult = await RestClient.Authenticate(textBoxUsername.Text, passwordBoxUser.Password);
+                    token = authResult.Item1;
+                    requiresPass2 = authResult.Item2;
+                    if (requiresPass2)
+                    {
+                        Cursor = old;
+                        uploading = false;
+                        UpdateControls();
+                        textBoxCode.Focus();
+                        return;
+                    }
+                }
                 await RestClient.UploadPasswords(token, passwordBoxSecretKey.Password, passwords);
                 Cursor = old;
                 uploading = false;
@@ -94,9 +126,9 @@ namespace PasswordManager
             catch (Exception ex)
             {
                 Cursor = old;
+                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), Title, MessageBoxButton.OK, MessageBoxImage.Error);
                 uploading = false;
                 UpdateControls();
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

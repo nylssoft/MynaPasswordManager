@@ -538,6 +538,15 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2-_Factor authentication:.
+        /// </summary>
+        public static string LABEL_2FA {
+            get {
+                return ResourceManager.GetString("LABEL_2FA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to C_lear clipboard after (seconds):.
         /// </summary>
         public static string LABEL_AUTO_CLEAR_CLIPBOARD {
@@ -592,6 +601,24 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Co_nfirmation code:.
+        /// </summary>
+        public static string LABEL_CODE {
+            get {
+                return ResourceManager.GetString("LABEL_CODE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Co_nfirm email address:.
+        /// </summary>
+        public static string LABEL_CONFIRM_EMAIL {
+            get {
+                return ResourceManager.GetString("LABEL_CONFIRM_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm m_aster password:.
         /// </summary>
         public static string LABEL_CONFIRM_MASTER_PASSWORD {
@@ -633,6 +660,15 @@ namespace PasswordManager.Properties {
         public static string LABEL_DIGITS {
             get {
                 return ResourceManager.GetString("LABEL_DIGITS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _Email address:.
+        /// </summary>
+        public static string LABEL_EMAIL {
+            get {
+                return ResourceManager.GetString("LABEL_EMAIL", resourceCulture);
             }
         }
         

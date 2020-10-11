@@ -37,7 +37,13 @@ namespace PasswordManager
             public int status { get; set; }
         }
 
-        public static async Task<string> Authenticate(string username, string password)
+        private class AuthenticationResult
+        {
+            public string token { get; set; }
+            public bool requiresPass2 { get; set; }
+        }
+
+        public static async Task<(string,bool)> Authenticate(string username, string password)
         {
             var client = GetHttpClient();
             client.DefaultRequestHeaders.Remove("token");
@@ -49,11 +55,27 @@ namespace PasswordManager
             var response = await client.SendAsync(request);
             await EnsureSuccess(response);
             var res = await response.Content.ReadAsStringAsync();
-            var token = JsonSerializer.Deserialize<string>(res);
-            return token;
-    }
+            var authResult = JsonSerializer.Deserialize<AuthenticationResult>(res);
+            return (authResult.token, authResult.requiresPass2);
+        }
 
-    public static async Task UploadPasswords(string token, string secretKey, List<Password> passwords)
+        public static async Task<string> AuthenticatePass2(string token, string totp)
+        {
+            var client = GetHttpClient();
+            client.DefaultRequestHeaders.Remove("token");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("token", token);
+            var request = new HttpRequestMessage(HttpMethod.Post, "api/pwdman/auth2");
+            var totpjson = JsonSerializer.Serialize(totp);
+            request.Content = new StringContent(totpjson, Encoding.UTF8, "application/json");
+            var response = await client.SendAsync(request);
+            await EnsureSuccess(response);
+            var res = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<string>(res);
+        }
+
+        public static async Task UploadPasswords(string token, string secretKey, List<Password> passwords)
         {
             var client = GetHttpClient();
             client.DefaultRequestHeaders.Remove("token");
@@ -79,13 +101,18 @@ namespace PasswordManager
             await EnsureSuccess(response);
         }
 
-        public static async Task RegisterUser(string username, string password)
+        public static async Task RegisterUser(string username, string password, bool requires2FA, string email)
         {
             var client = GetHttpClient();
             client.DefaultRequestHeaders.Remove("token");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var authentication = JsonSerializer.Serialize(new { Username = username, Password = password });
+            var authentication = JsonSerializer.Serialize(new {
+                Username = username,
+                Password = password,
+                Requires2FA = requires2FA,
+                Email = email
+            });
             var request = new HttpRequestMessage(HttpMethod.Post, "api/pwdman/user");
             request.Content = new StringContent(authentication, Encoding.UTF8, "application/json");
             var response = await client.SendAsync(request);

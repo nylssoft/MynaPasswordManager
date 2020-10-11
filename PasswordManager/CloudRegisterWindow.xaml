@@ -7,10 +7,13 @@
         mc:Ignorable="d"
         Closing="Window_Closing"
         Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
-        Height="220" Width="600" Icon="Images/logo.png" ResizeMode="NoResize">
+        Height="310" Width="600" Icon="Images/logo.png" ResizeMode="NoResize">
     <Grid>
         <Grid Margin="10,10,10,10">
             <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
@@ -27,7 +30,13 @@
             <PasswordBox Grid.Row="1" Grid.Column="1" x:Name="passwordBoxUser" MaxLength="100" Height="23" PasswordChanged="OnChanged"/>
             <Label Grid.Row="2" Grid.Column="0" Content="{x:Static props:Resources.LABEL_CONFIRM_PASSWORD}" Target="{Binding ElementName=passwordBoxConfirm}" />
             <PasswordBox Grid.Row="2" Grid.Column="1" x:Name="passwordBoxConfirm" MaxLength="100" Height="23" PasswordChanged="OnChanged"/>
-            <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Label Grid.Row="3" Grid.Column="0" Content="{x:Static props:Resources.LABEL_2FA}" Target="{Binding ElementName=checkBoxRequires2FA}"/>
+            <CheckBox Grid.Row="3" Grid.Column="1" x:Name="checkBoxRequires2FA" VerticalAlignment="Center" IsChecked="true" Checked="OnChanged" Unchecked="OnChanged"/>
+            <Label Grid.Row="4" Grid.Column="0" Content="{x:Static props:Resources.LABEL_EMAIL}" Target="{Binding ElementName=textBoxEmail}"/>
+            <TextBox Grid.Row="4" Grid.Column="1" x:Name="textBoxEmail" Height="23" MaxLength="100" TextChanged="OnChanged" />
+            <Label Grid.Row="5" Grid.Column="0" Content="{x:Static props:Resources.LABEL_CONFIRM_EMAIL}" Target="{Binding ElementName=textBoxConfirmEmail}"/>
+            <TextBox Grid.Row="5" Grid.Column="1" x:Name="textBoxConfirmEmail" Height="23" MaxLength="100" TextChanged="OnChanged" />
+            <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="buttonRegister" IsDefault="True" Content="{x:Static props:Resources.BUTTON_REGISTER}" Height="23" Width="80" Margin="5,0,5,0" Click="ButtonRegister_Click" />
                 <Button x:Name="buttonCancel" IsCancel="True" Content="{x:Static props:Resources.BUTTON_CANCEL}" Height="23" Width="80" Margin="5,0,0,0" Click="ButtonCancel_Click" />
             </StackPanel>

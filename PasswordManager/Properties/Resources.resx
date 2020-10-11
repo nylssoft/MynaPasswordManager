@@ -276,6 +276,9 @@
   <data name="FILE_DIALOG_FILTER" xml:space="preserve">
     <value>Password files (*.pwd)|*.pwd|All files (*.*)|*.*</value>
   </data>
+  <data name="LABEL_2FA" xml:space="preserve">
+    <value>2-_Factor authentication:</value>
+  </data>
   <data name="LABEL_AUTOLOCK" xml:space="preserve">
     <value>Lock w_indow automatically</value>
   </data>
@@ -294,6 +297,12 @@
   <data name="LABEL_CLOUD_URL" xml:space="preserve">
     <value>Clo_ud URL:</value>
   </data>
+  <data name="LABEL_CODE" xml:space="preserve">
+    <value>Co_nfirmation code:</value>
+  </data>
+  <data name="LABEL_CONFIRM_EMAIL" xml:space="preserve">
+    <value>Co_nfirm email address:</value>
+  </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Confirm m_aster password:</value>
   </data>
@@ -308,6 +317,9 @@
   </data>
   <data name="LABEL_DIGITS" xml:space="preserve">
     <value>_Digits</value>
+  </data>
+  <data name="LABEL_EMAIL" xml:space="preserve">
+    <value>_Email address:</value>
   </data>
   <data name="LABEL_ENTER_MASTER_PASSWORD_FOR_0" xml:space="preserve">
     <value>Enter the master password for '{0}'.</value>

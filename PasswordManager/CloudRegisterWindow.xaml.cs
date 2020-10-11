@@ -26,6 +26,7 @@ namespace PasswordManager
     public partial class CloudRegisterWindow : Window
     {
         private bool uploading = false;
+        private bool init = true;
 
         public CloudRegisterWindow(Window owner, string title)
         {
@@ -34,6 +35,7 @@ namespace PasswordManager
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             Topmost = Settings.Default.Topmost;
             InitializeComponent();
+            init = false;
             textBoxUsername.Focus();
             UpdateControls();
         }
@@ -45,6 +47,9 @@ namespace PasswordManager
                 textBoxUsername.IsEnabled = false;
                 passwordBoxUser.IsEnabled = false;
                 passwordBoxConfirm.IsEnabled = false;
+                checkBoxRequires2FA.IsEnabled = false;
+                textBoxEmail.IsEnabled = false;
+                textBoxConfirmEmail.IsEnabled = false;
                 buttonCancel.IsEnabled = false;
                 buttonRegister.IsEnabled = false;
             }
@@ -53,11 +58,17 @@ namespace PasswordManager
                 textBoxUsername.IsEnabled = true;
                 passwordBoxUser.IsEnabled = true;
                 passwordBoxConfirm.IsEnabled = true;
+                checkBoxRequires2FA.IsEnabled = true;
+                textBoxEmail.IsEnabled = checkBoxRequires2FA.IsChecked == true;
+                textBoxConfirmEmail.IsEnabled = checkBoxRequires2FA.IsChecked == true;
                 buttonCancel.IsEnabled = true;
                 buttonRegister.IsEnabled =
                     textBoxUsername.Text.Length > 0 &&
                     passwordBoxUser.SecurePassword.Length > 0 &&
-                    passwordBoxConfirm.Password == passwordBoxUser.Password;
+                    passwordBoxConfirm.Password == passwordBoxUser.Password &&
+                    (checkBoxRequires2FA.IsChecked == false ||
+                    textBoxEmail.Text.Length > 0 &&
+                    textBoxConfirmEmail.Text == textBoxEmail.Text);
             }
         }
 
@@ -69,7 +80,8 @@ namespace PasswordManager
                 Cursor = Cursors.Wait;
                 uploading = true;
                 UpdateControls();
-                await RestClient.RegisterUser(textBoxUsername.Text, passwordBoxUser.Password);
+                string email = checkBoxRequires2FA.IsChecked == true ? textBoxEmail.Text : "";
+                await RestClient.RegisterUser(textBoxUsername.Text, passwordBoxUser.Password, checkBoxRequires2FA.IsChecked == true, textBoxEmail.Text);
                 Cursor = old;
                 uploading = false;
                 MessageBox.Show(Properties.Resources.CLOUD_REGISTER_SUCCEEDED, Title, MessageBoxButton.OK, MessageBoxImage.Information);
@@ -80,14 +92,20 @@ namespace PasswordManager
             catch (Exception ex)
             {
                 Cursor = old;
+                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), Title, MessageBoxButton.OK, MessageBoxImage.Error);
                 uploading = false;
                 UpdateControls();
-                MessageBox.Show(string.Format(Properties.Resources.ERROR_OCCURRED_0, ex.Message), this.Title, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void OnChanged(object sender, RoutedEventArgs e)
         {
+            if (init) return;
+            if (checkBoxRequires2FA.IsChecked == false)
+            {
+                textBoxEmail.Text = "";
+                textBoxConfirmEmail.Text = "";
+            }
             UpdateControls();
         }
 

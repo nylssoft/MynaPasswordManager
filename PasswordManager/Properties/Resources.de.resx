@@ -276,6 +276,9 @@
   <data name="FILE_DIALOG_FILTER" xml:space="preserve">
     <value>Passwort Dateien (*.pwd)|*.pwd|Alle Dateien (*.*)|*.*</value>
   </data>
+  <data name="LABEL_2FA" xml:space="preserve">
+    <value>2-_Faktor-Authentifizierung:</value>
+  </data>
   <data name="LABEL_AUTOLOCK" xml:space="preserve">
     <value>Fenster automatisch _sperren</value>
   </data>
@@ -294,6 +297,12 @@
   <data name="LABEL_CLOUD_URL" xml:space="preserve">
     <value>Clo_ud-URL:</value>
   </data>
+  <data name="LABEL_CODE" xml:space="preserve">
+    <value>_Bestätigungscode:</value>
+  </data>
+  <data name="LABEL_CONFIRM_EMAIL" xml:space="preserve">
+    <value>_Bestätigte E-Mail-Adresse:</value>
+  </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Bestätigtes Ha_uptpasswort:</value>
   </data>
@@ -308,6 +317,9 @@
   </data>
   <data name="LABEL_DIGITS" xml:space="preserve">
     <value>_Ziffern:</value>
+  </data>
+  <data name="LABEL_EMAIL" xml:space="preserve">
+    <value>_E-Mail-Adresse:</value>
   </data>
   <data name="LABEL_ENTER_MASTER_PASSWORD_FOR_0" xml:space="preserve">
     <value>Geben Sie das Hauptpasswort für '{0}' ein.</value>
