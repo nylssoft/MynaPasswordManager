@@ -115,20 +115,20 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Copy.
-        /// </summary>
-        public static string BUTTON_COPY_PASSWORD1 {
-            get {
-                return ResourceManager.GetString("BUTTON_COPY_PASSWORD1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to _Exit.
         /// </summary>
         public static string BUTTON_EXIT {
             get {
                 return ResourceManager.GetString("BUTTON_EXIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to L_ogin.
+        /// </summary>
+        public static string BUTTON_LOGIN {
+            get {
+                return ResourceManager.GetString("BUTTON_LOGIN", resourceCulture);
             }
         }
         
@@ -151,15 +151,6 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Register.
-        /// </summary>
-        public static string BUTTON_REGISTER {
-            get {
-                return ResourceManager.GetString("BUTTON_REGISTER", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Upl_oad.
         /// </summary>
         public static string BUTTON_UPLOAD {
@@ -169,11 +160,11 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cloud user has been registered succesfully..
+        ///   Looks up a localized string similar to Login successfully into the cloud..
         /// </summary>
-        public static string CLOUD_REGISTER_SUCCEEDED {
+        public static string CLOUD_LOGIN_SUCCEEDED {
             get {
-                return ResourceManager.GetString("CLOUD_REGISTER_SUCCEEDED", resourceCulture);
+                return ResourceManager.GetString("CLOUD_LOGIN_SUCCEEDED", resourceCulture);
             }
         }
         
@@ -232,11 +223,11 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Register cloud user....
+        ///   Looks up a localized string similar to _Login into cloud....
         /// </summary>
-        public static string CMD_CLOUD_REGISTER {
+        public static string CMD_CLOUD_LOGIN {
             get {
-                return ResourceManager.GetString("CMD_CLOUD_REGISTER", resourceCulture);
+                return ResourceManager.GetString("CMD_CLOUD_LOGIN", resourceCulture);
             }
         }
         
@@ -448,15 +439,6 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User is already registered or maximum number of registrations exceeded..
-        /// </summary>
-        public static string ERROR_CLOUD_REGISTER_FAILED {
-            get {
-                return ResourceManager.GetString("ERROR_CLOUD_REGISTER_FAILED", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Failed to upload password items..
         /// </summary>
         public static string ERROR_CLOUD_UPLOAD_FAILED {
@@ -538,15 +520,6 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2-_Factor authentication:.
-        /// </summary>
-        public static string LABEL_2FA {
-            get {
-                return ResourceManager.GetString("LABEL_2FA", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to C_lear clipboard after (seconds):.
         /// </summary>
         public static string LABEL_AUTO_CLEAR_CLIPBOARD {
@@ -583,11 +556,20 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to _Secret Key:.
+        ///   Looks up a localized string similar to Enter a key to encrypt the passwords in the cloud..
         /// </summary>
-        public static string LABEL_CLOUD_SECRET_KEY {
+        public static string LABEL_CLOUD_KEY_DESC {
             get {
-                return ResourceManager.GetString("LABEL_CLOUD_SECRET_KEY", resourceCulture);
+                return ResourceManager.GetString("LABEL_CLOUD_KEY_DESC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The security code was sent to the registered email address..
+        /// </summary>
+        public static string LABEL_CLOUD_PASS2 {
+            get {
+                return ResourceManager.GetString("LABEL_CLOUD_PASS2", resourceCulture);
             }
         }
         
@@ -601,20 +583,11 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Co_nfirmation code:.
+        ///   Looks up a localized string similar to _Security code:.
         /// </summary>
         public static string LABEL_CODE {
             get {
                 return ResourceManager.GetString("LABEL_CODE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Co_nfirm email address:.
-        /// </summary>
-        public static string LABEL_CONFIRM_EMAIL {
-            get {
-                return ResourceManager.GetString("LABEL_CONFIRM_EMAIL", resourceCulture);
             }
         }
         
@@ -660,15 +633,6 @@ namespace PasswordManager.Properties {
         public static string LABEL_DIGITS {
             get {
                 return ResourceManager.GetString("LABEL_DIGITS", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to _Email address:.
-        /// </summary>
-        public static string LABEL_EMAIL {
-            get {
-                return ResourceManager.GetString("LABEL_EMAIL", resourceCulture);
             }
         }
         
@@ -1001,11 +965,11 @@ namespace PasswordManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Register cloud user.
+        ///   Looks up a localized string similar to Login into cloud.
         /// </summary>
-        public static string TITLE_CLOUD_REGISTER {
+        public static string TITLE_CLOUD_LOGIN {
             get {
-                return ResourceManager.GetString("TITLE_CLOUD_REGISTER", resourceCulture);
+                return ResourceManager.GetString("TITLE_CLOUD_LOGIN", resourceCulture);
             }
         }
         

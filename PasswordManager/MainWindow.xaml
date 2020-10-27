@@ -30,7 +30,7 @@
         <CommandBinding Command="self:CustomCommands.Exit" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ChangeKeyDirectory" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.ChangeMasterPassword" CanExecute="Command_CanExecute" Executed="Command_Executed" />
-        <CommandBinding Command="self:CustomCommands.CloudRegister" CanExecute="Command_CanExecute" Executed="Command_Executed" />
+        <CommandBinding Command="self:CustomCommands.CloudLogin" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.CloudUpload" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.Add" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.Edit" CanExecute="Command_CanExecute" Executed="Command_Executed" />
@@ -86,7 +86,7 @@
                             <Separator />
                             <MenuItem Command="self:CustomCommands.Close" />
                             <Separator />
-                            <MenuItem Command="self:CustomCommands.CloudRegister" />
+                            <MenuItem Command="self:CustomCommands.CloudLogin" />
                             <MenuItem Command="self:CustomCommands.CloudUpload" />
                             <Separator />
                             <MenuItem Command="self:CustomCommands.ChangeMasterPassword" />

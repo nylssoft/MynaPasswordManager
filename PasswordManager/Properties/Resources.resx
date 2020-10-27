@@ -135,11 +135,11 @@
   <data name="BUTTON_COPY_PASSWORD" xml:space="preserve">
     <value>_Copy</value>
   </data>
-  <data name="BUTTON_COPY_PASSWORD1" xml:space="preserve">
-    <value>_Copy</value>
-  </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
     <value>_Exit</value>
+  </data>
+  <data name="BUTTON_LOGIN" xml:space="preserve">
+    <value>L_ogin</value>
   </data>
   <data name="BUTTON_NEW_PASSWORD" xml:space="preserve">
     <value>_New password</value>
@@ -147,14 +147,11 @@
   <data name="BUTTON_OK" xml:space="preserve">
     <value>_OK</value>
   </data>
-  <data name="BUTTON_REGISTER" xml:space="preserve">
-    <value>_Register</value>
-  </data>
   <data name="BUTTON_UPLOAD" xml:space="preserve">
     <value>Upl_oad</value>
   </data>
-  <data name="CLOUD_REGISTER_SUCCEEDED" xml:space="preserve">
-    <value>Cloud user has been registered succesfully.</value>
+  <data name="CLOUD_LOGIN_SUCCEEDED" xml:space="preserve">
+    <value>Login successfully into the cloud.</value>
   </data>
   <data name="CLOUD_UPLOAD_SUCCEEDED" xml:space="preserve">
     <value>All passwords successfully uploaded.</value>
@@ -174,8 +171,8 @@
   <data name="CMD_CLOSE" xml:space="preserve">
     <value>_Close</value>
   </data>
-  <data name="CMD_CLOUD_REGISTER" xml:space="preserve">
-    <value>_Register cloud user...</value>
+  <data name="CMD_CLOUD_LOGIN" xml:space="preserve">
+    <value>_Login into cloud...</value>
   </data>
   <data name="CMD_CLOUD_UPLOAD" xml:space="preserve">
     <value>_Upload passwords into cloud...</value>
@@ -246,9 +243,6 @@
   <data name="ERROR_CLOUD_LOGIN_FAILED" xml:space="preserve">
     <value>Invalid username/password specified or account is disabled.</value>
   </data>
-  <data name="ERROR_CLOUD_REGISTER_FAILED" xml:space="preserve">
-    <value>User is already registered or maximum number of registrations exceeded.</value>
-  </data>
   <data name="ERROR_CLOUD_UPLOAD_FAILED" xml:space="preserve">
     <value>Failed to upload password items.</value>
   </data>
@@ -276,9 +270,6 @@
   <data name="FILE_DIALOG_FILTER" xml:space="preserve">
     <value>Password files (*.pwd)|*.pwd|All files (*.*)|*.*</value>
   </data>
-  <data name="LABEL_2FA" xml:space="preserve">
-    <value>2-_Factor authentication:</value>
-  </data>
   <data name="LABEL_AUTOLOCK" xml:space="preserve">
     <value>Lock w_indow automatically</value>
   </data>
@@ -291,17 +282,17 @@
   <data name="LABEL_AUTO_HIDE_PASSWORD" xml:space="preserve">
     <value>_Hide password after (seconds):</value>
   </data>
-  <data name="LABEL_CLOUD_SECRET_KEY" xml:space="preserve">
-    <value>_Secret Key:</value>
+  <data name="LABEL_CLOUD_KEY_DESC" xml:space="preserve">
+    <value>Enter a key to encrypt the passwords in the cloud.</value>
+  </data>
+  <data name="LABEL_CLOUD_PASS2" xml:space="preserve">
+    <value>The security code was sent to the registered email address.</value>
   </data>
   <data name="LABEL_CLOUD_URL" xml:space="preserve">
     <value>Clo_ud URL:</value>
   </data>
   <data name="LABEL_CODE" xml:space="preserve">
-    <value>Co_nfirmation code:</value>
-  </data>
-  <data name="LABEL_CONFIRM_EMAIL" xml:space="preserve">
-    <value>Co_nfirm email address:</value>
+    <value>_Security code:</value>
   </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Confirm m_aster password:</value>
@@ -317,9 +308,6 @@
   </data>
   <data name="LABEL_DIGITS" xml:space="preserve">
     <value>_Digits</value>
-  </data>
-  <data name="LABEL_EMAIL" xml:space="preserve">
-    <value>_Email address:</value>
   </data>
   <data name="LABEL_ENTER_MASTER_PASSWORD_FOR_0" xml:space="preserve">
     <value>Enter the master password for '{0}'.</value>
@@ -433,8 +421,8 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   <data name="TITLE_CHANGE_MASTER_PASSWORD" xml:space="preserve">
     <value>Change master password</value>
   </data>
-  <data name="TITLE_CLOUD_REGISTER" xml:space="preserve">
-    <value>Register cloud user</value>
+  <data name="TITLE_CLOUD_LOGIN" xml:space="preserve">
+    <value>Login into cloud</value>
   </data>
   <data name="TITLE_CLOUD_UPLOAD" xml:space="preserve">
     <value>Upload passwords into cloud</value>

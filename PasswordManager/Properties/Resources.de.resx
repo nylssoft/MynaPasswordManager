@@ -135,11 +135,11 @@
   <data name="BUTTON_COPY_PASSWORD" xml:space="preserve">
     <value>_Kopieren</value>
   </data>
-  <data name="BUTTON_COPY_PASSWORD1" xml:space="preserve">
-    <value>_Copy</value>
-  </data>
   <data name="BUTTON_EXIT" xml:space="preserve">
     <value>_Beenden</value>
+  </data>
+  <data name="BUTTON_LOGIN" xml:space="preserve">
+    <value>A_nmelden</value>
   </data>
   <data name="BUTTON_NEW_PASSWORD" xml:space="preserve">
     <value>_Neues Passwort</value>
@@ -147,14 +147,11 @@
   <data name="BUTTON_OK" xml:space="preserve">
     <value>_OK</value>
   </data>
-  <data name="BUTTON_REGISTER" xml:space="preserve">
-    <value>_Registrieren</value>
-  </data>
   <data name="BUTTON_UPLOAD" xml:space="preserve">
     <value>_Hochladen</value>
   </data>
-  <data name="CLOUD_REGISTER_SUCCEEDED" xml:space="preserve">
-    <value>Cloud-Benutzer wurde erfolgreich registriert.</value>
+  <data name="CLOUD_LOGIN_SUCCEEDED" xml:space="preserve">
+    <value>Die Anmeldung war erfolgreich.</value>
   </data>
   <data name="CLOUD_UPLOAD_SUCCEEDED" xml:space="preserve">
     <value>Alle Passwörter wurden erfolgreich hochgeladen.</value>
@@ -174,8 +171,8 @@
   <data name="CMD_CLOSE" xml:space="preserve">
     <value>S_chließen</value>
   </data>
-  <data name="CMD_CLOUD_REGISTER" xml:space="preserve">
-    <value>Cloud-_Benutzer registrieren...</value>
+  <data name="CMD_CLOUD_LOGIN" xml:space="preserve">
+    <value>_Anmelden in der Cloud...</value>
   </data>
   <data name="CMD_CLOUD_UPLOAD" xml:space="preserve">
     <value>_Passwörter in Cloud hochladen...</value>
@@ -246,9 +243,6 @@
   <data name="ERROR_CLOUD_LOGIN_FAILED" xml:space="preserve">
     <value>Ungültiger Benutzername/Kennwort oder das Konto wurde gesperrt.</value>
   </data>
-  <data name="ERROR_CLOUD_REGISTER_FAILED" xml:space="preserve">
-    <value>Cloud-Benutzer wurde schon registriert oder die maximale Anzahl der Registrierungen ist überschritten.</value>
-  </data>
   <data name="ERROR_CLOUD_UPLOAD_FAILED" xml:space="preserve">
     <value>Die Passwörter können nicht hochgeladen werden.</value>
   </data>
@@ -276,9 +270,6 @@
   <data name="FILE_DIALOG_FILTER" xml:space="preserve">
     <value>Passwort Dateien (*.pwd)|*.pwd|Alle Dateien (*.*)|*.*</value>
   </data>
-  <data name="LABEL_2FA" xml:space="preserve">
-    <value>2-_Faktor-Authentifizierung:</value>
-  </data>
   <data name="LABEL_AUTOLOCK" xml:space="preserve">
     <value>Fenster automatisch _sperren</value>
   </data>
@@ -291,17 +282,17 @@
   <data name="LABEL_AUTO_HIDE_PASSWORD" xml:space="preserve">
     <value>_Verstecke Passwort nach (Sekunden):</value>
   </data>
-  <data name="LABEL_CLOUD_SECRET_KEY" xml:space="preserve">
-    <value>_Geheimer Schlüssel:</value>
+  <data name="LABEL_CLOUD_KEY_DESC" xml:space="preserve">
+    <value>Geben Sie einen Schlüssel ein, um die Passwörter in der Cloud zu verschlüsseln.</value>
+  </data>
+  <data name="LABEL_CLOUD_PASS2" xml:space="preserve">
+    <value>Der Sicherheitscode für die Zwei-Schritt-Verifizierung wurde an die registrierte E-Mail-Adresse gesendet.</value>
   </data>
   <data name="LABEL_CLOUD_URL" xml:space="preserve">
     <value>Clo_ud-URL:</value>
   </data>
   <data name="LABEL_CODE" xml:space="preserve">
-    <value>_Bestätigungscode:</value>
-  </data>
-  <data name="LABEL_CONFIRM_EMAIL" xml:space="preserve">
-    <value>_Bestätigte E-Mail-Adresse:</value>
+    <value>_Sicherheitscode:</value>
   </data>
   <data name="LABEL_CONFIRM_MASTER_PASSWORD" xml:space="preserve">
     <value>Bestätigtes Ha_uptpasswort:</value>
@@ -317,9 +308,6 @@
   </data>
   <data name="LABEL_DIGITS" xml:space="preserve">
     <value>_Ziffern:</value>
-  </data>
-  <data name="LABEL_EMAIL" xml:space="preserve">
-    <value>_E-Mail-Adresse:</value>
   </data>
   <data name="LABEL_ENTER_MASTER_PASSWORD_FOR_0" xml:space="preserve">
     <value>Geben Sie das Hauptpasswort für '{0}' ein.</value>
@@ -433,8 +421,8 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   <data name="TITLE_CHANGE_MASTER_PASSWORD" xml:space="preserve">
     <value>Hauptpasswort ändern</value>
   </data>
-  <data name="TITLE_CLOUD_REGISTER" xml:space="preserve">
-    <value>Cloud-Benutzer registrieren</value>
+  <data name="TITLE_CLOUD_LOGIN" xml:space="preserve">
+    <value>In der Cloud anmelden</value>
   </data>
   <data name="TITLE_CLOUD_UPLOAD" xml:space="preserve">
     <value>Passwörter in die Cloud hochladen</value>

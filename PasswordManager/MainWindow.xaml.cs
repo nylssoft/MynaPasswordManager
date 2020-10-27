@@ -39,6 +39,7 @@ namespace PasswordManager
         private int reenterPasswordAfterSec = 300; // reenter password after 5 minutes being idle, 0 to disable
 
         private PasswordRepository passwordRepository;
+        private SecureString cloudAuthenticationToken;
         private string passwordFilename;
         private SecureString passwordSecureString;
 
@@ -297,11 +298,11 @@ namespace PasswordManager
                 case "ChangeMasterPassword":
                     e.CanExecute = hasRepository;
                     break;
-                case "CloudUpload":
+                case "CloudLogin":
                     e.CanExecute = hasRepository && Settings.Default.CloudUrl.Length > 0;
                     break;
-                case "CloudRegister":
-                    e.CanExecute = Settings.Default.CloudUrl.Length > 0;
+                case "CloudUpload":
+                    e.CanExecute = cloudAuthenticationToken != null;
                     break;
                 case "Edit":
                     e.CanExecute = selected == 1;
@@ -356,11 +357,11 @@ namespace PasswordManager
                 case "ChangeMasterPassword":
                     ChangeMasterPassword();
                     break;
+                case "CloudLogin":
+                    CloudLogin();
+                    break;
                 case "CloudUpload":
                     CloudUpload();
-                    break;
-                case "CloudRegister":
-                    CloudRegister();
                     break;
                 case "Properties":
                     ShowProperties();
@@ -1274,7 +1275,7 @@ namespace PasswordManager
         {
             try
             {
-                if (passwordRepository == null)
+                if (passwordRepository == null || cloudAuthenticationToken == null)
                 {
                     return;
                 }
@@ -1282,7 +1283,7 @@ namespace PasswordManager
                 {
                     return;
                 }
-                var dlg = new CloudUploadWindow(this, Properties.Resources.TITLE_CLOUD_UPLOAD, passwordRepository.Passwords);
+                var dlg = new CloudUploadWindow(this, Properties.Resources.TITLE_CLOUD_UPLOAD, cloudAuthenticationToken, passwordRepository.Passwords);
                 dlg.ShowDialog();
             }
             catch (Exception ex)
@@ -1291,7 +1292,7 @@ namespace PasswordManager
             }
         }
 
-        private void CloudRegister()
+        private void CloudLogin()
         {
             try
             {
@@ -1303,8 +1304,11 @@ namespace PasswordManager
                 {
                     return;
                 }
-                var dlg = new CloudRegisterWindow(this, Properties.Resources.TITLE_CLOUD_REGISTER);
-                dlg.ShowDialog();
+                var dlg = new CloudLoginWindow(this, Properties.Resources.TITLE_CLOUD_LOGIN);
+                if (dlg.ShowDialog() == true)
+                {
+                    cloudAuthenticationToken = dlg.CloudToken;
+                }
             }
             catch (Exception ex)
             {

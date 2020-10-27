@@ -20,6 +20,7 @@ using PasswordManager.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Security;
 using System.Windows;
 using System.Windows.Input;
 
@@ -31,28 +32,18 @@ namespace PasswordManager
 
         private bool uploading = false;
 
-        private bool requiresPass2 = false;
+        private SecureString authenticationToken;
 
-        private string token;
-
-        public CloudUploadWindow(Window owner, string title, List<Password> passwords)
+        public CloudUploadWindow(Window owner, string title, SecureString authenticationToken, List<Password> passwords)
         {
             Owner = owner;
             Title = title;
             this.passwords = passwords;
+            this.authenticationToken = authenticationToken;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             Topmost = Settings.Default.Topmost;
             InitializeComponent();
-            textBoxUsername.Text = Settings.Default.CloudUsername;
-            if (textBoxUsername.Text.Length == 0)
-            {
-                textBoxUsername.Focus();
-            }
-            else
-            {
-                passwordBoxUser.Focus();
-            }
-            textBoxCode.IsEnabled = false;
+            passwordBoxSecretKey.Focus();
             UpdateControls();
         }
 
@@ -60,31 +51,15 @@ namespace PasswordManager
         {
             if (uploading)
             {
-                textBoxUsername.IsEnabled = false;
-                passwordBoxUser.IsEnabled = false;
                 passwordBoxSecretKey.IsEnabled = false;
                 buttonCancel.IsEnabled = false;
                 buttonUpload.IsEnabled = false;
             }
-            else if (requiresPass2)
-            {
-                textBoxUsername.IsEnabled = false;
-                passwordBoxUser.IsEnabled = false;
-                passwordBoxSecretKey.IsEnabled = false;
-                textBoxCode.IsEnabled = true;
-                buttonCancel.IsEnabled = true;
-                buttonUpload.IsEnabled = true;
-            }
             else
             {
-                textBoxUsername.IsEnabled = true;
-                passwordBoxUser.IsEnabled = true;
                 passwordBoxSecretKey.IsEnabled = true;
                 buttonCancel.IsEnabled = true;                
-                buttonUpload.IsEnabled =
-                    textBoxUsername.Text.Length > 0 &&
-                    passwordBoxUser.SecurePassword.Length > 0 &&
-                    passwordBoxSecretKey.SecurePassword.Length > 0;
+                buttonUpload.IsEnabled = passwordBoxSecretKey.SecurePassword.Length >= 8;
             }
         }
 
@@ -96,30 +71,10 @@ namespace PasswordManager
                 Cursor = Cursors.Wait;
                 uploading = true;
                 UpdateControls();
-                if (requiresPass2)
-                {
-                    token = await RestClient.AuthenticatePass2(token, textBoxCode.Text);
-                    requiresPass2 = false;
-                }
-                else if (string.IsNullOrEmpty(token))
-                {
-                    var authResult = await RestClient.Authenticate(textBoxUsername.Text, passwordBoxUser.Password);
-                    token = authResult.Item1;
-                    requiresPass2 = authResult.Item2;
-                    if (requiresPass2)
-                    {
-                        Cursor = old;
-                        uploading = false;
-                        UpdateControls();
-                        textBoxCode.Focus();
-                        return;
-                    }
-                }
-                await RestClient.UploadPasswords(token, passwordBoxSecretKey.Password, passwords);
+                await RestClient.UploadPasswords(authenticationToken.GetAsString(), passwordBoxSecretKey.Password, passwords);
                 Cursor = old;
                 uploading = false;
                 MessageBox.Show(Properties.Resources.CLOUD_UPLOAD_SUCCEEDED, Title, MessageBoxButton.OK, MessageBoxImage.Information);
-                Settings.Default.CloudUsername = textBoxUsername.Text;
                 DialogResult = true;
                 Close();
             }

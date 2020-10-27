@@ -101,24 +101,6 @@ namespace PasswordManager
             await EnsureSuccess(response);
         }
 
-        public static async Task RegisterUser(string username, string password, bool requires2FA, string email)
-        {
-            var client = GetHttpClient();
-            client.DefaultRequestHeaders.Remove("token");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            var authentication = JsonSerializer.Serialize(new {
-                Username = username,
-                Password = password,
-                Requires2FA = requires2FA,
-                Email = email
-            });
-            var request = new HttpRequestMessage(HttpMethod.Post, "api/pwdman/user");
-            request.Content = new StringContent(authentication, Encoding.UTF8, "application/json");
-            var response = await client.SendAsync(request);
-            await EnsureSuccess(response);
-        }
-
         private static HttpClient GetHttpClient()
         {
             if (httpClient == null || httpClient.BaseAddress != new Uri(Settings.Default.CloudUrl))
