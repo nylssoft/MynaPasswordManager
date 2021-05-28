@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017 Niels Stockfleth
+    Copyright (C) 2017-2021 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace PasswordManager
 {
@@ -32,12 +31,8 @@ namespace PasswordManager
         {
             if (File.Exists(MappingFile))
             {
-                var formatter = new BinaryFormatter();
-                List<Tuple<string, string>> list;
-                using (var fs = new FileStream(MappingFile, FileMode.Open))
-                {
-                    list = (List<Tuple<string, string>>)formatter.Deserialize(fs);
-                }
+                var json = File.ReadAllText(MappingFile);
+                var list = System.Text.Json.JsonSerializer.Deserialize<List<Tuple<string, string>>>(json);
                 lock (mappings)
                 {
                     foreach (var item in list)
@@ -50,22 +45,19 @@ namespace PasswordManager
 
         public void Save()
         {
-            var formatter = new BinaryFormatter();
-            using (var fs = new FileStream(MappingFile, FileMode.Create))
+            var list = new List<Tuple<string, string>>();
+            lock (mappings)
             {
-                var list = new List<Tuple<string, string>>();
-                lock (mappings)
+                foreach (var entry in mappings)
                 {
-                    foreach (var entry in mappings)
+                    if (!string.IsNullOrEmpty(entry.Value))
                     {
-                        if (!string.IsNullOrEmpty(entry.Value))
-                        {
-                            list.Add(Tuple.Create(entry.Key, entry.Value));
-                        }
+                        list.Add(Tuple.Create(entry.Key, entry.Value));
                     }
                 }
-                formatter.Serialize(fs, list);
             }
+            var json = System.Text.Json.JsonSerializer.Serialize(list);
+            File.WriteAllText(MappingFile, json);
         }
     }
 }

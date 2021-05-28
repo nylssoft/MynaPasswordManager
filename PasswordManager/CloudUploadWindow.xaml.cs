@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017-2020 Niels Stockfleth
+    Copyright (C) 2017-2021 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -71,7 +71,8 @@ namespace PasswordManager
                 Cursor = Cursors.Wait;
                 uploading = true;
                 UpdateControls();
-                await RestClient.UploadPasswords(authenticationToken.GetAsString(), passwordBoxSecretKey.Password, passwords);
+                var userSalt = await RestClient.GetUserSalt(authenticationToken.GetAsString());
+                await RestClient.UploadPasswords(authenticationToken.GetAsString(), userSalt, passwordBoxSecretKey.Password, passwords);
                 Cursor = old;
                 uploading = false;
                 MessageBox.Show(Properties.Resources.CLOUD_UPLOAD_SUCCEEDED, Title, MessageBoxButton.OK, MessageBoxImage.Information);

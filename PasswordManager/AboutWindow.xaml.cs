@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017 Niels Stockfleth
+    Copyright (C) 2017-2021 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,13 +28,11 @@ namespace PasswordManager
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             Topmost = Properties.Settings.Default.Topmost;
             var assembly = Assembly.GetExecutingAssembly();
-            var productAttribute = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), true);
-            var versionAttribute = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyFileVersionAttribute), true);
+            var productAttribute = assembly.GetCustomAttributes(typeof(AssemblyProductAttribute), true);
+            var versionAttribute = assembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute), true);
             if (productAttribute.Length > 0 && versionAttribute.Length > 0)
             {
-                var p = productAttribute[0] as AssemblyProductAttribute;
-                var v = versionAttribute[0] as AssemblyFileVersionAttribute;
-                if (p != null && v != null)
+                if (productAttribute[0] is AssemblyProductAttribute p && versionAttribute[0] is AssemblyFileVersionAttribute v)
                 {
                     Title = $"{p.Product} Version {v.Version}";
                 }

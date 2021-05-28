@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017 Niels Stockfleth
+    Copyright (C) 2017-2021 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ namespace PasswordManager
             this.cacheDirectory = cacheDirectory;
         }
 
-        protected override string MappingFile => $"{cacheDirectory}\\mapping.bin";
+        protected override string MappingFile => $"{cacheDirectory}\\mapping.json";
 
         public async Task<string> GetImageFileNameAsync(string url)
         {

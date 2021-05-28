@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017-2020 Niels Stockfleth
+    Copyright (C) 2017-2021 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -647,29 +647,13 @@ namespace PasswordManager
                 if (!url.StartsWith("http://") && !url.StartsWith("https://"))
                 {
                     url = $"https://{url}";
-                    if (!IsUrlValid(url))
-                    {
-                        url = $"http://{itemurl.ToLowerInvariant()}";
-                    }
                 }
-                Process.Start(url);
+                url = url.Replace("&", "^&");
+                Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
             }
             catch (Exception ex)
             {
                 HandleError(ex);
-            }
-        }
-
-        private bool IsUrlValid(string url)
-        {
-            try
-            {
-                WebRequest.Create(url).GetResponse();
-                return true;
-            }
-            catch
-            {
-                return false;
             }
         }
 
