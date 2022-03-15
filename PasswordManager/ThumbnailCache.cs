@@ -46,6 +46,7 @@ namespace PasswordManager
 
         public string GetImageFileName(string url)
         {
+            string fn = null;
             var domainName = GetDomainNameFromUrl(url);
             if (!string.IsNullOrEmpty(domainName))
             {
@@ -61,29 +62,25 @@ namespace PasswordManager
                 }
                 try
                 {
-                    string fn = $"{cacheDirectory}\\{domainName}.{IMAGE_SUFFIX}";
+                    fn = $"{cacheDirectory}\\{domainName}.{IMAGE_SUFFIX}";
                     if (!File.Exists(fn))
                     {
                         var webclient = new WebClient();
                         Debug.WriteLine($"Download favicon for {domainName} to file {fn}.");
                         webclient.DownloadFile($"http://www.google.com/s2/favicons?domain={domainName}", fn);
                     }
-                    lock (mappings)
-                    {
-                        mappings.Add(domainName, fn);
-                    }
-                    return fn;
                 }
                 catch (Exception ex)
                 {
                     Debug.WriteLine($"Failed to download favicon for domain {domainName}. {ex.Message}");
-                    lock (mappings)
-                    {
-                        mappings.Add(domainName, null);
-                    }
+                    fn = null;
+                }
+                lock (mappings)
+                {
+                    mappings[domainName] = fn;
                 }
             }
-            return null;
+            return fn;
         }
 
         private static string GetDomainNameFromUrl(string url)

@@ -33,7 +33,7 @@ namespace PasswordManager
             if (File.Exists(MappingFile))
             {
                 var json = File.ReadAllText(MappingFile);
-                var list = System.Text.Json.JsonSerializer.Deserialize<List<Tuple<string, string>>>(json);
+                var list = JsonSerializer.Deserialize<List<Tuple<string, string>>>(json);
                 lock (mappings)
                 {
                     foreach (var item in list)
