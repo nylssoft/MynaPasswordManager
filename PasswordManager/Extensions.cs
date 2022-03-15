@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017 Niels Stockfleth
+    Copyright (C) 2017-2022 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,20 +30,18 @@ namespace PasswordManager
 
         public static void RestorePosition(this Window window, double left, double top, double width, double height)
         {
-            var virtualWidth = System.Windows.SystemParameters.VirtualScreenWidth;
-            var virtualHeight = System.Windows.SystemParameters.VirtualScreenHeight;
-            height = Math.Min(height, virtualHeight);
-            width = Math.Min(width, virtualWidth);
-            if (width >= window.MinWidth && height >= window.MinHeight)
+            var vh = SystemParameters.VirtualScreenHeight;
+            var vw = SystemParameters.VirtualScreenWidth;
+            var vl = SystemParameters.VirtualScreenLeft;
+            var vt = SystemParameters.VirtualScreenTop;
+            height = Math.Min(height, vh);
+            width = Math.Min(width, vw);
+            left = Math.Min(left, vw - width);
+            top = Math.Min(top, vh - height);
+            if (left >= vl && left <= vw - width &&
+                top >= vt && top <= vh - height &&
+                width >= window.MinWidth && height >= window.MinHeight)
             {
-                if (top + height / 2 > virtualHeight)
-                {
-                    top = virtualHeight - height;
-                }
-                if (left + width / 2 > virtualWidth)
-                {
-                    left = virtualWidth - width;
-                }
                 window.Left = left;
                 window.Top = top;
                 window.Width = width;

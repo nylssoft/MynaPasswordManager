@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017-2020 Niels Stockfleth
+    Copyright (C) 2017-2022 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,12 +30,15 @@ namespace PasswordManager
 
         private bool waiting = false;
 
+        private ClientInfo ClientInfo { get; set; } = null;
+
         public SecureString CloudToken { get; set; }
 
-        public CloudLoginWindow(Window owner, string title)
+        public CloudLoginWindow(Window owner, string title, ClientInfo clientInfo)
         {
             Owner = owner;
             Title = title;
+            ClientInfo = clientInfo;
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             Topmost = Settings.Default.Topmost;
             InitializeComponent();
@@ -102,7 +105,7 @@ namespace PasswordManager
                 }
                 else if (string.IsNullOrEmpty(pass1token))
                 {
-                    var authResult = await RestClient.Authenticate(textBoxUsername.Text, passwordBoxUser.Password);
+                    var authResult = await RestClient.Authenticate(textBoxUsername.Text, passwordBoxUser.Password, ClientInfo);
                     CloudToken = new SecureString();
                     foreach (var c in authResult.Item1)
                     {

@@ -286,7 +286,7 @@
     <value>Geben Sie einen Schlüssel ein, um die Passwörter in der Cloud zu verschlüsseln.</value>
   </data>
   <data name="LABEL_CLOUD_PASS2" xml:space="preserve">
-    <value>Der Sicherheitscode für die Zwei-Schritt-Verifizierung wurde an die registrierte E-Mail-Adresse gesendet.</value>
+    <value>Geben Sie den Sicherheitscode für die Zwei-Schritt-Verifizierung ein.</value>
   </data>
   <data name="LABEL_CLOUD_URL" xml:space="preserve">
     <value>Clo_ud-URL:</value>
@@ -403,7 +403,7 @@
     <value>1 Element ausgewählt.</value>
   </data>
   <data name="TEXT_COPYRIGHT" xml:space="preserve">
-    <value>Copyright 2017-2021 Niels Stockfleth
+    <value>Copyright 2017-2022 Niels Stockfleth
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

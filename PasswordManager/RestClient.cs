@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017-2021 Niels Stockfleth
+    Copyright (C) 2017-2022 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -60,14 +60,20 @@ namespace PasswordManager
             public string Password { get; set; }
         }
 
-        public static async Task<(string,bool)> Authenticate(string username, string password)
+        public static async Task<(string,bool)> Authenticate(string username, string password, ClientInfo clientInfo)
         {
             var client = GetHttpClient();
             client.DefaultRequestHeaders.Remove("token");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             var request = new HttpRequestMessage(HttpMethod.Post, "api/pwdman/auth");
-            var authentication = JsonSerializer.Serialize(new { Username = username, Password = password });
+            var authentication = JsonSerializer.Serialize(new
+            {
+                Username = username,
+                Password = password,
+                ClientUUID = clientInfo?.UUID,
+                ClientName = clientInfo?.Name
+            });
             request.Content = new StringContent(authentication, Encoding.UTF8, "application/json");
             var response = await client.SendAsync(request);
             await EnsureSuccess(response);

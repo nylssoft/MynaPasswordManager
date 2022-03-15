@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017-2021 Niels Stockfleth
+    Copyright (C) 2017-2022 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,8 +22,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
+using System.Reflection;
 using System.Security;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -68,6 +69,8 @@ namespace PasswordManager
 
         private PwdGenWindow pwdGenWindow = null;
 
+        private ClientInfo ClientInfo { get; set; } = null;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -111,11 +114,11 @@ namespace PasswordManager
                     if (tsidle.TotalSeconds > reenterPasswordAfterSec)
                     {
                         reenterPassword = true;
-                        if (Properties.Settings.Default.AutoLockWindow)
+                        if (Settings.Default.AutoLockWindow)
                         {
                             gridMain.Visibility = Visibility.Hidden;
                             gridLock.Visibility = Visibility.Visible;
-                            if (Properties.Settings.Default.AutoMinimizeWindow)
+                            if (Settings.Default.AutoMinimizeWindow)
                             {
                                 WindowState = WindowState.Minimized;
                             }
@@ -163,12 +166,12 @@ namespace PasswordManager
                         }
                         if (WindowState == WindowState.Normal)
                         {
-                            Properties.Settings.Default.Left = Left;
-                            Properties.Settings.Default.Top = Top;
-                            Properties.Settings.Default.Width = Width;
-                            Properties.Settings.Default.Height = Height;
+                            Settings.Default.Left = Left;
+                            Settings.Default.Top = Top;
+                            Settings.Default.Width = Width;
+                            Settings.Default.Height = Height;
                         }
-                        Properties.Settings.Default.Save();
+                        Settings.Default.Save();
                         if (thumbnailCache != null)
                         {
                             thumbnailCache.Save();
@@ -249,8 +252,7 @@ namespace PasswordManager
         private void Command_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             RoutedUICommand r = e.Command as RoutedUICommand;
-            if (r == null ||
-                Properties.Settings.Default.AutoLockWindow && reenterPassword)
+            if (r == null || Settings.Default.AutoLockWindow && reenterPassword)
             {
                 e.CanExecute = false;
                 return;
@@ -317,7 +319,7 @@ namespace PasswordManager
                     e.CanExecute = selected >= 1;
                     break;
                 case "TogglePassword":
-                    e.CanExecute = selected >= 1 && Properties.Settings.Default.ShowPasswordColumn;
+                    e.CanExecute = selected >= 1 && Settings.Default.ShowPasswordColumn;
                     break;
                 case "OpenURL":
                     e.CanExecute = selected == 1 && hasUrl;
@@ -419,21 +421,22 @@ namespace PasswordManager
 
         private void Init()
         {
+            InitClientInfo();
             this.RestorePosition(
-                Properties.Settings.Default.Left,
-                Properties.Settings.Default.Top,
-                Properties.Settings.Default.Width,
-                Properties.Settings.Default.Height);
-            Topmost = Properties.Settings.Default.Topmost;
-            autoClearClipboardAfterSec = Properties.Settings.Default.AutoClearClipboard;
-            autoHidePasswordAfterSec = Properties.Settings.Default.AutoHidePassword;
-            reenterPasswordAfterSec = Properties.Settings.Default.ReenterPassword;
+                Settings.Default.Left,
+                Settings.Default.Top,
+                Settings.Default.Width,
+                Settings.Default.Height);
+            Topmost = Settings.Default.Topmost;
+            autoClearClipboardAfterSec = Settings.Default.AutoClearClipboard;
+            autoHidePasswordAfterSec = Settings.Default.AutoHidePassword;
+            reenterPasswordAfterSec = Settings.Default.ReenterPassword;
             menuItemImageShow = new Image{ Source = imageShow16x16, Height=16, Width=16 };
             menuItemImageHide = new Image{ Source = imageHide16x16, Height = 16, Width = 16 };
             menuItemImageShowDisabled = new Image { Source = imageShow16x16, Opacity = 0.5, Height = 16, Width = 16 };
             contextMenuItemImageShow = new Image { Source = imageShow16x16, Height = 16, Width = 16 };
             contextMenuItemImageHide = new Image { Source = imageHide16x16, Height = 16, Width = 16 };
-            var cacheDirectory = Properties.Settings.Default.CacheDirectory.ReplaceSpecialFolder();
+            var cacheDirectory = Settings.Default.CacheDirectory.ReplaceSpecialFolder();
             PrepareDirectory(cacheDirectory);
             keyDirectoryCache = new KeyDirectoryCache(cacheDirectory);
             keyDirectoryCache.Load();
@@ -443,7 +446,7 @@ namespace PasswordManager
             UpdateToolbar();
             SortListView();
             UpdateControls();
-            var filename = Properties.Settings.Default.LastUsedRepositoryFile;
+            var filename = Settings.Default.LastUsedRepositoryFile;
             if (!string.IsNullOrEmpty(filename) && File.Exists(filename))
             {
                 OpenRepository(filename, true);
@@ -458,7 +461,7 @@ namespace PasswordManager
         {
             if (listView.View is GridView gv)
             {
-                if (!Properties.Settings.Default.ShowLoginColumn)
+                if (!Settings.Default.ShowLoginColumn)
                 {
                     gv.Columns.Remove(gridViewColumnLogin);
                 }
@@ -473,7 +476,7 @@ namespace PasswordManager
         {
             if (listView.View is GridView gv)
             {
-                if (!Properties.Settings.Default.ShowPasswordColumn)
+                if (!Settings.Default.ShowPasswordColumn)
                 {
                     gv.Columns.Remove(gridViewColumnPassword);
                 }
@@ -487,12 +490,12 @@ namespace PasswordManager
         private void UpdateToolbar()
         {
             var g = grid.RowDefinitions[1].Height;
-            if (g.IsAuto && !Properties.Settings.Default.ShowToolbar)
+            if (g.IsAuto && !Settings.Default.ShowToolbar)
             {
                 grid.RowDefinitions[1].Height = new GridLength(0.0);
                 toolbarTray.Visibility = Visibility.Hidden;
             }
-            else if (!g.IsAuto && Properties.Settings.Default.ShowToolbar)
+            else if (!g.IsAuto && Settings.Default.ShowToolbar)
             {
                 grid.RowDefinitions[1].Height = new GridLength(30, GridUnitType.Auto);
                 toolbarTray.Visibility = Visibility.Visible;
@@ -515,6 +518,49 @@ namespace PasswordManager
                     if (!Directory.Exists(path))
                     {
                         Directory.CreateDirectory(path);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+        }
+
+        private void InitClientInfo()
+        {
+            try
+            {
+                var initDir = Settings.Default.InitialDirectory.ReplaceSpecialFolder();
+                if (!string.IsNullOrEmpty(initDir))
+                {
+                    if (!Directory.Exists(initDir))
+                    {
+                        Directory.CreateDirectory(initDir);
+                    }
+                    var clientInfoFile = Path.Combine(initDir, "ClientInfo.json");
+                    if (File.Exists(clientInfoFile))
+                    {
+                        ClientInfo = JsonSerializer.Deserialize<ClientInfo>(File.ReadAllText(clientInfoFile));
+                    }
+                    else
+                    {
+                        ClientInfo = new ClientInfo();
+                        ClientInfo.UUID = Guid.NewGuid().ToString();
+                        ClientInfo.Name = "MynaPasswordManager";
+                        var assembly = Assembly.GetExecutingAssembly();
+                        var productAttribute = assembly.GetCustomAttributes(typeof(AssemblyProductAttribute), true);
+                        var versionAttribute = assembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute), true);
+                        if (productAttribute.Length > 0 && versionAttribute.Length > 0)
+                        {
+                            if (productAttribute[0] is AssemblyProductAttribute p && versionAttribute[0] is AssemblyFileVersionAttribute v)
+                            {
+                                ClientInfo.Name = $"{p.Product} Version {v.Version}";
+                            }
+                        }
+                        ClientInfo.Name += $" - {Environment.MachineName}";
+                        var str = JsonSerializer.Serialize(ClientInfo, new JsonSerializerOptions { WriteIndented = true });
+                        File.WriteAllText(clientInfoFile, str);
                     }
                 }
             }
@@ -558,9 +604,9 @@ namespace PasswordManager
                     Title += " *";
                 }
             }
-            menuItemShowLoginColumn.IsChecked = Properties.Settings.Default.ShowLoginColumn;
-            menuItemShowPasswordColumn.IsChecked = Properties.Settings.Default.ShowPasswordColumn;
-            menuItemShowToolbar.IsChecked = Properties.Settings.Default.ShowToolbar;
+            menuItemShowLoginColumn.IsChecked = Settings.Default.ShowLoginColumn;
+            menuItemShowPasswordColumn.IsChecked = Settings.Default.ShowPasswordColumn;
+            menuItemShowToolbar.IsChecked = Settings.Default.ShowToolbar;
             UpdateStatus();
         }
 
@@ -714,17 +760,13 @@ namespace PasswordManager
                     passwordRepository.Update(w.Password);
                     item.Update(w.Password);
                     UpdateControls();
-                    if (!string.Equals(oldurl, w.Password.Url))
+                    if (thumbnailCache != null && !string.Equals(oldurl, w.Password.Url) && !string.IsNullOrEmpty(item.Password.Url))
                     {
-                        if (thumbnailCache != null &&
-                            !string.IsNullOrEmpty(item.Password.Url))
+                        var image = imageKey16x16;
+                        var filename = await thumbnailCache.GetImageFileNameAsync(item.Password.Url);
+                        if (!string.IsNullOrEmpty(filename))
                         {
-                            var image = imageKey16x16;
-                            var filename = await thumbnailCache.GetImageFileNameAsync(item.Password.Url);
-                            if (!string.IsNullOrEmpty(filename))
-                            {
-                                item.Image = new BitmapImage(new Uri(filename));
-                            }
+                            item.Image = new BitmapImage(new Uri(filename));
                         }
                     }
                     SortListView();
@@ -924,7 +966,7 @@ namespace PasswordManager
             {
                 if (thumbnailCache == null)
                 {
-                    var cacheDirectory = Properties.Settings.Default.CacheDirectory.ReplaceSpecialFolder();
+                    var cacheDirectory = Settings.Default.CacheDirectory.ReplaceSpecialFolder();
                     thumbnailCache = new ThumbnailCache(cacheDirectory);
                     thumbnailCache.Load();
                 }
@@ -1051,7 +1093,7 @@ namespace PasswordManager
                         InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                         Filter = Properties.Resources.FILE_DIALOG_FILTER
                     };
-                    var initDir = Properties.Settings.Default.InitialDirectory.ReplaceSpecialFolder();
+                    var initDir = Settings.Default.InitialDirectory.ReplaceSpecialFolder();
                     if (Directory.Exists(initDir))
                     {
                         dlg.InitialDirectory = initDir;
@@ -1065,12 +1107,12 @@ namespace PasswordManager
                         return false;
                     }
                     filename = dlg.FileName;
-                    Properties.Settings.Default.InitialDirectory = new FileInfo(filename).Directory.FullName;
+                    Settings.Default.InitialDirectory = new FileInfo(filename).Directory.FullName;
                 }
                 var keyDirectory = keyDirectoryCache.Get(passwordRepository.Id);
                 passwordRepository.Save(filename, keyDirectory, passwordSecureString);
                 passwordFilename = filename;
-                Properties.Settings.Default.LastUsedRepositoryFile = filename;
+                Settings.Default.LastUsedRepositoryFile = filename;
                 SortListView();
                 ret = true;
             }
@@ -1135,7 +1177,7 @@ namespace PasswordManager
                         InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
                         Filter = Properties.Resources.FILE_DIALOG_FILTER
                     };
-                    var initDir = Properties.Settings.Default.InitialDirectory.ReplaceSpecialFolder();
+                    var initDir = Settings.Default.InitialDirectory.ReplaceSpecialFolder();
                     if (Directory.Exists(initDir))
                     {
                         opendlg.InitialDirectory = initDir;
@@ -1145,7 +1187,7 @@ namespace PasswordManager
                         return false;
                     }
                     filename = opendlg.FileName;
-                    Properties.Settings.Default.InitialDirectory = new FileInfo(filename).Directory.FullName;
+                    Settings.Default.InitialDirectory = new FileInfo(filename).Directory.FullName;
                 }
                 LoginWindow dlg = new LoginWindow(
                     this,
@@ -1161,7 +1203,7 @@ namespace PasswordManager
                     passwordFilename = filename;
                     passwordRepository = dlg.PasswordRepository;
                     passwordSecureString = dlg.SecurePassword;
-                    Properties.Settings.Default.LastUsedRepositoryFile = passwordFilename;
+                    Settings.Default.LastUsedRepositoryFile = passwordFilename;
                     foreach (var password in passwordRepository.Passwords)
                     {
                         listView.Items.Add(new PasswordViewItem(password, imageKey16x16));
@@ -1288,7 +1330,7 @@ namespace PasswordManager
                 {
                     return;
                 }
-                var dlg = new CloudLoginWindow(this, Properties.Resources.TITLE_CLOUD_LOGIN);
+                var dlg = new CloudLoginWindow(this, Properties.Resources.TITLE_CLOUD_LOGIN, ClientInfo);
                 if (dlg.ShowDialog() == true)
                 {
                     cloudAuthenticationToken = dlg.CloudToken;
@@ -1338,7 +1380,7 @@ namespace PasswordManager
                     UpdateControls();
                     return;
                 }
-                Properties.Settings.Default.ShowLoginColumn = menuItemShowLoginColumn.IsChecked;
+                Settings.Default.ShowLoginColumn = menuItemShowLoginColumn.IsChecked;
                 UpdateLoginColumn();
             }
             catch (Exception ex)
@@ -1356,7 +1398,7 @@ namespace PasswordManager
                     UpdateControls();
                     return;
                 }
-                Properties.Settings.Default.ShowPasswordColumn = menuItemShowPasswordColumn.IsChecked;
+                Settings.Default.ShowPasswordColumn = menuItemShowPasswordColumn.IsChecked;
                 UpdatePasswordColumn();
             }
             catch (Exception ex)
@@ -1369,7 +1411,7 @@ namespace PasswordManager
         {
             try
             {
-                Properties.Settings.Default.ShowToolbar = menuItemShowToolbar.IsChecked;
+                Settings.Default.ShowToolbar = menuItemShowToolbar.IsChecked;
                 UpdateToolbar();
             }
             catch (Exception ex)
@@ -1404,9 +1446,9 @@ namespace PasswordManager
                 var w = new SettingsWindow(this);
                 if (w.ShowDialog() == true)
                 {
-                    autoClearClipboardAfterSec = Properties.Settings.Default.AutoClearClipboard;
-                    autoHidePasswordAfterSec = Properties.Settings.Default.AutoHidePassword;
-                    reenterPasswordAfterSec = Properties.Settings.Default.ReenterPassword;
+                    autoClearClipboardAfterSec = Settings.Default.AutoClearClipboard;
+                    autoHidePasswordAfterSec = Settings.Default.AutoHidePassword;
+                    reenterPasswordAfterSec = Settings.Default.ReenterPassword;
                 }
             }
             catch (Exception ex)

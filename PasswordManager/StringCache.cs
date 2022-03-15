@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017-2021 Niels Stockfleth
+    Copyright (C) 2017-2022 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
 namespace PasswordManager
 {
@@ -50,13 +51,10 @@ namespace PasswordManager
             {
                 foreach (var entry in mappings)
                 {
-                    if (!string.IsNullOrEmpty(entry.Value))
-                    {
-                        list.Add(Tuple.Create(entry.Key, entry.Value));
-                    }
+                    list.Add(Tuple.Create(entry.Key, entry.Value));
                 }
             }
-            var json = System.Text.Json.JsonSerializer.Serialize(list);
+            var json = JsonSerializer.Serialize(list, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(MappingFile, json);
         }
     }

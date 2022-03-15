@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017-2021 Niels Stockfleth
+    Copyright (C) 2017-2022 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -24,6 +26,7 @@ namespace PasswordManager
     public sealed class ThumbnailCache : StringCache
     {
         private readonly string cacheDirectory;
+
         private const string IMAGE_SUFFIX = "png";
 
         public ThumbnailCache(string cacheDirectory)
@@ -41,38 +44,49 @@ namespace PasswordManager
             });
         }
 
-        public string GetImageFileName(string url1)
+        public string GetImageFileName(string url)
         {
-            var host = GetHostFromUrl(url1);
-            string filename = null;
-            if (!string.IsNullOrEmpty(host))
+            var domainName = GetDomainNameFromUrl(url);
+            if (!string.IsNullOrEmpty(domainName))
             {
                 lock (mappings)
                 {
-                    if (mappings.TryGetValue(host, out filename))
+                    if (mappings.TryGetValue(domainName, out var filename))
                     {
-                        return filename;
+                        if (filename == null || File.Exists(filename))
+                        {
+                            return filename;
+                        }
                     }
                 }
-                var webclient = new WebClient();
                 try
                 {
-                    filename = $"{cacheDirectory}\\{Guid.NewGuid().ToString()}.{IMAGE_SUFFIX}";
-                    webclient.DownloadFile($"http://www.google.com/s2/favicons?domain={host}", filename);
+                    string fn = $"{cacheDirectory}\\{domainName}.{IMAGE_SUFFIX}";
+                    if (!File.Exists(fn))
+                    {
+                        var webclient = new WebClient();
+                        Debug.WriteLine($"Download favicon for {domainName} to file {fn}.");
+                        webclient.DownloadFile($"http://www.google.com/s2/favicons?domain={domainName}", fn);
+                    }
+                    lock (mappings)
+                    {
+                        mappings.Add(domainName, fn);
+                    }
+                    return fn;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    // ignored
-                }
-                lock (mappings)
-                {
-                    mappings.Add(host, filename);
+                    Debug.WriteLine($"Failed to download favicon for domain {domainName}. {ex.Message}");
+                    lock (mappings)
+                    {
+                        mappings.Add(domainName, null);
+                    }
                 }
             }
-            return filename;
+            return null;
         }
 
-        private static string GetHostFromUrl(string url)
+        private static string GetDomainNameFromUrl(string url)
         {
             if (!string.IsNullOrEmpty(url))
             {
@@ -84,11 +98,17 @@ namespace PasswordManager
                 }
                 try
                 {
-                    return new Uri(url).Host;
+                    var domainName = new Uri(url).Host;
+                    var arr = domainName.Split(".");
+                    if (arr.Length > 2)
+                    {
+                        domainName = $"{arr[^2]}.{arr[^1]}";
+                    }
+                    return domainName.ToLowerInvariant();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    // ignored
+                    Debug.WriteLine($"Cannot create URL for '{url}'. {ex.Message}");
                 }
             }
             return null;
