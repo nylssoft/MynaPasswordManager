@@ -67,7 +67,15 @@ namespace PasswordManager
                     {
                         var webclient = new WebClient();
                         Debug.WriteLine($"Download favicon for {domainName} to file {fn}.");
-                        webclient.DownloadFile($"http://www.google.com/s2/favicons?domain={domainName}", fn);
+                        try
+                        {
+                            webclient.DownloadFile($"http://www.google.com/s2/favicons?domain={domainName}", fn);
+                        }
+                        catch
+                        {
+                            // retry with www prefix
+                            webclient.DownloadFile($"http://www.google.com/s2/favicons?domain=www.{domainName}", fn);
+                        }
                     }
                 }
                 catch (Exception ex)
