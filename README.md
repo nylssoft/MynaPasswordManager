@@ -30,7 +30,7 @@ The process itself tries to keep the plain text passwords in memory as short as 
 * Secure password storage in memory and in encrypted files
 * Change of master password and key file
 * Available for German and English
-* Cloud upload into https://www.stockfleth.eu
+* Cloud upload for websites based on the API server portal (https://github.com/nylssoft/MynaAPIServer)
 
 ## Screenshots
 
