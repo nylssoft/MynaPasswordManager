@@ -8,9 +8,10 @@ A password manager for Windows using WPF.
 
 ## Installation
 
-The latest MSI file can be found here: https://github.com/nylssoft/MynaPasswordManager/releases/download/V1.0.4/MynaPasswordManager.msi.
+The program is published as ZIP file. Unpack the ZIP file and start MynaPasswordManager.exe.
+The latest build can be downloaded from (https://www.stockfleth.eu/view?page=downloads).
 
-The program requires .NET framework v4.5.2.
+The program requires .NET 6.
 
 ## Encryption
 
@@ -29,6 +30,7 @@ The process itself tries to keep the plain text passwords in memory as short as 
 * Secure password storage in memory and in encrypted files
 * Change of master password and key file
 * Available for German and English
+* Cloud upload into (https://www.stockfleth.eu)
 
 ## Screenshots
 
@@ -68,8 +70,7 @@ The process itself tries to keep the plain text passwords in memory as short as 
 
 ## Build
 
-- Build with VS 2017
-- WiX ToolSet is required to build a MSI, see https://wixtoolset.org/
+- Build with VS 2022
 
 ## Licenses
 
