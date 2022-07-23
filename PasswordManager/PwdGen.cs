@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017-2020 Niels Stockfleth
+    Copyright (C) 2017-2022 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -54,35 +54,31 @@ namespace PasswordManager
                 sb.Append(Digits);
             }
             string all = sb.ToString();
-            using (var rng = new RNGCryptoServiceProvider())
+            List<int> numbers = new List<int>();
+            for (int idx = 0; idx < Length; idx++)
             {
-                List<int> numbers = new List<int>();
-                for (int idx = 0; idx < Length; idx++)
-                {
-                    numbers.Add(idx); // 0 => 0, 1 => 1, etc
-                }
-                List<int> positions = new List<int>();
-                while (numbers.Count > 0)
-                {
-                    var nidx = numbers.Count == 1 ? 0 : Next(rng, numbers.Count);
-                    positions.Add(numbers[nidx]);
-                    numbers.RemoveAt(nidx);
-                }
-                char[] pwd = new char[Length];
-                int drawidx = 0;
-                Draw(rng, pwd, ref drawidx, MinLowerCharacters, LowerCharacters, Length, positions);
-                Draw(rng, pwd, ref drawidx, MinUpperCharacters, UpperCharacters, Length, positions);
-                Draw(rng, pwd, ref drawidx, MinSymbols, Symbols, Length, positions);
-                Draw(rng, pwd, ref drawidx, MinDigits, Digits, Length, positions);
-                Draw(rng, pwd, ref drawidx, Length - drawidx, all, Length, positions);
-                string ret = new string(pwd);
-                Array.Clear(pwd, 0, pwd.Length);
-                return ret;
+                numbers.Add(idx); // 0 => 0, 1 => 1, etc
             }
+            List<int> positions = new List<int>();
+            while (numbers.Count > 0)
+            {
+                var nidx = numbers.Count == 1 ? 0 : Next(numbers.Count);
+                positions.Add(numbers[nidx]);
+                numbers.RemoveAt(nidx);
+            }
+            char[] pwd = new char[Length];
+            int drawidx = 0;
+            Draw(pwd, ref drawidx, MinLowerCharacters, LowerCharacters, Length, positions);
+            Draw(pwd, ref drawidx, MinUpperCharacters, UpperCharacters, Length, positions);
+            Draw(pwd, ref drawidx, MinSymbols, Symbols, Length, positions);
+            Draw(pwd, ref drawidx, MinDigits, Digits, Length, positions);
+            Draw(pwd, ref drawidx, Length - drawidx, all, Length, positions);
+            string ret = new string(pwd);
+            Array.Clear(pwd, 0, pwd.Length);
+            return ret;
         }
 
-        private void Draw(RNGCryptoServiceProvider rng,
-                            char[] pwd,
+        private void Draw(  char[] pwd,
                             ref int drawidx,
                             int drawcnt,
                             string symbols,
@@ -93,12 +89,12 @@ namespace PasswordManager
             {
                 for (int cnt = 0; cnt < drawcnt && drawidx < pwdlen; cnt++)
                 {
-                    pwd[positions[drawidx++]] = symbols[Next(rng, symbols.Length)];
+                    pwd[positions[drawidx++]] = symbols[Next(symbols.Length)];
                 }
             }
         }
 
-        private int Next(RNGCryptoServiceProvider rng, int upper_limit)
+        private int Next(int upper_limit)
         {
             if (upper_limit <= 0)
             {
@@ -108,13 +104,12 @@ namespace PasswordManager
             {
                 return 0;
             }
-            return (int)(Next(rng) % (uint)upper_limit);
+            return (int)(Next() % (uint)upper_limit);
         }
 
-        private uint Next(RNGCryptoServiceProvider rng)
+        private uint Next()
         {
-            byte[] randomNumber = new byte[4];
-            rng.GetBytes(randomNumber);
+            byte[] randomNumber = RandomNumberGenerator.GetBytes(4);
             return BitConverter.ToUInt32(randomNumber, 0);
         }
     }

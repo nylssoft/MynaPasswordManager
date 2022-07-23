@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017 Niels Stockfleth
+    Copyright (C) 2017-2022 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ namespace PasswordManager.Repository
             var backupFile = Backup(repositoryFile);
             try
             {
-                using (var rijAlg = new RijndaelManaged())
+                using (var rijAlg = Aes.Create())
                 {
                     // create new key if it does not exist
                     if (overwriteKey || !ExistKey(keyDirectory, Id))
@@ -227,7 +227,7 @@ namespace PasswordManager.Repository
             bool            oldFormat)
         {
             var repository = new PasswordRepository();
-            using (var rijAlg = new RijndaelManaged())
+            using (var rijAlg = Aes.Create())
             {
                 using (var ms = new MemoryStream())
                 {
@@ -455,7 +455,7 @@ namespace PasswordManager.Repository
             var bytes = Encoding.UTF8.GetBytes(str_pwd);
             str_pwd = string.Empty;
             byte[] passwordHash;
-            using (var sha265 = new SHA256Managed())
+            using (var sha265 = SHA256.Create())
             {
                 passwordHash = sha265.ComputeHash(bytes);
             }
@@ -470,9 +470,9 @@ namespace PasswordManager.Repository
 
         private static byte [] TransformKey(byte [] key, byte [] iv, SecureString securePassword, TransformType t)
         {
-            using (var sha265 = new SHA256Managed())
+            using (var sha265 = SHA256.Create())
             {
-                using (var rijAlg = new RijndaelManaged())
+                using (var rijAlg = Aes.Create())
                 {
                     rijAlg.KeySize = 256; // same size as password hash (SHA-256)
                     var str_pwd = securePassword.GetAsString();
@@ -505,7 +505,7 @@ namespace PasswordManager.Repository
 
         private static void WriteNewKey(string keyDirectory, string id, SecureString securePassword)
         {
-            using (var rijAlg = new RijndaelManaged())
+            using (var rijAlg = Aes.Create())
             {
                 rijAlg.KeySize = 256; // same size as SHA-256 hash
                 // create and write initialization vector file

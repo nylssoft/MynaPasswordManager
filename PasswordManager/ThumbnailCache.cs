@@ -19,6 +19,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace PasswordManager
@@ -29,6 +30,8 @@ namespace PasswordManager
 
         private const string IMAGE_SUFFIX = "png";
 
+        private static readonly HttpClient httpClient = new HttpClient();
+
         public ThumbnailCache(string cacheDirectory)
         {
             this.cacheDirectory = cacheDirectory;
@@ -37,14 +40,6 @@ namespace PasswordManager
         protected override string MappingFile => $"{cacheDirectory}\\mapping.json";
 
         public async Task<string> GetImageFileNameAsync(string url)
-        {
-            return await Task<string>.Factory.StartNew(() =>
-            {
-                return GetImageFileName(url);
-            });
-        }
-
-        public string GetImageFileName(string url)
         {
             string fn = null;
             var domainName = GetDomainNameFromUrl(url);
@@ -65,17 +60,18 @@ namespace PasswordManager
                     fn = $"{cacheDirectory}\\{domainName}.{IMAGE_SUFFIX}";
                     if (!File.Exists(fn))
                     {
-                        var webclient = new WebClient();
                         Debug.WriteLine($"Download favicon for {domainName} to file {fn}.");
+                        byte[] data;
                         try
                         {
-                            webclient.DownloadFile($"http://www.google.com/s2/favicons?domain={domainName}", fn);
+                            data = await httpClient.GetByteArrayAsync($"http://www.google.com/s2/favicons?domain={domainName}");
                         }
                         catch
                         {
                             // retry with www prefix
-                            webclient.DownloadFile($"http://www.google.com/s2/favicons?domain=www.{domainName}", fn);
+                            data = await httpClient.GetByteArrayAsync($"http://www.google.com/s2/favicons?domain=www.{domainName}");
                         }
+                        await File.WriteAllBytesAsync(fn, data);
                     }
                 }
                 catch (Exception ex)
