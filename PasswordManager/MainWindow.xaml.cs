@@ -230,7 +230,7 @@ namespace PasswordManager
                 listView.Items.Clear();
                 foreach (var password in passwordRepository.Passwords)
                 {
-                    if (password.Name.StartsWith(textBoxFilter.Text, StringComparison.CurrentCultureIgnoreCase))
+                    if (password.Name.Contains(textBoxFilter.Text, StringComparison.CurrentCultureIgnoreCase))
                     {
                         listView.Items.Add(new PasswordViewItem(password, imageKey16x16));
                     }
