@@ -57,7 +57,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="CloudUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">https://www.stockfleth.eu</Value>
     </Setting>
     <Setting Name="CloudUsername" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
