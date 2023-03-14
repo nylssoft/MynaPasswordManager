@@ -18,7 +18,7 @@ The program requires .NET 6.
 The passwords for each item are encrypted with the Rijndael algorithm using an encrypted key file.
 Preferable the key file should be stored on a different device than the password file.
 The key file is encrypted using the SHA-256 hash of the master password.
-The process itself tries to keep the plain text passwords in memory as short as possible. The SecureString class is used to store passwords in memory for the life time of the process.
+The process itself tries to keep the plain text passwords in memory as short as possible.
 
 ## Features
 
