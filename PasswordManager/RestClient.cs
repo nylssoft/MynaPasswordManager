@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017-2022 Niels Stockfleth
+    Copyright (C) 2017-2024 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -184,7 +184,7 @@ namespace PasswordManager
             var key = KeyDerivation.Pbkdf2(password, salt, KeyDerivationPrf.HMACSHA256, 1000, 256 / 8);
             var encoded = new byte[secret.Length];
             var tag = new byte[16];
-            using (var cipher = new AesGcm(key))
+            using (var cipher = new AesGcm(key, tag.Length))
             {
                 cipher.Encrypt(iv, secret, encoded, tag);
             }

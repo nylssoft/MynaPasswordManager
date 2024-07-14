@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017-2022 Niels Stockfleth
+    Copyright (C) 2017-2024 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -32,9 +32,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace PasswordManager
-{
+{    
     public partial class MainWindow : Window
     {
+        #pragma warning disable CA1416
+
         private int autoClearClipboardAfterSec = 30; // clear clipboard after 30 seconds, 0 to disable
         private int autoHidePasswordAfterSec = 30; // hide all passwords after 30 seconds, 0 to disable
         private int reenterPasswordAfterSec = 300; // reenter password after 5 minutes being idle, 0 to disable
