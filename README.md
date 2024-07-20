@@ -68,10 +68,6 @@ The process itself tries to keep the plain text passwords in memory as short as 
 
 ![Settings](Screenshots/mynapasswordmanager_settings.png)
 
-## Build
-
-- Build with VS 2022
-
 ## Licenses
 
 The following icons are used from the **Open Icon Library** (https://sourceforge.net/projects/openiconlibrary):
