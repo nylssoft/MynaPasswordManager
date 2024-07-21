@@ -1,5 +1,6 @@
 .vs
 bin
-**/obj
 packages
+PasswordManager/bin
+PasswordManager/obj
 **/*.csproj.user
