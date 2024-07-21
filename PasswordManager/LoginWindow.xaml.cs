@@ -1,6 +1,6 @@
 ﻿/*
     Myna Password Manager
-    Copyright (C) 2017 Niels Stockfleth
+    Copyright (C) 2017-2024 Niels Stockfleth
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@ namespace PasswordManager
 {
     public partial class LoginWindow : Window
     {
+        #pragma warning disable CA1416
+
         private KeyDirectoryCache keyDirCache;
         private string repositoryFile;
 
