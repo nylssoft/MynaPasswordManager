@@ -11,7 +11,7 @@ A password manager for Windows using WPF.
 The program is published as ZIP file. Unpack the ZIP file and start MynaPasswordManager.exe.
 The latest build can be downloaded from https://www.stockfleth.eu/view?page=downloads.
 
-The program requires .NET 6.
+The program requires .NET 8.
 
 ## Encryption
 
