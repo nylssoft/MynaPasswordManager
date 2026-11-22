@@ -23,6 +23,7 @@
     <Window.CommandBindings>
         <CommandBinding Command="self:CustomCommands.New" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.Open" CanExecute="Command_CanExecute" Executed="Command_Executed" />
+        <CommandBinding Command="self:CustomCommands.ImportPasswordBackup" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.Save" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.SaveAs" CanExecute="Command_CanExecute" Executed="Command_Executed" />
         <CommandBinding Command="self:CustomCommands.Close" CanExecute="Command_CanExecute" Executed="Command_Executed" />
@@ -72,6 +73,7 @@
                                     <Image Source="Images/16x16/document-open-2.png" Style="{StaticResource ImageEnabled}" Width="16" Height="16"/>
                                 </MenuItem.Icon>
                             </MenuItem>
+                            <MenuItem Command="self:CustomCommands.ImportPasswordBackup" />
                             <Separator />
                             <MenuItem Command="self:CustomCommands.Save">
                                 <MenuItem.Icon>

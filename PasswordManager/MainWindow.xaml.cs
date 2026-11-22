@@ -24,6 +24,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Security;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
@@ -298,6 +299,7 @@ namespace PasswordManager
                 case "Close":
                 case "Properties":
                 case "Add":
+                case "ImportPasswordBackup":
                 case "ChangeKeyDirectory":
                 case "ChangeMasterPassword":
                     e.CanExecute = hasRepository;
@@ -345,6 +347,9 @@ namespace PasswordManager
                     break;
                 case "Open":
                     OpenRepository();
+                    break;
+                case "ImportPasswordBackup":
+                    ImportPasswordBackup();
                     break;
                 case "SaveAs":
                     SaveAs();
@@ -1161,6 +1166,61 @@ namespace PasswordManager
         private void OpenRepository()
         {
             OpenRepository(null, false);
+        }
+
+        private void ImportPasswordBackup()
+        {
+            try
+            {
+                if (passwordRepository == null || !ReenterPassword())
+                {
+                    return;
+                }
+
+                var openDialog = new Microsoft.Win32.OpenFileDialog
+                {
+                    InitialDirectory = Settings.Default.InitialDirectory.ReplaceSpecialFolder(),
+                    Filter = Properties.Resources.FILE_DIALOG_IMPORT_BACKUP_FILTER
+                };
+                if (!Directory.Exists(openDialog.InitialDirectory))
+                {
+                    openDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                }
+                if (openDialog.ShowDialog() != true)
+                {
+                    return;
+                }
+
+                var passphraseDialog = new ImportPasswordBackupWindow(this);
+                if (passphraseDialog.ShowDialog() != true)
+                {
+                    return;
+                }
+                using var passphrase = passphraseDialog.Passphrase;
+                var importedPasswords = PasswordBackupImporter.Read(openDialog.FileName, passphrase);
+                passwordRepository.AddRange(importedPasswords);
+                TextBoxFilter_TextChanged(this, null);
+                MessageBox.Show(
+                    this,
+                    string.Format(Properties.Resources.TEXT_IMPORT_BACKUP_SUCCESS_0, importedPasswords.Count),
+                    Title,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                Settings.Default.InitialDirectory = new FileInfo(openDialog.FileName).Directory.FullName;
+            }
+            catch (CryptographicException)
+            {
+                MessageBox.Show(this, Properties.Resources.ERROR_IMPORT_BACKUP_PASSPHRASE, Title, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (InvalidDataException)
+            {
+                MessageBox.Show(this, Properties.Resources.ERROR_IMPORT_BACKUP_FORMAT, Title, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+            UpdateControls();
         }
 
         private bool OpenRepository(string filename, bool silent)

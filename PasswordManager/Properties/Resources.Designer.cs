@@ -320,7 +320,16 @@ namespace PasswordManager.Properties {
                 return ResourceManager.GetString("CMD_OPEN", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up a localized string similar to Import web password _backup....
+        /// </summary>
+        public static string CMD_IMPORT_PASSWORD_BACKUP {
+            get {
+                return ResourceManager.GetString("CMD_IMPORT_PASSWORD_BACKUP", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to _Open URL in browser.
         /// </summary>
@@ -455,7 +464,25 @@ namespace PasswordManager.Properties {
                 return ResourceManager.GetString("ERROR_INVALID_FORMAT", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up the localized message for an unsupported web password backup.
+        /// </summary>
+        public static string ERROR_IMPORT_BACKUP_FORMAT {
+            get {
+                return ResourceManager.GetString("ERROR_IMPORT_BACKUP_FORMAT", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up the localized message for a failed backup passphrase check.
+        /// </summary>
+        public static string ERROR_IMPORT_BACKUP_PASSPHRASE {
+            get {
+                return ResourceManager.GetString("ERROR_IMPORT_BACKUP_PASSPHRASE", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to The key for &apos;{0}&apos; does not exist in the directory &apos;{1}&apos;..
         /// </summary>
@@ -518,7 +545,16 @@ namespace PasswordManager.Properties {
                 return ResourceManager.GetString("FILE_DIALOG_FILTER", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up the file picker filter for web password backups.
+        /// </summary>
+        public static string FILE_DIALOG_IMPORT_BACKUP_FILTER {
+            get {
+                return ResourceManager.GetString("FILE_DIALOG_IMPORT_BACKUP_FILTER", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to C_lear clipboard after (seconds):.
         /// </summary>
@@ -743,7 +779,16 @@ namespace PasswordManager.Properties {
                 return ResourceManager.GetString("LABEL_PASSWORD", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up the prompt for the password backup passphrase.
+        /// </summary>
+        public static string LABEL_IMPORT_BACKUP_PASSPHRASE {
+            get {
+                return ResourceManager.GetString("LABEL_IMPORT_BACKUP_PASSPHRASE", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Password _file:.
         /// </summary>
@@ -945,7 +990,16 @@ namespace PasswordManager.Properties {
                 return ResourceManager.GetString("TEXT_SEARCH_LIST", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up the localized import success message.
+        /// </summary>
+        public static string TEXT_IMPORT_BACKUP_SUCCESS_0 {
+            get {
+                return ResourceManager.GetString("TEXT_IMPORT_BACKUP_SUCCESS_0", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
@@ -999,7 +1053,16 @@ namespace PasswordManager.Properties {
                 return ResourceManager.GetString("TITLE_GENERATE_PASSWORD", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   Looks up the import password backup window title.
+        /// </summary>
+        public static string TITLE_IMPORT_PASSWORD_BACKUP {
+            get {
+                return ResourceManager.GetString("TITLE_IMPORT_PASSWORD_BACKUP", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to New password file.
         /// </summary>

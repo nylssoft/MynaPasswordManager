@@ -104,6 +104,28 @@ namespace PasswordManager.Repository
             Changed = true;
         }
 
+        public void AddRange(IEnumerable<Password> passwords)
+        {
+            var additions = new Dictionary<string, Password>();
+            foreach (var password in passwords)
+            {
+                if (password == null || passwordDict.ContainsKey(password.Id) || additions.ContainsKey(password.Id))
+                {
+                    throw new ArgumentException("The password list contains an invalid or duplicate item.");
+                }
+                additions.Add(password.Id, new Password(password));
+            }
+
+            foreach (var addition in additions)
+            {
+                passwordDict.Add(addition.Key, addition.Value);
+            }
+            if (additions.Count > 0)
+            {
+                Changed = true;
+            }
+        }
+
         public void Update(Password pwd)
         {
             if (!passwordDict.ContainsKey(pwd.Id))

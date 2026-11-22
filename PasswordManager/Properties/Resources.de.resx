@@ -204,6 +204,9 @@
   <data name="CMD_OPEN" xml:space="preserve">
     <value>Ö_ffnen...</value>
   </data>
+  <data name="CMD_IMPORT_PASSWORD_BACKUP" xml:space="preserve">
+    <value>Web-Passwortbackup _importieren...</value>
+  </data>
   <data name="CMD_OPEN_URL" xml:space="preserve">
     <value>_URL im Browser öffnen</value>
   </data>
@@ -249,6 +252,12 @@
   <data name="ERROR_INVALID_FORMAT" xml:space="preserve">
     <value>Die ausgewählte Datei ist nicht im richtigen Format.</value>
   </data>
+  <data name="ERROR_IMPORT_BACKUP_FORMAT" xml:space="preserve">
+    <value>Die ausgewählte Datei ist kein gültiges oder unterstütztes Web-Passwortbackup.</value>
+  </data>
+  <data name="ERROR_IMPORT_BACKUP_PASSPHRASE" xml:space="preserve">
+    <value>Die Backup-Passphrase ist falsch oder die Backup-Daten sind beschädigt.</value>
+  </data>
   <data name="ERROR_KEY_NOT_FOUND_0_1" xml:space="preserve">
     <value>Der Schlüssel '{0}' existiert nicht im Verzeichnis '{1}'.</value>
   </data>
@@ -269,6 +278,9 @@
   </data>
   <data name="FILE_DIALOG_FILTER" xml:space="preserve">
     <value>Passwort Dateien (*.pwd)|*.pwd|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="FILE_DIALOG_IMPORT_BACKUP_FILTER" xml:space="preserve">
+    <value>Web-Passwortbackups (*.zip)|*.zip|Alle Dateien (*.*)|*.*</value>
   </data>
   <data name="LABEL_AUTOLOCK" xml:space="preserve">
     <value>Fenster automatisch _sperren</value>
@@ -345,6 +357,9 @@
   <data name="LABEL_PASSWORD" xml:space="preserve">
     <value>_Passwort:</value>
   </data>
+  <data name="LABEL_IMPORT_BACKUP_PASSPHRASE" xml:space="preserve">
+    <value>Backup-Passphrase eingeben (mindestens 12 Zeichen):</value>
+  </data>
   <data name="LABEL_PASSWORD_FILE" xml:space="preserve">
     <value>Passwortdatei:</value>
   </data>
@@ -415,6 +430,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   <data name="TEXT_SEARCH_LIST" xml:space="preserve">
     <value>Liste durchsuchen</value>
   </data>
+  <data name="TEXT_IMPORT_BACKUP_SUCCESS_0" xml:space="preserve">
+    <value>{0} Passworteinträge wurden importiert. Speichern Sie das Repository, um die Änderungen zu übernehmen.</value>
+  </data>
   <data name="TITLE_ADD" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
@@ -432,6 +450,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   </data>
   <data name="TITLE_GENERATE_PASSWORD" xml:space="preserve">
     <value>Passwortgenerator</value>
+  </data>
+  <data name="TITLE_IMPORT_PASSWORD_BACKUP" xml:space="preserve">
+    <value>Passwortbackup importieren</value>
   </data>
   <data name="TITLE_NEW" xml:space="preserve">
     <value>Neue Passwortdatei</value>

@@ -204,6 +204,9 @@
   <data name="CMD_OPEN" xml:space="preserve">
     <value>_Open...</value>
   </data>
+  <data name="CMD_IMPORT_PASSWORD_BACKUP" xml:space="preserve">
+    <value>Import web password _backup...</value>
+  </data>
   <data name="CMD_OPEN_URL" xml:space="preserve">
     <value>_Open URL in browser</value>
   </data>
@@ -249,6 +252,12 @@
   <data name="ERROR_INVALID_FORMAT" xml:space="preserve">
     <value>The selected file has the wrong format.</value>
   </data>
+  <data name="ERROR_IMPORT_BACKUP_FORMAT" xml:space="preserve">
+    <value>The selected file is not a valid or supported web password backup.</value>
+  </data>
+  <data name="ERROR_IMPORT_BACKUP_PASSPHRASE" xml:space="preserve">
+    <value>The backup passphrase is incorrect, or the backup data is damaged.</value>
+  </data>
   <data name="ERROR_KEY_NOT_FOUND_0_1" xml:space="preserve">
     <value>The key for '{0}' does not exist in the directory '{1}'.</value>
   </data>
@@ -269,6 +278,9 @@
   </data>
   <data name="FILE_DIALOG_FILTER" xml:space="preserve">
     <value>Password files (*.pwd)|*.pwd|All files (*.*)|*.*</value>
+  </data>
+  <data name="FILE_DIALOG_IMPORT_BACKUP_FILTER" xml:space="preserve">
+    <value>Web password backups (*.zip)|*.zip|All files (*.*)|*.*</value>
   </data>
   <data name="LABEL_AUTOLOCK" xml:space="preserve">
     <value>Lock w_indow automatically</value>
@@ -345,6 +357,9 @@
   <data name="LABEL_PASSWORD" xml:space="preserve">
     <value>_Password:</value>
   </data>
+  <data name="LABEL_IMPORT_BACKUP_PASSPHRASE" xml:space="preserve">
+    <value>Enter the backup passphrase (at least 12 characters):</value>
+  </data>
   <data name="LABEL_PASSWORD_FILE" xml:space="preserve">
     <value>Password _file:</value>
   </data>
@@ -415,6 +430,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   <data name="TEXT_SEARCH_LIST" xml:space="preserve">
     <value>Search list</value>
   </data>
+  <data name="TEXT_IMPORT_BACKUP_SUCCESS_0" xml:space="preserve">
+    <value>Imported {0} password items. Save the repository to keep the changes.</value>
+  </data>
   <data name="TITLE_ADD" xml:space="preserve">
     <value>Add</value>
   </data>
@@ -432,6 +450,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
   </data>
   <data name="TITLE_GENERATE_PASSWORD" xml:space="preserve">
     <value>Password Generator</value>
+  </data>
+  <data name="TITLE_IMPORT_PASSWORD_BACKUP" xml:space="preserve">
+    <value>Import password backup</value>
   </data>
   <data name="TITLE_NEW" xml:space="preserve">
     <value>New password file</value>

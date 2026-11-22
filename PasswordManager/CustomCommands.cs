@@ -35,6 +35,12 @@ namespace PasswordManager
             typeof(CustomCommands),
             new InputGestureCollection() { new KeyGesture(Key.O, ModifierKeys.Control) });
 
+        public static readonly RoutedUICommand ImportPasswordBackup =
+            new RoutedUICommand(
+            Properties.Resources.CMD_IMPORT_PASSWORD_BACKUP,
+            "ImportPasswordBackup",
+            typeof(CustomCommands));
+
         public static readonly RoutedUICommand Close =
             new RoutedUICommand(
             Properties.Resources.CMD_CLOSE,
